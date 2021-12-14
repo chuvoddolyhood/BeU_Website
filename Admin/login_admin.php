@@ -39,11 +39,11 @@
 					</div>
 					<div class="manage-login-body-input-wrapper">
 						<span>Tên tài khoản: </span>
-						<input id="staff_Name" type="text" name="staffName_manage" class="manage-login-input" value="<?php if(isset($_SESSION['stafflogin'])){echo $_SESSION['stafflogin'];} ?>">
+						<input id="staff_Name" type="text" name="staffName_manage" class="manage-login-input" value="<?php if(isset($_SESSION['stafflogin'])){echo $_SESSION['stafflogin'];} ?>" required>
 					</div>
 					<div class="manage-login-body-input-wrapper">
 						<span>Mật khẩu: </span>
-						<input id="staff_Pass" type="password" name="staffPass_manage" class="manage-login-input">
+						<input id="staff_Pass" type="password" name="staffPass_manage" class="manage-login-input" required>
 					</div>
 					<div class="manage-login-button-wrapper">
 						<button type="submit" name="btn_staff_login" class="button_staff_login">Đăng nhập</button>
