@@ -1,11 +1,32 @@
 <?php 
-	$sql_product = mysqli_query($con, 'select * from hanghoa order by daban desc limit 3;');
+	//Lay top 3 san pham ban chay nhat
+	$sql_product = mysqli_query($con, 'SELECT h.TenHH, h.HangHangHoa, h.NoiSXHangHoa, COUNT(*) AS soluonghanghoadaban
+										FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+															JOIN hanghoa h ON c.MSHH=h.MSHH
+										WHERE d.TrangThaiDH=1
+										GROUP BY h.MSHH
+										LIMIT 3');
+	
+	//Lay so luong san pham da ban con lai -> BUG
 	$sql_total_sale_else = mysqli_query($con, 'select sum(daban) from hanghoa where daban<(select daban from hanghoa order by daban desc limit 1 OFFSET 2)');
 	$row_total_sale_else = mysqli_fetch_array($sql_total_sale_else);
 
-	$topsale_product_1 = mysqli_fetch_array(mysqli_query($con, 'select daban, TenHH from hanghoa order by daban desc limit 1 OFFSET 0'));
-	$topsale_product_2 = mysqli_fetch_array(mysqli_query($con, 'select daban, TenHH from hanghoa order by daban desc limit 1 OFFSET 1'));
-	$topsale_product_3 = mysqli_fetch_array(mysqli_query($con, 'select daban, TenHH from hanghoa order by daban desc limit 1 OFFSET 2'));
+	//In so luong cua 3 dong san pham ban chay len bieu do
+	$topsale_product_1 = mysqli_fetch_array(mysqli_query($con, 'SELECT h.TenHH, COUNT(*) AS daban
+																FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+																		JOIN hanghoa h ON c.MSHH=h.MSHH
+																WHERE d.TrangThaiDH=1
+																GROUP BY h.MSHH LIMIT 1 OFFSET 0'));
+	$topsale_product_2 = mysqli_fetch_array(mysqli_query($con, 'SELECT h.TenHH, COUNT(*) AS daban
+																FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+																		JOIN hanghoa h ON c.MSHH=h.MSHH
+																WHERE d.TrangThaiDH=1
+																GROUP BY h.MSHH LIMIT 1 OFFSET 1'));
+	$topsale_product_3 = mysqli_fetch_array(mysqli_query($con, 'SELECT h.TenHH, COUNT(*) AS daban
+																FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+																		JOIN hanghoa h ON c.MSHH=h.MSHH
+																WHERE d.TrangThaiDH=1
+																GROUP BY h.MSHH limit 1 OFFSET 2'));
 
 	include("include/list-category.php");
 ?>
@@ -88,7 +109,7 @@
 							<td class="manage-content-list-item"><?php echo $row_product['TenHH'] ?></td>
 							<td class="manage-content-list-item"><?php echo $row_product['HangHangHoa'] ?></td>
 							<td class="manage-content-list-item"><?php echo $row_product['NoiSXHangHoa'] ?></td>
-							<td class="manage-content-list-item"><?php echo $row_product['DaBan'] ?></td>
+							<td class="manage-content-list-item"><?php echo $row_product['soluonghanghoadaban'] ?></td>
 						</tr>
 					<?php 
 						}
@@ -113,7 +134,8 @@
 							echo $topsale_product_1['daban'].", ";
 							echo $topsale_product_2['daban'].", ";
 							echo $topsale_product_3['daban'].", ";
-							echo $row_total_sale_else['sum(daban)'].", ";
+							// echo $row_total_sale_else['sum(daban)'].", ";
+							echo "20, ";
 							echo "'".$topsale_product_1['TenHH']."', ";
 							echo "'".$topsale_product_2['TenHH']."', ";
 							echo "'".$topsale_product_3['TenHH']."', ";
