@@ -238,7 +238,7 @@ function reset_user_password(userName){
 			// alert(response);
 			if(response != "false"){
 				alert('Reset pass thành công, mật khẩu mới của bạn là: ' + response);
-				window.location = "./index.php?quanly=khachhang";
+				location.reload();
 			}else{
 				alert('Không thể xóa địa chỉ, vui lòng liên hệ ban quản trị để được xử lý');
 			}

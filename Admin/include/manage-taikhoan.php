@@ -38,9 +38,9 @@
 					<td class="manage-content-list-header">
 						<?php echo $row_get_user_account['TaiKhoanKH'] ?>
 					</td>
-					<td class="manage-content-list-header">
-						<button>Reset Password</button>
-					</td>
+					<td class="manage-content-list-item">
+						<button onclick="reset_user_password('<?php echo $row_get_user_account['TaiKhoanKH']?>')">Reset Password</button>
+						</td>
 					<td class="manage-content-list-header">
 						<?php echo $row_get_user_account['HoTenKH'] ?>
 					</td>
@@ -58,9 +58,9 @@
 					}
 				?>
 			</table>
-			<div class="manage-footer">
+			<!-- <div class="manage-footer">
 				<button onclick="activeModal(0)" class="manage-btn">Thêm khách hàng</button>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="manage-content-wrap deactive-manage manage-content2">
@@ -179,13 +179,17 @@
 
 					<div class="auth-form__controls">
 						<button onclick="deactiveModal(0)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-						<button class="btn btn--primary">ĐĂNG KÝ</button>
+						<button onclick="check_regis_customer()" class="btn btn--primary">ĐĂNG KÝ</button>
 					</div>
 				</div>
 			</div>
 
 			<!-- add staff form -->
 			<!-- auth-form--active -->
+			<?php
+				$sql_get_staff_account = mysqli_query($con, "select HoTenNV, ChucVu from nhanvien where TaiKhoanNV='".$_SESSION['stafflogin']."'");
+				$row_get_staff_account = mysqli_fetch_array($sql_get_staff_account);
+			?>
 			<div class="auth-form">
 				<div class="auth-form__container">
 					<div class="auth-form__header">
@@ -194,19 +198,20 @@
 
 					<div class="auth-form__form">
 						<div class="auth-form__group">
-							<input type="text" class="auth-form__input" placeholder="Tên tài khoản" required>
-							<input type="text" class="auth-form__input" placeholder="Họ và tên" required>
+							<input id="staffName" type="text" class="auth-form__input" placeholder="Tên tài khoản" required>
+							<input id="staffRealName" type="text" class="auth-form__input" placeholder="Họ và tên" required>
 						</div>
 						<div class="auth-form__group">
-							<input type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
-							<input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu" required>
+							<input id="staffPass" type="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
+							<input id="staffRePass" type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu" required>
 						</div>
 						<div class="auth-form__group">
-							<input type="tel" class="auth-form__input" placeholder="Số điện thoại" required><input type="date" class="auth-form__input" placeholder="" required>
+							<input id="staffTel" type="tel" class="auth-form__input" placeholder="Số điện thoại" required>
+							<input id="staffPos" type="number" min="<?php echo $row_get_staff_account['ChucVu'] ?>" max="2" step="1" class="auth-form__input" placeholder="0: System | 1: Admin | 2: staff" required>
 						</div>
 						<div class="auth-form__group">
-							<input type="number" min="1" max="3" step="1" class="auth-form__input" placeholder="Chức vụ (1-3)" required>
-							<input type="email" class="auth-form__input" placeholder="Email của bạn" required>
+							
+							<input id="staffAdress" type="tex" class="auth-form__input" placeholder="Địa chỉ" required>
 						</div>
 					</div>
 
@@ -220,7 +225,7 @@
 
 					<div class="auth-form__controls">
 						<button onclick="deactiveModal(1)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-						<button class="btn btn--primary">ĐĂNG KÝ</button>
+						<button onclick="check_regis_staff()" class="btn btn--primary">ĐĂNG KÝ</button>
 					</div>
 				</div>
 			</div>

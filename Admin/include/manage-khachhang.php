@@ -18,15 +18,14 @@
 				</div>
 				<table class="manage-content-table">
 					<colgroup>
-						<col style="width: 15%;">
+						<col style="width: 20%;">
 						<col style="width: 12.5%">
 						<col style="width: 12.5%;">
 						<col style="width: 10%;">
 						<col style="width: 10%;">
-						<col style="width: 15%">
+						<col style="width: 20%">
 						<col style="width: 10%;">
 						<col style="width: 5%;">
-						<col style="width: 10%;">
 					</colgroup>
 
 					<tr class="manage-content-list">
@@ -38,7 +37,6 @@
 						<th class="manage-content-list-header">Email</th>
 						<th class="manage-content-list-header">DOB</th>
 						<th class="manage-content-list-header">Giới tính</th>
-						<th class="manage-content-list-header">Chỉnh sửa</th>
 					</tr>
 					<?php
 						while($row_customer = mysqli_fetch_array($sql_customer)){
@@ -52,17 +50,11 @@
 							<td class="manage-content-list-item"><?php echo $row_customer['Email'] ?></td>
 							<td class="manage-content-list-item"><?php echo $row_customer['DOB'] ?></td>
 							<td class="manage-content-list-item"><?php echo $row_customer['GioiTinh'] ?></td>
-							<td class="manage-content-list-item">
-								<button onclick="reset_user_password('<?php echo $row_customer['TaiKhoanKH']?>')">Reset Password</button>
-							</td>
 						</tr>
 					<?php
 						}
 					?>
 				</table>
-				<div class="manage-footer">
-					<button onclick="activeModal(0)" class="manage-btn">Thêm khách hàng</button>
-				</div>
 			</div>
 		</div>
 	</div>
