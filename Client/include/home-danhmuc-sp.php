@@ -159,7 +159,16 @@
 												<i class="fas fa-star"></i>
 											</div>
 
-											<span class="home-product-item__sold"><?php echo $row_sanpham['DaBan']." đã bán" ?></span>
+											<span class="home-product-item__sold">
+												<?php 
+													$sql_get_daban = "SELECT COUNT(*) AS soluongdaban
+																	FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+																	WHERE c.MSHH=$string_2 AND d.TrangThaiDH=1";
+													$query_get_daban = mysqli_query($con, $sql_get_daban);
+													$rows_get_daban = mysqli_fetch_array($query_get_daban);
+													echo $rows_get_daban['soluongdaban']." Đã bán" 
+												?>
+											</span>
 										</div>
 										<div class="home-product-item__origin">
 											<span class="home-product-item__brand"><?php echo $row_sanpham['HangHangHoa'] ?></span>

@@ -46,7 +46,14 @@
 							</span>
 							<span class="product-information--separate"></span>
 							<span class="product-information__sold">
-								<?php echo $row_chitiet['DaBan']." Đã bán" ?>
+								<?php
+									$sql_get_daban = "SELECT COUNT(*) AS soluongdaban
+													FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+													WHERE c.MSHH=$id AND d.TrangThaiDH=1";
+									$query_get_daban = mysqli_query($con, $sql_get_daban);
+									$rows_get_daban = mysqli_fetch_array($query_get_daban);
+									echo $rows_get_daban['soluongdaban']." Đã bán" 
+								?>
 							</span>
 						</div>
 						<span class="product-information__list-header">
