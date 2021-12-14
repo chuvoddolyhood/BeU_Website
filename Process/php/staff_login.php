@@ -6,6 +6,10 @@
         $staffName_manage = $_POST['staffName_manage'];
         $staffPass_manage = $_POST['staffPass_manage'];
 
+        if(!$staffName_manage){
+            
+        }
+
         $sql_get_staffaccount = mysqli_query($con, "select TaiKhoanNV from nhanvien where MatKhauNV='".$staffPass_manage."'");
         $row_get_staffaccount = mysqli_fetch_array($sql_get_staffaccount);
 
