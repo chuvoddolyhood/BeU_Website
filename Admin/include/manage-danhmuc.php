@@ -28,7 +28,7 @@
 			$row_get_number_billprocessing = mysqli_fetch_array($sql_get_number_billprocessing);
 		?>
 		<div class="grid__column-3">
-			<a href="?quanly=khachhang">
+			<a href="?quanly=danhmuc&id=1">
 				<div class="statistic-box">
 					<p><?php echo $row_get_number_customer['count(MSKH)'] ?><br><span>Khách</span></p>
 					<i class="statistic-box-icon fas fa-users"></i>
@@ -36,7 +36,7 @@
 			</a>
 		</div>
 		<div class="grid__column-3">
-			<a href="?quanly=hanghoa">
+			<a href="?quanly=danhmuc&id=3">
 				<div class="statistic-box">
 					<p><?php echo $row_get_number_product['count(MSHH)'] ?><br><span>Sản phẩm</span></p>
 					<i class="statistic-box-icon fas fa-boxes"></i>
@@ -44,7 +44,7 @@
 			</a>
 		</div>
 		<div class="grid__column-3">
-			<a href="?quanly=donhang">
+			<a href="?quanly=danhmuc&id=4">
 				<div class="statistic-box">
 					<p><?php echo $row_get_number_billdone['count(SoDonDH)'] ?><br><span>Đơn đã bán</span></p>
 					<i class="statistic-box-icon fas fa-dolly-flatbed"></i>
@@ -52,7 +52,7 @@
 			</a>
 		</div>
 		<div class="grid__column-3">
-			<a href="?quanly=donhang">
+			<a href="?quanly=danhmuc&id=4">
 				<div class="statistic-box">
 					<p><?php echo $row_get_number_billprocessing['count(SoDonDH)'] ?><br><span>Đơn chờ</span></p>
 					<i class="statistic-box-icon fas fa-receipt"></i>

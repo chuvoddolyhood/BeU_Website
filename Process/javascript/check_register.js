@@ -53,7 +53,7 @@ function check_regis_customer(){
 	if(check){
 		var ajax = new XMLHttpRequest();
 		var method = "GET";
-		var url = "./Process/php/register.php?regis=customer&userName="+user_Name_client+"&userRealName="+user_RealName_client+"&userPass="+user_Pass_client+"&userTel="+user_Tel_client+"&userDOB="+user_DOB_client+"&userEmail="+user_Email_client+"&userSex="+user_sex_client;
+		var url = "../php/register.php?regis=customer&userName="+user_Name_client+"&userRealName="+user_RealName_client+"&userPass="+user_Pass_client+"&userTel="+user_Tel_client+"&userDOB="+user_DOB_client+"&userEmail="+user_Email_client+"&userSex="+user_sex_client;
 		var asynchronous = true;
 
 		ajax.open(method, url, asynchronous);
