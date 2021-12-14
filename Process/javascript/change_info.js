@@ -19,7 +19,7 @@ function change_user_info(){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./Process/php/change_info.php?change=userChangeInfo&userName="+user_Name+"&userCompany="+user_Company+"&userFAX="+user_FAX;
+	var url = "../php/change_info.php?change=userChangeInfo&userName="+user_Name+"&userCompany="+user_Company+"&userFAX="+user_FAX;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);
@@ -70,7 +70,7 @@ function change_product_info(){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./Process/php/change_info.php?change=productChangeInfo&productID="+product_ID+"&productName="+product_name+"&productPacking="+product_packing+"&productPrice="+product_price+"&productAmount="+product_amount+"&productCategoryID="+product_categoryID+"&productSaleoff="+product_saleoff+"&productCategory="+product_category+"&productManufacturer="+product_manufacturer+"&productCountry="+product_country+"&productStatus="+product_status+"&productWarranty="+product_warranty+"&productSpecial="+product_special;
+	var url = "../php/change_info.php?change=productChangeInfo&productID="+product_ID+"&productName="+product_name+"&productPacking="+product_packing+"&productPrice="+product_price+"&productAmount="+product_amount+"&productCategoryID="+product_categoryID+"&productSaleoff="+product_saleoff+"&productCategory="+product_category+"&productManufacturer="+product_manufacturer+"&productCountry="+product_country+"&productStatus="+product_status+"&productWarranty="+product_warranty+"&productSpecial="+product_special;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);
@@ -101,7 +101,7 @@ function change_bill_status(ID, staffID){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./Process/php/change_info.php?change=billChangeStatus&staffID="+staff_ID+"&billID="+bill_ID+"&billStatus="+bill_ID_Status;
+	var url = "../php/change_info.php?change=billChangeStatus&staffID="+staff_ID+"&billID="+bill_ID+"&billStatus="+bill_ID_Status;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);
@@ -127,7 +127,7 @@ function remove_user_address(num){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./Process/php/change_info.php?change=userRemoveAddress&userAddressNumber="+address_number;
+	var url = "../php/change_info.php?change=userRemoveAddress&userAddressNumber="+address_number;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);
@@ -154,7 +154,7 @@ function remove_item_cart(num){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./Process/php/change_info.php?change=userRemoveCartItem&userName="+user_name+"&productID="+product_ID;
+	var url = "../php/change_info.php?change=userRemoveCartItem&userName="+user_name+"&productID="+product_ID;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);
@@ -196,7 +196,7 @@ function add_user_address(id){
 	if(user_Address){
 		var ajax = new XMLHttpRequest();
 		var method = "GET";
-		var url = "./Process/php/change_info.php?change=userAddAddress&userID="+user_ID+"&userAddress="+user_Address;
+		var url = "../php/change_info.php?change=userAddAddress&userID="+user_ID+"&userAddress="+user_Address;
 		var asynchronous = true;
 
 		ajax.open(method, url, asynchronous);
@@ -225,7 +225,7 @@ function reset_user_password(userName){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./Process/php/change_info.php?change=userResetPass&userName="+user_Name;
+	var url = "../php/change_info.php?change=userResetPass&userName="+user_Name;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);
@@ -251,7 +251,7 @@ function reset_staff_password(staffName){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./Process/php/change_info.php?change=staffResetPass&staffName="+staff_Name;
+	var url = "../php/change_info.php?change=staffResetPass&staffName="+staff_Name;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);
