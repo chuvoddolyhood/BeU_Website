@@ -2,7 +2,7 @@
 	session_start();
 
 	if(!isset($_SESSION['stafflogin'])){
-		header('location: ./Admin/login_admin.php');
+		header('location: ./login_admin.php');
 	}
 	include('../Process/db/connect.php');
 ?>
