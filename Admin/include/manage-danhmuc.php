@@ -8,7 +8,10 @@
 										LIMIT 3');
 	
 	//Lay so luong san pham da ban con lai -> BUG
-	$sql_total_sale_else = mysqli_query($con, 'select sum(daban) from hanghoa where daban<(select daban from hanghoa order by daban desc limit 1 OFFSET 2)');
+	$sql_total_sale_else = mysqli_query($con, 'SELECT h.MSHH, h.TenHH, COUNT(*) AS tongdaban
+											FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+											JOIN hanghoa h ON c.MSHH=h.MSHH
+											WHERE d.TrangThaiDH=1');
 	$row_total_sale_else = mysqli_fetch_array($sql_total_sale_else);
 
 	//In so luong cua 3 dong san pham ban chay len bieu do
@@ -27,7 +30,8 @@
 																		JOIN hanghoa h ON c.MSHH=h.MSHH
 																WHERE d.TrangThaiDH=1
 																GROUP BY h.MSHH limit 1 OFFSET 2'));
-
+	$SLSPconlai = ($row_total_sale_else['tongdaban']-($topsale_product_1['daban']+$topsale_product_2['daban']+$topsale_product_3['daban']));
+	// echo 'tongdaban'.$SLSPconlai;
 	include("include/list-category.php");
 ?>
 
@@ -119,7 +123,7 @@
 						<td class="manage-content-list-item">...</td>
 						<td class="manage-content-list-item">...</td>
 						<td class="manage-content-list-item">
-							<?php echo $row_total_sale_else['sum(daban)'] ?>
+							<?php echo $SLSPconlai ?>
 						</td>
 					</tr>
 				</table>
@@ -134,7 +138,7 @@
 							echo $topsale_product_1['daban'].", ";
 							echo $topsale_product_2['daban'].", ";
 							echo $topsale_product_3['daban'].", ";
-							// echo $row_total_sale_else['sum(daban)'].", ";
+							echo $SLSPconlai.", ";
 							echo "20, ";
 							echo "'".$topsale_product_1['TenHH']."', ";
 							echo "'".$topsale_product_2['TenHH']."', ";
