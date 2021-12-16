@@ -61,7 +61,7 @@
 					<th class="manage-content-list-header">Mã loại</th>
 					<th class="manage-content-list-header">Đã bán</th>
 					<th class="manage-content-list-header">Giảm giá</th>
-					<th class="manage-content-list-header">Loại SP</th>
+					<th class="manage-content-list-header">Chi tiết SP</th>
 					<th class="manage-content-list-header">Hãng</th>
 					<th class="manage-content-list-header">Nơi SX</th>
 					<th class="manage-content-list-header">Tình trạng</th>
@@ -195,39 +195,50 @@
 			<!-- auth-form--active -->
 			<div class="auth-form">
 				<div class="auth-form__container">
-					<div class="auth-form__header">
-						<h3 class="auth-form__heading">Thêm hàng hóa</h3>
-					</div>
+					<form action="./include/ProductManagement/addProduct.php" enctype="multipart/form-data" method="GET">
+						<div class="auth-form__header">
+							<h3 class="auth-form__heading">Thêm hàng hóa</h3>
+						</div>
 
-					<div class="auth-form__form">
-						<div class="auth-form__group">
-							<input type="text" class="auth-form__input" placeholder="Tên sản phẩm" required>
-							<input type="text" class="auth-form__input" placeholder="Loại sản phẩm" required>
+						<div class="auth-form__form">
+							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Tên sản phẩm" name="productName" required>
+								<input type="text" class="auth-form__input" placeholder="Chi tiết sản phẩm" name="productDetail" required>
+							</div>
+							<div class="auth-form__group">
+								<input type="number" min="1" step="any" class="auth-form__input" placeholder="Giá" name="productPrice" required>
+								<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" name="productAmount" required>
+								<input type="number" min="0" max="100" class="auth-form__input" placeholder="Giảm giá" name="productSaleoff" required>
+							</div>
+							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Quy cách" name="product_QuyCach" required>
+								<select name="productCategory" class="auth-form__input" required>
+									<option value="">Chọn loại hàng</option>
+									<?php
+										$sql_getMSHH = mysqli_query($con, "SELECT * FROM loaihanghoa");
+										while($row_getMSHH = mysqli_fetch_array($sql_getMSHH)){
+									?>
+									<option value="<?php echo $row_getMSHH['MaLoaiHang'] ?>"><?php echo $row_getMSHH['TenLoaiHang'] ?></option>
+									<?php } ?>
+								</select>
+								<input type="text" class="auth-form__input" placeholder="Hãng" name="productManufacturer" required>
+							</div>
+							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Nơi sản xuất" name="productCountry">
+								<input type="text" class="auth-form__input" placeholder="Tình trạng" name="productStatus" required>
+								<input type="text" class="auth-form__input" placeholder="Bảo hành" name="productWarranty" required>
+							</div>
+							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Đặc biệt" name="productSpecial" required>
+								<input type="file" class="auth-form__input" placeholder="Ảnh" name="productImg" required>
+							</div>
 						</div>
-						<div class="auth-form__group">
-							<input type="number" min="1" step="any" class="auth-form__input" placeholder="Giá" required>
-							<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" required>
-							<input type="number" min="0" max="100" class="auth-form__input" placeholder="Giảm giá" required>
-						</div>
-						<div class="auth-form__group">
-							<input type="text" class="auth-form__input" placeholder="Quy cách" required>
-							<input type="number" min="1" step="1" class="auth-form__input" placeholder="Mã loại" required>
-							<input type="text" class="auth-form__input" placeholder="Hãng" required>
-						</div>
-						<div class="auth-form__group">
-							<input type="text" class="auth-form__input" placeholder="Nơi sản xuất">
-							<input type="text" class="auth-form__input" placeholder="Tình trạng" required>
-							<input type="text" class="auth-form__input" placeholder="Bảo hành" required>
-						</div>
-						<div class="auth-form__group">
-							<input type="text" class="auth-form__input" placeholder="Đặc biệt" required>
-						</div>
-					</div>
 
-					<div class="auth-form__controls">
-						<button onclick="deactiveModal(0)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-						<button class="btn btn--primary">XÁC NHẬN</button>
-					</div>
+						<div class="auth-form__controls">
+							<button onclick="deactiveModal(0)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+							<button type="submit" name="btn_submit" class="btn btn--primary">XÁC NHẬN</button>
+						</div>
+					</form>
 				</div>
 			</div>
 
@@ -301,7 +312,7 @@
 
 					<div class="auth-form__form">
 						<div class="auth-form__group">
-							<select onchange="getComboA(this)">
+							<select class="auth-form__input" onchange="getComboA(this)">
 								<option>- Chọn MSHH -</option>
 								<?php
 									$sql_getMSHH = mysqli_query($con, "SELECT MSHH FROM hanghoa ORDER BY MSHH ASC");
