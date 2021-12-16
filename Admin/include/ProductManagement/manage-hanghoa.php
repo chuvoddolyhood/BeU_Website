@@ -23,6 +23,15 @@
 	</div>
 	<div class="manage-content-wrap manage-content1">
 		<div class="grid__column-12">
+			<div class="manage-footer-button-group">
+				<div class="manage-footer">
+					<button onclick="activeModal(0)" class="manage-btn">Thêm mới hàng hóa</button>
+				</div>
+				<div class="manage-footer">
+					<button onclick="activeModal(3)" class="manage-btn">Thêm hàng có sẵn</button>
+				</div>
+			</div>
+			
 			<table class="manage-content-table">
 				<colgroup>
 					<col style="width: 2.5%;">
@@ -61,6 +70,13 @@
 					<th class="manage-content-list-header">Chỉnh sửa</th>
 				</tr>
 				<?php
+					$sql_product = mysqli_query($con, 'SELECT h.MSHH, h.TenHH, h.QuyCach, h.Gia, h.SoLuongHang, h.MaLoaiHang, h.GiamGia, h.LoaiSanPham, h.HangHangHoa, h.NoiSXHangHoa, h.TinhTrang, h.BaoHanh, h.DacBiet, COUNT(*) AS daban, img.TenHinh
+													FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+													JOIN hanghoa h ON c.MSHH=h.MSHH
+													JOIN hinhhanghoa img ON h.MSHH=img.MSHH
+													WHERE d.TrangThaiDH=1
+													GROUP BY h.MSHH
+													ORDER BY h.MSHH ASC');
 					while($row_address = mysqli_fetch_array($sql_product)){
 				?>
 					<tr class="manage-content-list">
@@ -89,9 +105,7 @@
 					}
 				?>
 			</table>
-			<div class="manage-footer">
-				<button onclick="activeModal(0)" class="manage-btn">Thêm hàng hóa</button>
-			</div>
+			
 		</div>
 	</div>
 	<div class="manage-content-wrap deactive-manage manage-content2">
@@ -218,29 +232,27 @@
 			</div>
 
 			<!-- add staff form -->
-			<!-- auth-form--active -->
+			
+			
 			<div class="auth-form">
-				<div class="auth-form__container">
-					<div class="auth-form__header">
-						<h3 class="auth-form__heading">Thêm danh mục</h3>
-					</div>
-
-					<div class="auth-form__form">
-						<div class="auth-form__group">
-							<input type="text" class="auth-form__input" placeholder="Mã loại hàng" required>
+				<form action="./include/ProductManagement/add_productCategory.php" method="POST">
+					<div class="auth-form__container">
+						<div class="auth-form__header">
+							<h3 class="auth-form__heading">Thêm danh mục</h3>
 						</div>
-						<div class="auth-form__group">
-							<input type="text" class="auth-form__input" placeholder="Tên loại hàng" required>
+						<div class="auth-form__form">
+							<div class="auth-form__group">
+								<input type="text" name="nameTypeOfProduct" class="auth-form__input" placeholder="Tên loại hàng" required>
+							</div>
+						</div>
+						<div class="auth-form__controls">
+							<button onclick="deactiveModal(1)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+							<button type="submit" class="btn btn--primary" name="btn_submit" >XÁC NHẬN</button>
 						</div>
 					</div>
-					<div class="auth-form__controls">
-						<button onclick="deactiveModal(1)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-						<button class="btn btn--primary">XÁC NHẬN</button>
-					</div>
-				</div>
+				</form>
 			</div>
 
-			<!-- edit product info form -->
 			<!-- auth-form--active -->
 			<div class="auth-form">
 				<div class="auth-form__container">
@@ -280,6 +292,41 @@
 					</div>
 				</div>
 			</div>
+			<!-- auth-form--active -->
+			<div class="auth-form">
+				<div class="auth-form__container">
+					<div class="auth-form__header">
+						<h3 class="auth-form__heading">Thêm số lượng hàng hóa có sẵn</h3>
+					</div>
+
+					<div class="auth-form__form">
+						<div class="auth-form__group">
+							<select onchange="getComboA(this)">
+								<option>- Chọn MSHH -</option>
+								<?php
+									$sql_getMSHH = mysqli_query($con, "SELECT MSHH FROM hanghoa ORDER BY MSHH ASC");
+									while($row_getMSHH = mysqli_fetch_array($sql_getMSHH)){
+								?>
+								<option value="<?php echo $row_getMSHH['MSHH'] ?>">
+									<?php echo $row_getMSHH['MSHH'] ?>
+								</option>
+								<?php } ?>
+							</select>
+							<input type="text" class="auth-form__input" placeholder="Tên sản phẩm" required>
+						</div>
+						<div class="auth-form__group">
+							<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" required>
+						</div>
+					</div>
+
+					<div class="auth-form__controls">
+						<button onclick="deactiveModal(3)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+						<button class="btn btn--primary">XÁC NHẬN</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- add staff form -->
 		</div>
 	</div>
 </div>
@@ -312,4 +359,11 @@
 			$('#product_Special').val(data[14]);
 		});
 	});
+
+	function getComboA(selectObject) {
+		var value = selectObject.value;
+		// alert(value);
+		// var x = document.getElementById("link");
+		// x.href = "./show.php?&id=" + value ;
+	}
 </script>
