@@ -139,7 +139,6 @@
 							echo $topsale_product_2['daban'].", ";
 							echo $topsale_product_3['daban'].", ";
 							echo $SLSPconlai.", ";
-							echo "20, ";
 							echo "'".$topsale_product_1['TenHH']."', ";
 							echo "'".$topsale_product_2['TenHH']."', ";
 							echo "'".$topsale_product_3['TenHH']."', ";

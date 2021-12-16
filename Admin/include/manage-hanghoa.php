@@ -1,5 +1,11 @@
 <?php
-	$sql_product = mysqli_query($con, 'select * from hanghoa hh join hinhhanghoa H where hh.MSHH = H.MSHH group by TenHH ORDER By hh.MSHH ASC');
+	$sql_product = mysqli_query($con, 'SELECT h.MSHH, h.TenHH, h.QuyCach, h.Gia, h.SoLuongHang, h.MaLoaiHang, h.GiamGia, h.LoaiSanPham, h.HangHangHoa, h.NoiSXHangHoa, h.TinhTrang, h.BaoHanh, h.DacBiet, COUNT(*) AS daban, img.TenHinh
+										FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+										JOIN hanghoa h ON c.MSHH=h.MSHH
+										JOIN hinhhanghoa img ON h.MSHH=img.MSHH
+										WHERE d.TrangThaiDH=1
+										GROUP BY h.MSHH
+										ORDER BY daban DESC');
 	$sql_category = mysqli_query($con, 'select * from loaihanghoa');
 
 	include("include/list-category.php");
@@ -67,7 +73,7 @@
 						<td class="manage-content-list-item"><?php echo number_format($row_address['Gia']) ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['SoLuongHang'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['MaLoaiHang'] ?></td>
-						<td class="manage-content-list-item"><?php echo $row_address['DaBan'] ?></td>
+						<td class="manage-content-list-item"><?php echo $row_address['daban'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['GiamGia'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['LoaiSanPham'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['HangHangHoa'] ?></td>
@@ -103,12 +109,16 @@
 				</tr>
 				<?php
 					while($row_category = mysqli_fetch_array($sql_category)){
-						$sql_category_totalsale = mysqli_fetch_array(mysqli_query($con, 'select sum(daban) from hanghoa where MaLoaiHang='.$row_category['MaLoaiHang']));
+						$sql_category_totalsale = mysqli_fetch_array(mysqli_query($con, 'SELECT COUNT(*) AS soluongdaban
+																						FROM hanghoa h JOIN chitietdathang c ON h.MSHH=c.MSHH
+																						JOIN dathang d ON c.SoDonDH=d.SoDonDH
+																						JOIN loaihanghoa l ON h.MaLoaiHang=l.MaLoaiHang
+																						WHERE d.TrangThaiDH=1 AND l.MaLoaiHang='.$row_category['MaLoaiHang']));
 				?>
 					<tr class="manage-content-list">
 						<td class="manage-content-list-item"><?php echo $row_category['MaLoaiHang'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_category['TenLoaiHang'] ?></td>
-						<td class="manage-content-list-item"><?php echo $sql_category_totalsale['sum(daban)'] ?></td>
+						<td class="manage-content-list-item"><?php echo $sql_category_totalsale['soluongdaban'] ?></td>
 					</tr>
 				<?php
 					}
@@ -132,9 +142,12 @@
 						$sql_number_category = mysqli_query($con, 'select MaLoaiHang from LoaiHangHoa');
 
 						while($row_number_category = mysqli_fetch_array($sql_number_category)){
-							$topsale_number_category = mysqli_fetch_array(mysqli_query($con, 'select sum(daban) from hanghoa where MaLoaiHang='.$row_number_category['MaLoaiHang']));
-							echo $topsale_number_category['sum(daban)'].", ";
-					}
+							$topsale_number_category = mysqli_fetch_array(mysqli_query($con, 'SELECT COUNT(*) AS soluongdaban
+							FROM hanghoa h JOIN chitietdathang c ON h.MSHH=c.MSHH
+							JOIN dathang d ON c.SoDonDH=d.SoDonDH
+							WHERE d.TrangThaiDH=1 AND h.MaLoaiHang='.$row_number_category['MaLoaiHang']));
+							echo $topsale_number_category['soluongdaban'].", ";
+						}
 
 						while($row_name_category = mysqli_fetch_array($sql_name_category)){
 							$topsale_name_category = mysqli_fetch_array(mysqli_query($con, 'select TenLoaiHang from LoaiHangHoa where MaLoaiHang='.$row_name_category['MaLoaiHang']));
