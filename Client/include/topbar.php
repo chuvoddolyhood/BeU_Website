@@ -117,6 +117,9 @@
 							<li class="header__navbar-user-item">
 								<a class="header__navbar-user-item-link" href="?quanly=thongtin&id=4">Đơn mua</a>
 							</li>
+							<li class="header__navbar-user-item">
+								<a class="header__navbar-user-item-link" href="?quanly=game" target="_blank">Chơi game</a>
+							</li>
 							<li class="header__navbar-user-item header__navbar-user-item--separate">
 								<a onclick="userLogOut()">Đăng xuất</a>
 							</li>

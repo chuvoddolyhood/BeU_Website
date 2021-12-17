@@ -11,7 +11,6 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Web bán hàng</title>
 		<link rel="stylesheet" href="./Process/assets/css/base.css">
-		<link rel="stylesheet" href="./Process/assets/css/main.css">
 		<link rel="stylesheet" href="./Process/php/register.php">
 		<link rel="stylesheet" href="./Process/assets/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -50,6 +49,8 @@
 				include("Client/include/giohang.php");
 			}elseif($quanly == 'thongtin'){
 				include("Client/include/thongtin_home.php");
+			}elseif($quanly == 'game'){
+				include("Client/game/game.php");
 			}else{
 				include("Client/include/home-danhmuc-sp.php");
 			}

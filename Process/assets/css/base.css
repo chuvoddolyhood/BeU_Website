@@ -1,3 +1,6 @@
+@import "main.css";
+@import "chart.css";
+
 :root {
 	--primary-color: #30B927;
 	--light-primary-color: #d2f8d2;
