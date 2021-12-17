@@ -5,7 +5,6 @@
 	// 	echo "<script> alert('Vui lòng đăng nhập để thực hiện chức năng này'); window.location = './index.php?status=login'; </script>";
 	// }
 ?>
-	<!-- <script type="text/javascript" href="./Process/assets/css/game.css"></script> -->
 	<link rel="stylesheet" href="./Process/assets/css/game.css">
 		<!-- BEM -->
 		<div class="app">
@@ -15,7 +14,6 @@
 			<div class="app__container" style="background-image: url('./Process/assets/img/game_bg.jpg'); background-size: auto 100%;">
 				<div class="grid">
 					<div class="grid__row app_content">
-						<link rel="stylesheet" href="../../Process/assets/css/game.css">
 						<div class="grid__column-12">
 							<div class="grid_game_wrapper">
 								<div class="box">
@@ -88,6 +86,4 @@
 					echo '<script> activeModal(0) </script>';
 				}
 			}
-
-			//include("../include/footbar.php");
 		?>

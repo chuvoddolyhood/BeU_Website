@@ -1300,6 +1300,10 @@ i.home-product-item__liked-icon{
 	background-color: var(--white-color);
 }
 
+.footer-item__wrapper{
+
+}
+
 .footer__heading{
 	font-size: 1.4rem;
 	text-transform: uppercase;
@@ -1332,6 +1336,8 @@ i.home-product-item__liked-icon{
 
 .footer__download{
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .footer__download-qr{

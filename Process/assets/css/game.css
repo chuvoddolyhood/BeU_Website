@@ -34,12 +34,13 @@ body {
 
 .grid_game_wrapper{
 	display: inline-flex;
-	justify-content: space-between;
+	justify-content: center;
+	flex-wrap: wrap;
 	width: 100%;
 }
 
 .box {
-	width: 600px;
+	width: 560px;
 	height: 300px;
 	background-color: var(--color-box-primary);
 	border-radius: 1rem;
@@ -47,7 +48,6 @@ body {
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
-	flex-wrap: no-wrap;
 	margin: 20px;
 }
 .box .ribbon {
