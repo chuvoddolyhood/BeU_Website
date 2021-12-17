@@ -65,7 +65,7 @@ function check_regis_customer(){
 	if(check){
 		var ajax = new XMLHttpRequest();
 		var method = "GET";
-		var url = "./../Process/php/register.php?regis=customer&userName="+user_Name_client+"&userRealName="+user_RealName_client+"&userPass="+user_Pass_client+"&userTel="+user_Tel_client+"&userDOB="+user_DOB_client+"&userEmail="+user_Email_client+"&userSex="+user_sex_client;
+		var url = "./Process/php/register.php?regis=customer&userName="+user_Name_client+"&userRealName="+user_RealName_client+"&userPass="+user_Pass_client+"&userTel="+user_Tel_client+"&userDOB="+user_DOB_client+"&userEmail="+user_Email_client+"&userSex="+user_sex_client;
 		var asynchronous = true;
 
 		ajax.open(method, url, asynchronous);
@@ -127,7 +127,7 @@ function check_regis_staff(){
 	if(check){
 		var ajax = new XMLHttpRequest();
 		var method = "GET";
-		var url = "./../Process/php/register.php?regis=staff&staffName="+staff_Name+"&staffRealName="+staff_RealName+"&staffPass="+staff_Pass+"&staffTel="+staff_Tel+"&staffAddress="+staff_Address+"&staffPos="+staff_Pos;
+		var url = "./Process/php/register.php?regis=staff&staffName="+staff_Name+"&staffRealName="+staff_RealName+"&staffPass="+staff_Pass+"&staffTel="+staff_Tel+"&staffAddress="+staff_Address+"&staffPos="+staff_Pos;
 		var asynchronous = true;
 
 		ajax.open(method, url, asynchronous);

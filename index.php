@@ -12,6 +12,7 @@
 		<title>Web bán hàng</title>
 		<link rel="stylesheet" href="./Process/assets/css/base.css">
 		<link rel="stylesheet" href="./Process/assets/css/main.css">
+		<link rel="stylesheet" href="./Process/php/register.php">
 		<link rel="stylesheet" href="./Process/assets/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
@@ -179,7 +180,7 @@
 		</div>
 
 		<?php 
-			if(isset($_GET['status']) && $_GET['status']=='login'){
+			if(isset($_GET['status']) && $_GET['status']=='login' && isset($_SESSION['login'])){
 				if($_SESSION['login']!=null){
 					echo "<script> 
 							alert('Hãy đăng xuất trước khi thực hiện chức năng này!') 

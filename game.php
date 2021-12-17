@@ -1,6 +1,10 @@
 <?php
 	session_start();
 	include_once('./Process/db/connect.php');
+	
+	// if(!isset($_SESSION['login'])){
+	// 	echo "<script> alert('Vui lòng đăng nhập để thực hiện chức năng này'); window.location = './index.php?status=login'; </script>";
+	// }
 ?>
 
 <!DOCTYPE html>
