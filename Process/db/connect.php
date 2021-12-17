@@ -1,5 +1,5 @@
 <?php
-  $con = mysqli_connect("localhost","root","","commercial_web");
+  $con = mysqli_connect("localhost","root","","beustore");
 
   // Check connection
   if (mysqli_connect_errno()) {

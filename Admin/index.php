@@ -52,7 +52,7 @@
 			}elseif ($quanly=='danhmuc' && $id=='2') {
 				include("include/manage-diachi.php");
 			}elseif ($quanly=='danhmuc' && $id=='3') {
-				include("include/manage-hanghoa.php");
+				include("include/ProductManagement/manage-hanghoa.php");
 			}elseif($quanly=='danhmuc' && $id=='4'){
 				include("include/manage-donhang.php");
 			}elseif($quanly=='danhmuc' && $id=='5'){
