@@ -24,6 +24,8 @@
 ?>
 <div class="app__container">
 	<div class="grid">
+		<!--slideshow-->
+        <?php include_once('Client/include/slideshow.php'); ?>
 		<div class="grid__row app_content">
 			<div class="grid__column-2">
 				<nav class="category">
