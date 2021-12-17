@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 14, 2021 lúc 02:35 PM
+-- Thời gian đã tạo: Th12 17, 2021 lúc 09:20 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.2.34
 
@@ -99,15 +99,15 @@ CREATE TABLE `dathang` (
 
 INSERT INTO `dathang` (`SoDonDH`, `TaiKhoanKH`, `MSNV`, `TongCong`, `NgayDH`, `NgayGH`, `TrangThaiDH`, `DiaChi`, `PTThanhToan`) VALUES
 (1, 'Quoc', 2, 6580000, '22/11/2021', '27/12/2021', 1, 'Hồ Chí Minh', 1),
-(2, 'Bun', 2, 5032000, '31/1/2021', '1/4/2021', 2, 'Cần Thơ', 1),
-(3, 'Quoc', 0, 24970000, '11/11/2021', '12/12/2021', 3, 'Hồ Chí Minh', 1),
-(12, 'Quoc', 2, 20090000, '20/11/2021', '1/12/2021', 3, 'Hồ Chí Minh', 1),
-(13, 'Quoc', 0, 20090000, '20/11/2021', '1/12/2021', 4, 'Hồ Chí Minh', 1),
-(14, 'Quoc', 2, 1635500, '21/11/2021', '2/12/2021', 2, 'Hồ Chí Minh', 1),
-(15, 'Bun', 0, 1720000, '22/11/2021', '3/12/2021', 4, 'Cần Thơ', 1),
-(16, 'Bun', 0, 6320000, '23/11/2021', '4/12/2021', 3, 'Cần Thơ', 1),
-(17, 'ChucThay', 4, 1382000, '26/11/2021', '7/12/2021', 3, 'Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ', 1),
-(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 4, 'Cần Thơ', 1);
+(2, 'Bun', 2, 5032000, '31/1/2021', '1/4/2021', 1, 'Cần Thơ', 1),
+(3, 'Quoc', 0, 24970000, '11/11/2021', '12/12/2021', 1, 'Hồ Chí Minh', 1),
+(12, 'Quoc', 2, 20090000, '20/11/2021', '1/12/2021', 1, 'Hồ Chí Minh', 1),
+(13, 'Quoc', 0, 20090000, '20/11/2021', '1/12/2021', 1, 'Hồ Chí Minh', 1),
+(14, 'Quoc', 2, 1635500, '21/11/2021', '2/12/2021', 1, 'Hồ Chí Minh', 1),
+(15, 'Bun', 0, 1720000, '22/11/2021', '3/12/2021', 1, 'Cần Thơ', 1),
+(16, 'Bun', 0, 6320000, '23/11/2021', '4/12/2021', 1, 'Cần Thơ', 1),
+(17, 'ChucThay', 4, 1382000, '26/11/2021', '7/12/2021', 1, 'Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ', 1),
+(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 1, 'Cần Thơ', 1);
 
 -- --------------------------------------------------------
 
@@ -205,7 +205,7 @@ CREATE TABLE `hanghoa` (
 --
 
 INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `QuyCach`, `GiaNhap`, `Gia`, `SoLuongHang`, `MaLoaiHang`, `GiamGia`, `LoaiSanPham`, `HangHangHoa`, `NoiSXHangHoa`, `TinhTrang`, `BaoHanh`, `DacBiet`) VALUES
-(1, 'ASUS TUF GAMING B460M-PRO', 'món', 0, 3290000, 101, 2, 0, 'Mainboard B460', 'ASUS', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Không'),
+(1, 'ASUS TUF GAMING B460M-PRO', 'món', 0, 3290000, 102, 2, 0, 'Mainboard B460', 'ASUS', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Không'),
 (2, 'MSI MAG B560M MORTAR WIFI', 'món', 0, 4490000, 100, 2, 0, 'Mainboard B560M', 'MSI', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Hỗ trợ kết nối wifi'),
 (3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 'món', 0, 5590000, 100, 1, 5, 'Chip AMD', 'AMD', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
 (4, 'Intel Core i7 10700 / 4.8GHz / 8 Nhân 16 Luồng', 'món', 0, 9690000, 100, 1, 0, 'Chip Intel', 'INTEL', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
@@ -333,7 +333,9 @@ INSERT INTO `loaihanghoa` (`MaLoaiHang`, `TenLoaiHang`) VALUES
 (1, 'Chip'),
 (2, 'MainBoard'),
 (3, 'Ram'),
-(4, 'VGA');
+(4, 'VGA'),
+(8, 'CPU'),
+(9, 'Monitor');
 
 -- --------------------------------------------------------
 
@@ -359,7 +361,8 @@ INSERT INTO `nhanvien` (`MSNV`, `TaiKhoanNV`, `MatKhauNV`, `HoTenNV`, `ChucVu`, 
 (0, 'HT', 'HTBeUSTORE@5813', 'HT', 0, 'HT', 0),
 (1, 'Admin', 'Admin', 'Admin', 1, 'Admin', 113),
 (2, 'Thanh', 'Thanh123', 'Nguyễn Đình Thanh', 2, 'Cần Thơ', 964594),
-(4, 'ThayTrungAdmin', 'ThayTrungAdmin', 'Thầy Trung', 1, 'Cần Thơ', 118058130);
+(4, 'ThayTrungAdmin', 'ThayTrungAdmin', 'Thầy Trung', 1, 'Cần Thơ', 118058130),
+(5, 'nghia', 'nghia', 'Trần Nhân Nghĩa', 1, 'Cần Thơ', 939635755);
 
 -- --------------------------------------------------------
 
@@ -629,13 +632,13 @@ ALTER TABLE `lichsutimkiem`
 -- AUTO_INCREMENT cho bảng `loaihanghoa`
 --
 ALTER TABLE `loaihanghoa`
-  MODIFY `MaLoaiHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `MaLoaiHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
-  MODIFY `MSNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `MSNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `nhaphanghoa`
