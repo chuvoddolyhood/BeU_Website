@@ -305,34 +305,33 @@
 					<div class="auth-form__header">
 						<h3 class="auth-form__heading">Thêm số lượng hàng hóa có sẵn</h3>
 					</div>
-
 					<div class="auth-form__form">
-						<div class="auth-form__group">
-							<select class="auth-form__input" onchange="getComboA(this)">
-								<option>- Chọn MSHH -</option>
-								<?php
-									$sql_getMSHH = mysqli_query($con, "SELECT MSHH FROM hanghoa ORDER BY MSHH ASC");
-									while($row_getMSHH = mysqli_fetch_array($sql_getMSHH)){
-								?>
-								<option value="<?php echo $row_getMSHH['MSHH'] ?>">
-									<?php echo $row_getMSHH['MSHH'] ?>
-								</option>
-								<?php } ?>
-							</select>
-							<input type="text" class="auth-form__input" placeholder="Tên sản phẩm" required>
-						</div>
-						<div class="auth-form__group">
-							<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" required>
-						</div>
-					</div>
-
-					<div class="auth-form__controls">
-						<button onclick="deactiveModal(3)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-						<button class="btn btn--primary">XÁC NHẬN</button>
+						<form action="./include/ProductManagement/availableProduct.php" method="get">
+							<div class="auth-form__group">
+								<select name="MSHH" class="auth-form__input" onchange="getComboA(this)">
+									<option>- Chọn MSHH -</option>
+									<?php
+										$sql_getMSHH = mysqli_query($con, "SELECT MSHH FROM hanghoa ORDER BY MSHH ASC");
+										while($row_getMSHH = mysqli_fetch_array($sql_getMSHH)){
+									?>
+									<option value="<?php echo $row_getMSHH['MSHH'] ?>">
+										<?php echo $row_getMSHH['MSHH'] ?>
+									</option>
+									<?php } ?>
+								</select>
+								<input type="text" class="auth-form__input" id="check_TenHH" placeholder="Tên sản phẩm" required>
+							</div>
+							<div class="auth-form__group">
+								<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" name="amountOfProduct" required>
+							</div>
+							<div class="auth-form__controls">
+								<button onclick="deactiveModal(3)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+								<button type="submit" name="btn_submit" class="btn btn--primary">XÁC NHẬN</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-
 			<!-- add staff form -->
 		</div>
 	</div>
@@ -368,9 +367,26 @@
 	});
 
 	function getComboA(selectObject) {
-		var value = selectObject.value;
-		// alert(value);
-		// var x = document.getElementById("link");
-		// x.href = "./show.php?&id=" + value ;
+		var MSHH = selectObject.value;
+		// alert(MSHH);
+		
+		//call ajax
+		var ajax = new XMLHttpRequest();
+        var method = "GET";
+        var url = "./include/ProductManagement/getNameOfProduct.php?MSHH="+MSHH;
+        var asynchronous = true;
+        ajax.open(method, url, asynchronous);
+
+        //send
+        ajax.send();
+
+        //receive
+        ajax.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                response_MSHH = this.responseText;
+                document.getElementById("check_TenHH").value = response_MSHH;
+            }
+        }
+        return false;
 	}
 </script>
