@@ -24,6 +24,9 @@
 				<div class="manage-footer">
 					<button onclick="activeModal(3)" class="manage-btn">Thêm hàng có sẵn</button>
 				</div>
+				<div class="manage-footer">
+					<button onclick="activeModal(4)" class="manage-btn">Lịch sử nhập hàng</button>
+				</div>
 			</div>
 			
 			<table class="manage-content-table">
@@ -322,8 +325,10 @@
 								<input type="text" class="auth-form__input" id="check_TenHH" placeholder="Tên sản phẩm" required>
 							</div>
 							<div class="auth-form__group">
-								<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" name="amountOfProduct" required>
+								<input type="number" min="1" class="auth-form__input" placeholder="Số lượng hàng" name="amountOfProduct" required>
+								<input type="number" min="1000" class="auth-form__input" placeholder="Giá nhập" id="check_giaNhap" name="priceProductImport" required>
 							</div>
+							<p style="color: red;">*Nếu bạn thay đổi giá nhập thì sẽ thay đổi và cập nhật lại giá trong hệ thống</p>
 							<div class="auth-form__controls">
 								<button onclick="deactiveModal(3)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
 								<button type="submit" name="btn_submit" class="btn btn--primary">XÁC NHẬN</button>
@@ -383,8 +388,11 @@
         //receive
         ajax.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                response_MSHH = this.responseText;
-                document.getElementById("check_TenHH").value = response_MSHH;
+                response_HH = this.responseText;
+				tenHH = response_HH.slice(0,response_HH.indexOf('*'));
+				giaNhap = response_HH.slice(response_HH.indexOf('*')+1);
+                document.getElementById("check_TenHH").value = tenHH;
+				document.getElementById("check_giaNhap").value = giaNhap;
             }
         }
         return false;

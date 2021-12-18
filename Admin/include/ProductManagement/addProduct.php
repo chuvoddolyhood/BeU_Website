@@ -1,4 +1,5 @@
 <?php
+// Them moi hang hoa
     include './../../../Process/db/connect.php';
     if(isset($_GET["btn_submit"])){
 		$productName = $_GET['productName'];

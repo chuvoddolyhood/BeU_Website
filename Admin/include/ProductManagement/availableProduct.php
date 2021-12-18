@@ -1,8 +1,10 @@
 <?php
+// Them hang hoa co san
     include './../../../Process/db/connect.php';
     if(isset($_GET["btn_submit"])){
 		$MSHH = $_GET['MSHH'];
 		$amountOfProduct = $_GET['amountOfProduct'];
+        $priceProductImport = $_GET['priceProductImport'];
 		
         // echo 'MSHH: '.$MSHH;
         // echo '\namountOfProduct'.$amountOfProduct;
@@ -15,7 +17,7 @@
         //So luong hang sau khi duoc cong them -> cap nhat vao CSDL
         $soLuongHang_update = $rows_SoLuongHangHoa['SoLuongHang'] + $amountOfProduct;
 
-        $sql_update="UPDATE `hanghoa` SET `SoLuongHang`=$soLuongHang_update WHERE MSHH=$MSHH";
+        $sql_update="UPDATE `hanghoa` SET `SoLuongHang`=$soLuongHang_update, `GiaNhap`=$priceProductImport WHERE MSHH=$MSHH";
         $query_update = mysqli_query($con, $sql_update);
 
         if($sql_SoLuongHangHoa && $sql_update){
