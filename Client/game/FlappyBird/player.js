@@ -54,8 +54,33 @@ class Player{
 		}else{
 			this.deadOnGroundCount++;
 			if(this.deadOnGroundCount==50){
-				//alert("Game Over!");
-				setup();
+				alert(`Game Over! Điểm lần này của bạn: ${player.score}`);
+
+				var user_name = document.getElementById('user_name').innerHTML;
+				var user_score = player.score;
+				var game_name = "FlappyBird";
+
+				var ajax = new XMLHttpRequest();
+				var method = "GET";
+				var url = "./Client/game/Process/php/add_user_score.php?add=score&userName="+user_name+"&gameName="+game_name+"&userScore="+user_score;
+				var asynchronous = true;
+
+				ajax.open(method, url, asynchronous);
+
+				ajax.send();
+
+				ajax.onreadystatechange = function(){
+					if(this.readyState == 4 && this.status == 200){
+						var response = this.responseText;
+						// alert(response);
+						if(response == "true"){
+							alert(`Đã thêm ${user_score} BeUToken vào ví, hãy dùng nó để đổi nhiều voucher độc đáo tại phần đổi thưởng nhé!`);
+							window.location = "./index.php?quanly=game";
+						}else{
+							alert('Xảy ra lỗi trong quá trình cập nhật điểm. Vui lòng liên hệ với nhân viên để được trợ giúp!');
+						}
+					}
+				}
 			}
 		}
 

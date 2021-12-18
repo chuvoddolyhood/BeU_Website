@@ -11,12 +11,12 @@
 	--color-button-text: #fff;
 }
 
-*,
+/**,
 *:before,
 *:after {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-}
+}*/
 
 a {
 	text-decoration: none;
@@ -28,7 +28,7 @@ img {
 
 body {
 	background-color: var(--color-bg);
-	font-family: "Poppins", sans-serif;
+	/*font-family: "Poppins", sans-serif;*/
 	color: var(--color-text-primary);
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .box {
-	width: 560px;
+	width: 555px;
 	height: 300px;
 	background-color: var(--color-box-primary);
 	border-radius: 1rem;
@@ -154,8 +154,8 @@ body {
 .box-img {
 	position: absolute;
 	top: 55%;
-	right: -15%;
-	width: 25rem;
+	right: 28%;
+	width: 1rem;
 	z-index: 2;
 }
 
@@ -440,4 +440,100 @@ body {
 	100% {
 		transform: translateX(-10rem);
 	}
+}
+
+.Reward{
+	width: 100%;
+	background-color: var(--pink-color);
+}
+
+.exchange_header{
+	margin: 0 20px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.exchange_header_label{
+	display: flex;
+	justify-content: center;
+	font-size: 3rem;
+	font-weight: 500;
+	margin: 20px 0 0;
+}
+
+.exchange_header h2{
+	display: inline-flex;
+	align-items: center;
+	font-size: 2.5rem;
+	height: 4rem;
+}
+
+.exchange_header span{
+	display: inline-flex;
+	justify-content: center;
+	font-size: 2.5rem;
+	font-weight: 500;
+}
+
+.exchange_voucher{
+	display: flex;
+	flex-direction: column;
+	margin: 10px 15px 30px;
+}
+
+.exchange_label{
+	display: table;
+	height: 4rem;
+}
+
+.exchange_label p{
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+.exchange_label span{
+	color: var(--pink-color);
+	font-weight: 700;
+}
+
+.exchange_voucher button{
+	font-size: 2rem;
+	line-height: 3rem;
+	font-weight: 500;
+	cursor: pointer;
+	border: 1px solid;
+	border-radius: 2px;
+	margin-top: 5px;
+}
+
+.exchange_voucher button:hover{
+	color: var(--primary-color);
+}
+
+.defaultCanvas0{
+	display: flex;
+	justify-content: center;
+	position: unset;
+}
+
+#score{
+	font-size: 75px;
+	font-weight: 500px;
+	color: white;
+	position: absolute;
+	top: 175px;
+	left: calc(50% - 21px);
+	z-index: 2;
+}
+
+#noti{
+	font-size: 50px;
+	font-weight: 500px;
+	color: white;
+	position: absolute;
+	top: 300px;
+	left: calc(50% - 233px);
+	z-index: 2;
 }

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once('Process/db/connect.php');
+	include('Process/db/connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +51,18 @@
 			}elseif($quanly == 'thongtin'){
 				include("Client/include/thongtin_home.php");
 			}elseif($quanly == 'game'){
-				include("Client/game/game.php");
+				if(isset($_GET['id'])){
+					$id = $_GET['id'];
+				}else{
+					$id = '';
+				}
+				if($id == '1'){
+					include("Client/game/TicTacToe/index.php");
+				}elseif($id == '2'){
+					include("Client/game/FlappyBird/index.php");
+				}else{
+					include("Client/game/game.php");
+				}
 			}else{
 				include("Client/include/home-danhmuc-sp.php");
 			}

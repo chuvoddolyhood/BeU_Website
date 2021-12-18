@@ -14,11 +14,11 @@ var groundSprite;
 
 
 function preload(){
-	birdSprite = loadImage("images/PigBird-rmbg.png");
-	topPipeSprite = loadImage("images/full pipe top.png");
-	bottomPipeSprite = loadImage("images/full pipe bottom.png");
-	backgroundSprite = loadImage("images/background.png");
-	groundSprite = loadImage("images/groundPiece.png");
+	birdSprite = loadImage("./Client/game/FlappyBird/images/PigBird-rmbg.png");
+	topPipeSprite = loadImage("./Client/game/FlappyBird/images/full pipe top.png");
+	bottomPipeSprite = loadImage("./Client/game/FlappyBird/images/full pipe bottom.png");
+	backgroundSprite = loadImage("./Client/game/FlappyBird/images/background.png");
+	groundSprite = loadImage("./Client/game/FlappyBird/images/groundPiece.png");
 }
 
 function sleep(ms){
@@ -30,8 +30,8 @@ function setup(){
 	var noti = document.getElementById("noti");
 	var reward = document.getElementById("reward");
 	noti.innerHTML = "Press 'Space' to start";
-	let stringReward = `First 10points = voucher 5%\nFirst 25points = voucher 10%\nFirst 50points = voucher 15%\nFirst 100points = voucher 25%\nEvery next 50points = +2%\nThe last reward can stack!`;
-	alert(stringReward); 
+	//let stringReward = `First 10points = voucher 5%\nFirst 25points = voucher 10%\nFirst 50points = voucher 15%\nFirst 100points = voucher 25%\nEvery next 50points = +2%\nThe last reward can stack!`;
+	//alert(stringReward); 
 	player = new Player(canvas.width / 3, canvas.height / 2);
 	pipes = new PipePair(false);
 	pipes2 = new PipePair(true);
@@ -39,7 +39,12 @@ function setup(){
 	ground = new Ground();
 	pauseBecauseDead = false;
 	this.panSpeed = 0;
-	this.gravity = 0;  
+	this.gravity = 0;
+	canvas.position(0, 0);
+	canvas.style('position', 'absolute');
+	canvas.style('display', 'flex');
+	canvas.style('left', 'calc(50% - 300px)');
+	canvas.style('top', '144px');
 }
 
 function draw(){
