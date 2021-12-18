@@ -1,11 +1,5 @@
 <?php
-	$sql_product = mysqli_query($con, 'SELECT h.MSHH, h.TenHH, h.QuyCach, h.Gia, h.SoLuongHang, h.MaLoaiHang, h.GiamGia, h.LoaiSanPham, h.HangHangHoa, h.NoiSXHangHoa, h.TinhTrang, h.BaoHanh, h.DacBiet, COUNT(*) AS daban, img.TenHinh
-										FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
-										JOIN hanghoa h ON c.MSHH=h.MSHH
-										JOIN hinhhanghoa img ON h.MSHH=img.MSHH
-										WHERE d.TrangThaiDH=1
-										GROUP BY h.MSHH
-										ORDER BY daban DESC');
+	$sql_product = mysqli_query($con, 'SELECT * FROM hanghoa h JOIN hinhhanghoa img ON h.MSHH=img.MSHH');
 	$sql_category = mysqli_query($con, 'select * from loaihanghoa');
 
 	include("include/list-category.php");
@@ -39,6 +33,7 @@
 					<col style="width: 12.5%">
 					<col style="width: 5%;">
 					<col style="width: 7.5%;">
+					<col style="width: 7.5%;">
 					<col style="width: 5%;">
 					<col style="width: 5%">
 					<col style="width: 5%;">
@@ -56,6 +51,7 @@
 					<th class="manage-content-list-header">Hình ảnh</th>
 					<th class="manage-content-list-header">Tên hàng</th>
 					<th class="manage-content-list-header">Quy cách</th>
+					<th class="manage-content-list-header">Giá nhập</th>
 					<th class="manage-content-list-header">Giá</th>
 					<th class="manage-content-list-header">Số lượng</th>
 					<th class="manage-content-list-header">Mã loại</th>
@@ -70,13 +66,10 @@
 					<th class="manage-content-list-header">Chỉnh sửa</th>
 				</tr>
 				<?php
-					$sql_product = mysqli_query($con, 'SELECT h.MSHH, h.TenHH, h.QuyCach, h.Gia, h.SoLuongHang, h.MaLoaiHang, h.GiamGia, h.LoaiSanPham, h.HangHangHoa, h.NoiSXHangHoa, h.TinhTrang, h.BaoHanh, h.DacBiet, COUNT(*) AS daban, img.TenHinh
-													FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
-													JOIN hanghoa h ON c.MSHH=h.MSHH
-													JOIN hinhhanghoa img ON h.MSHH=img.MSHH
-													WHERE d.TrangThaiDH=1
-													GROUP BY h.MSHH
-													ORDER BY h.MSHH ASC');
+					$sql_product_daban = mysqli_query($con, 'SELECT COUNT(*) AS daban FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+													JOIN hanghoa h ON c.MSHH=h.MSHH JOIN hinhhanghoa img ON h.MSHH=img.MSHH
+													WHERE d.TrangThaiDH=1 GROUP BY h.MSHH ORDER BY h.MSHH ASC');
+					$row_product_daban = mysqli_fetch_array($sql_product_daban);
 					while($row_address = mysqli_fetch_array($sql_product)){
 				?>
 					<tr class="manage-content-list">
@@ -86,10 +79,11 @@
 						</td>
 						<td class="manage-content-list-item"><?php echo $row_address['TenHH'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['QuyCach'] ?></td>
+						<td class="manage-content-list-item"><?php echo number_format($row_address['GiaNhap']) ?></td>
 						<td class="manage-content-list-item"><?php echo number_format($row_address['Gia']) ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['SoLuongHang'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['MaLoaiHang'] ?></td>
-						<td class="manage-content-list-item"><?php echo $row_address['daban'] ?></td>
+						<td class="manage-content-list-item"><?php echo $row_product_daban['daban'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['GiamGia'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['LoaiSanPham'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['HangHangHoa'] ?></td>
@@ -197,7 +191,7 @@
 				<div class="auth-form__container">
 					<form action="./include/ProductManagement/addProduct.php" enctype="multipart/form-data" method="GET">
 						<div class="auth-form__header">
-							<h3 class="auth-form__heading">Thêm hàng hóa</h3>
+							<h3 class="auth-form__heading">Thêm mới hàng hóa</h3>
 						</div>
 
 						<div class="auth-form__form">
@@ -206,11 +200,12 @@
 								<input type="text" class="auth-form__input" placeholder="Chi tiết sản phẩm" name="productDetail" required>
 							</div>
 							<div class="auth-form__group">
-								<input type="number" min="1" step="any" class="auth-form__input" placeholder="Giá" name="productPrice" required>
-								<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" name="productAmount" required>
+								<input type="number" min="1" max="any" class="auth-form__input" placeholder="Giảm nhập" name="productPriceImport" required>
+								<input type="number" min="1" step="any" class="auth-form__input" placeholder="Giá bán" name="productPrice" required>
 								<input type="number" min="0" max="100" class="auth-form__input" placeholder="Giảm giá" name="productSaleoff" required>
 							</div>
 							<div class="auth-form__group">
+								<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" name="productAmount" required>
 								<input type="text" class="auth-form__input" placeholder="Quy cách" name="product_QuyCach" required>
 								<select name="productCategory" class="auth-form__input" required>
 									<option value="">Chọn loại hàng</option>
@@ -221,14 +216,15 @@
 									<option value="<?php echo $row_getMSHH['MaLoaiHang'] ?>"><?php echo $row_getMSHH['TenLoaiHang'] ?></option>
 									<?php } ?>
 								</select>
-								<input type="text" class="auth-form__input" placeholder="Hãng" name="productManufacturer" required>
 							</div>
 							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Hãng" name="productManufacturer" required>
 								<input type="text" class="auth-form__input" placeholder="Nơi sản xuất" name="productCountry">
 								<input type="text" class="auth-form__input" placeholder="Tình trạng" name="productStatus" required>
-								<input type="text" class="auth-form__input" placeholder="Bảo hành" name="productWarranty" required>
+								
 							</div>
 							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Bảo hành" name="productWarranty" required>
 								<input type="text" class="auth-form__input" placeholder="Đặc biệt" name="productSpecial" required>
 								<input type="file" class="auth-form__input" placeholder="Ảnh" name="productImg" required>
 							</div>
