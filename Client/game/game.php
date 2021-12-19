@@ -82,140 +82,21 @@
 									</div>
 									
 									<div class="grid__row">
+										<?php
+											$sql_get_list_voucher = mysqli_query($con, "select * from voucher");
+											while($row_get_list_voucher = mysqli_fetch_array($sql_get_list_voucher)){
+										?>
 										<div class="grid__column-3">
 											<div class="exchange_voucher">
 												<div class="exchange_label">
-													<p>Voucher 5%: 10 <span>BeU</span>Token</p>
+													<p><?php echo $row_get_list_voucher['TenVoucher'] ?>: <?php echo $row_get_list_voucher['Token'] ?> <span>BeU</span>Token</p>
 												</div>
-												<button>Trao đổi</button>
+												<button onclick="exchange(<?php echo $_SESSION['login'] ?>, <?php echo $row_get_list_voucher['TenVoucher'] ?>)">Trao đổi</button>
 											</div>
 										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 10%: 25 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 15%: 45 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 20%: 70 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 25%: 100 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 30%: 135 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 35%: 175 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 40%: 220 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 45%: 270 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 50%: 325 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-													<div class="exchange_label">
-													<p>Freeship: 5 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Freeship * 3: 20 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 50k: 10 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 100k: 20 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 200k: 40 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="grid__column-3">
-											<div class="exchange_voucher">
-												<div class="exchange_label">
-													<p>Voucher 500k: 100 <span>BeU</span>Token</p>
-												</div>
-												<button>Trao đổi</button>	
-											</div>
-										</div>
-										<div class="exchange_voucher">
-											<div class="exchange_label">
-												<p>Random Voucher: 50 <span>BeU</span>Token</p>
-											</div>
-											<button>Trao đổi</button>	
-										</div>
+										<?php
+											}
+										?>
 									</div>
 								</div>
 							</div>
