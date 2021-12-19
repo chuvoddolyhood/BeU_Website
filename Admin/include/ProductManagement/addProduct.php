@@ -2,6 +2,7 @@
 // Them moi hang hoa
     include './../../../Process/db/connect.php';
     if(isset($_GET["btn_submit"])){
+        $username = $_GET['username'];
 		$productName = $_GET['productName'];
 		$productDetail = $_GET['productDetail'];
 		$productPrice = $_GET['productPrice'];
@@ -50,8 +51,25 @@
         $sql_add_img_product = "INSERT INTO `hinhhanghoa`(`TenHinh`, `MSHH`) VALUES ('$productImg',$id_proudct)";
         $query_add_img_product = mysqli_query($con, $sql_add_img_product);
 
+        // ===================================== THEM HANG HOA VO BANG nhaphanghoa =======================================
+        //Lay MSNV tu username
+        $sql_get_MSNV = "SELECT `MSNV` FROM `nhanvien` WHERE `TaiKhoanNV`='$username'";
+        $query_get_MSNV = mysqli_query($con, $sql_get_MSNV);
+        $rows_get_MSNV = mysqli_fetch_array($query_get_MSNV);
+        $MSNV = $rows_get_MSNV['MSNV'];
 
-        if($sql_get_MSHH && $sql_add_img_product){
+        //Lay thoi gian cua he thong
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $today = date("d-m-Y H:i:s");
+        // echo $today;
+
+        //Them thong tin vo bang nhaphanghoa
+        $sql_add_nhaphanghoa = "INSERT INTO `nhaphanghoa`(`NgayNhap`, `MSNV`) VALUES ('$today',$MSNV)";
+        $query_add_nhaphanghoa = mysqli_query($con, $sql_add_nhaphanghoa);
+
+
+
+        if($sql_get_MSHH && $sql_add_img_product && $sql_add_nhaphanghoa){
             header("location: ./../../index.php?quanly=danhmuc&id=3");
             echo '<script> alert("Saved");</script>';
         } else {

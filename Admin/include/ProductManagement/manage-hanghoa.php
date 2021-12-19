@@ -199,6 +199,7 @@
 
 						<div class="auth-form__form">
 							<div class="auth-form__group">
+								<input type="hidden" name="username" value="<?php echo $_SESSION['stafflogin']?>">
 								<input type="text" class="auth-form__input" placeholder="Tên sản phẩm" name="productName" required>
 								<input type="text" class="auth-form__input" placeholder="Chi tiết sản phẩm" name="productDetail" required>
 							</div>
@@ -338,6 +339,47 @@
 				</div>
 			</div>
 			<!-- add staff form -->
+
+			<div class="auth-form">
+				<div class="auth-form__container">
+					<div class="auth-form__header">
+						<h3 class="auth-form__heading">Lịch sử nhập hàng</h3>
+					</div>
+					<div class="auth-form__form">
+						<div style="overflow-x: auto;">
+							<table>
+								<tr>
+									<th>Số đơn nhập hàng</th>
+									<th>Tên hàng hóa</th>
+									<th>Số lượng</th>
+									<th>Đơn giá</th>
+									<th>Thành tiền</th>
+									<th>Nơi sản xuất</th>
+									<th>Thời gian</th>
+									<th>Người nhập</th>
+								</tr>
+								<?php
+									$sql_history_productImport = mysqli_query($con, 'SELECT h.TenHH, nv.HoTenNV, n.SoDonNhapHang, n.NgayNhap, c.SoLuong, c.DonGiaNhap, c.ThanhTien, c.NoiSanXuat
+																				FROM `chitietnhaphang` c JOIN nhaphanghoa n ON c.SoDonNhapHang=n.SoDonNhapHang
+																				JOIN hanghoa h ON h.MSHH=c.MSHH JOIN nhanvien nv ON n.MSNV=nv.MSNV');
+									while($row_history_productImport = mysqli_fetch_array($sql_history_productImport)){
+								?>
+								<tr>
+									<td><?php echo $row_history_productImport['SoDonNhapHang'] ?></td>
+									<td><?php echo $row_history_productImport['TenHH'] ?></td>
+									<td><?php echo $row_history_productImport['SoLuong'] ?></td>
+									<td><?php echo $row_history_productImport['DonGiaNhap'] ?></td>
+									<td><?php echo $row_history_productImport['ThanhTien'] ?></td>
+									<td><?php echo $row_history_productImport['NoiSanXuat'] ?></td>
+									<td><?php echo $row_history_productImport['NgayNhap'] ?></td>
+									<td><?php echo $row_history_productImport['HoTenNV'] ?></td>
+								</tr>
+								<?php } ?>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
