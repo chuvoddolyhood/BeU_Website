@@ -45,6 +45,13 @@
 		</a>
 	</li>
 	<li class="side-nav-item">
+		<a href="?quanly=danhmuc&id=6" class="side-nav-link">
+			<i class="fas fa-user side-nav-icon"></i>
+			&nbsp;
+			<span>Quản lý thống kê</span>
+		</a>
+	</li>
+	<li class="side-nav-item">
 		<a onclick="staffLogOut()" class="side-nav-link">
 			<i class="fas fa-sign-out-alt side-nav-icon"></i>
 			&nbsp;

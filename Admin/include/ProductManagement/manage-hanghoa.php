@@ -1,11 +1,5 @@
 <?php
-	$sql_product = mysqli_query($con, 'SELECT h.MSHH, h.TenHH, h.QuyCach, h.Gia, h.SoLuongHang, h.MaLoaiHang, h.GiamGia, h.LoaiSanPham, h.HangHangHoa, h.NoiSXHangHoa, h.TinhTrang, h.BaoHanh, h.DacBiet, COUNT(*) AS daban, img.TenHinh
-										FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
-										JOIN hanghoa h ON c.MSHH=h.MSHH
-										JOIN hinhhanghoa img ON h.MSHH=img.MSHH
-										WHERE d.TrangThaiDH=1
-										GROUP BY h.MSHH
-										ORDER BY daban DESC');
+	$sql_product = mysqli_query($con, 'SELECT * FROM hanghoa h JOIN hinhhanghoa img ON h.MSHH=img.MSHH');
 	$sql_category = mysqli_query($con, 'select * from loaihanghoa');
 
 	include("include/list-category.php");
@@ -30,6 +24,9 @@
 				<div class="manage-footer">
 					<button onclick="activeModal(3)" class="manage-btn">Thêm hàng có sẵn</button>
 				</div>
+				<div class="manage-footer">
+					<button onclick="activeModal(4)" class="manage-btn">Lịch sử nhập hàng</button>
+				</div>
 			</div>
 			
 			<table class="manage-content-table">
@@ -38,6 +35,7 @@
 					<col style="width: 7.5%;">
 					<col style="width: 12.5%">
 					<col style="width: 5%;">
+					<col style="width: 7.5%;">
 					<col style="width: 7.5%;">
 					<col style="width: 5%;">
 					<col style="width: 5%">
@@ -56,6 +54,7 @@
 					<th class="manage-content-list-header">Hình ảnh</th>
 					<th class="manage-content-list-header">Tên hàng</th>
 					<th class="manage-content-list-header">Quy cách</th>
+					<th class="manage-content-list-header">Giá nhập</th>
 					<th class="manage-content-list-header">Giá</th>
 					<th class="manage-content-list-header">Số lượng</th>
 					<th class="manage-content-list-header">Mã loại</th>
@@ -70,13 +69,10 @@
 					<th class="manage-content-list-header">Chỉnh sửa</th>
 				</tr>
 				<?php
-					$sql_product = mysqli_query($con, 'SELECT h.MSHH, h.TenHH, h.QuyCach, h.Gia, h.SoLuongHang, h.MaLoaiHang, h.GiamGia, h.LoaiSanPham, h.HangHangHoa, h.NoiSXHangHoa, h.TinhTrang, h.BaoHanh, h.DacBiet, COUNT(*) AS daban, img.TenHinh
-													FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
-													JOIN hanghoa h ON c.MSHH=h.MSHH
-													JOIN hinhhanghoa img ON h.MSHH=img.MSHH
-													WHERE d.TrangThaiDH=1
-													GROUP BY h.MSHH
-													ORDER BY h.MSHH ASC');
+					$sql_product_daban = mysqli_query($con, 'SELECT COUNT(*) AS daban FROM chitietdathang c JOIN dathang d ON c.SoDonDH=d.SoDonDH
+													JOIN hanghoa h ON c.MSHH=h.MSHH JOIN hinhhanghoa img ON h.MSHH=img.MSHH
+													WHERE d.TrangThaiDH=1 GROUP BY h.MSHH ORDER BY h.MSHH ASC');
+					$row_product_daban = mysqli_fetch_array($sql_product_daban);
 					while($row_address = mysqli_fetch_array($sql_product)){
 				?>
 					<tr class="manage-content-list">
@@ -86,10 +82,11 @@
 						</td>
 						<td class="manage-content-list-item"><?php echo $row_address['TenHH'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['QuyCach'] ?></td>
+						<td class="manage-content-list-item"><?php echo number_format($row_address['GiaNhap']) ?></td>
 						<td class="manage-content-list-item"><?php echo number_format($row_address['Gia']) ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['SoLuongHang'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['MaLoaiHang'] ?></td>
-						<td class="manage-content-list-item"><?php echo $row_address['daban'] ?></td>
+						<td class="manage-content-list-item"><?php echo $row_product_daban['daban'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['GiamGia'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['LoaiSanPham'] ?></td>
 						<td class="manage-content-list-item"><?php echo $row_address['HangHangHoa'] ?></td>
@@ -197,20 +194,22 @@
 				<div class="auth-form__container">
 					<form action="./include/ProductManagement/addProduct.php" enctype="multipart/form-data" method="GET">
 						<div class="auth-form__header">
-							<h3 class="auth-form__heading">Thêm hàng hóa</h3>
+							<h3 class="auth-form__heading">Thêm mới hàng hóa</h3>
 						</div>
 
 						<div class="auth-form__form">
 							<div class="auth-form__group">
+								<input type="hidden" name="username" value="<?php echo $_SESSION['stafflogin']?>">
 								<input type="text" class="auth-form__input" placeholder="Tên sản phẩm" name="productName" required>
 								<input type="text" class="auth-form__input" placeholder="Chi tiết sản phẩm" name="productDetail" required>
 							</div>
 							<div class="auth-form__group">
-								<input type="number" min="1" step="any" class="auth-form__input" placeholder="Giá" name="productPrice" required>
-								<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" name="productAmount" required>
+								<input type="number" min="1" max="any" class="auth-form__input" placeholder="Giảm nhập" name="productPriceImport" required>
+								<input type="number" min="1" step="any" class="auth-form__input" placeholder="Giá bán" name="productPrice" required>
 								<input type="number" min="0" max="100" class="auth-form__input" placeholder="Giảm giá" name="productSaleoff" required>
 							</div>
 							<div class="auth-form__group">
+								<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" name="productAmount" required>
 								<input type="text" class="auth-form__input" placeholder="Quy cách" name="product_QuyCach" required>
 								<select name="productCategory" class="auth-form__input" required>
 									<option value="">Chọn loại hàng</option>
@@ -221,14 +220,15 @@
 									<option value="<?php echo $row_getMSHH['MaLoaiHang'] ?>"><?php echo $row_getMSHH['TenLoaiHang'] ?></option>
 									<?php } ?>
 								</select>
-								<input type="text" class="auth-form__input" placeholder="Hãng" name="productManufacturer" required>
 							</div>
 							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Hãng" name="productManufacturer" required>
 								<input type="text" class="auth-form__input" placeholder="Nơi sản xuất" name="productCountry">
 								<input type="text" class="auth-form__input" placeholder="Tình trạng" name="productStatus" required>
-								<input type="text" class="auth-form__input" placeholder="Bảo hành" name="productWarranty" required>
+								
 							</div>
 							<div class="auth-form__group">
+								<input type="text" class="auth-form__input" placeholder="Bảo hành" name="productWarranty" required>
 								<input type="text" class="auth-form__input" placeholder="Đặc biệt" name="productSpecial" required>
 								<input type="file" class="auth-form__input" placeholder="Ảnh" name="productImg" required>
 							</div>
@@ -309,35 +309,77 @@
 					<div class="auth-form__header">
 						<h3 class="auth-form__heading">Thêm số lượng hàng hóa có sẵn</h3>
 					</div>
-
 					<div class="auth-form__form">
-						<div class="auth-form__group">
-							<select class="auth-form__input" onchange="getComboA(this)">
-								<option>- Chọn MSHH -</option>
-								<?php
-									$sql_getMSHH = mysqli_query($con, "SELECT MSHH FROM hanghoa ORDER BY MSHH ASC");
-									while($row_getMSHH = mysqli_fetch_array($sql_getMSHH)){
-								?>
-								<option value="<?php echo $row_getMSHH['MSHH'] ?>">
-									<?php echo $row_getMSHH['MSHH'] ?>
-								</option>
-								<?php } ?>
-							</select>
-							<input type="text" class="auth-form__input" placeholder="Tên sản phẩm" required>
-						</div>
-						<div class="auth-form__group">
-							<input type="number" min="0" class="auth-form__input" placeholder="Số lượng hàng" required>
-						</div>
-					</div>
-
-					<div class="auth-form__controls">
-						<button onclick="deactiveModal(3)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-						<button class="btn btn--primary">XÁC NHẬN</button>
+						<form action="./include/ProductManagement/availableProduct.php" method="get">
+							<div class="auth-form__group">
+								<select name="MSHH" class="auth-form__input" onchange="getComboA(this)">
+									<option>- Chọn MSHH -</option>
+									<?php
+										$sql_getMSHH = mysqli_query($con, "SELECT MSHH FROM hanghoa ORDER BY MSHH ASC");
+										while($row_getMSHH = mysqli_fetch_array($sql_getMSHH)){
+									?>
+									<option value="<?php echo $row_getMSHH['MSHH'] ?>">
+										<?php echo $row_getMSHH['MSHH'] ?>
+									</option>
+									<?php } ?>
+								</select>
+								<input type="text" class="auth-form__input" id="check_TenHH" placeholder="Tên sản phẩm" required>
+							</div>
+							<div class="auth-form__group">
+								<input type="number" min="1" class="auth-form__input" placeholder="Số lượng hàng" name="amountOfProduct" required>
+								<input type="number" min="1000" class="auth-form__input" placeholder="Giá nhập" id="check_giaNhap" name="priceProductImport" required>
+							</div>
+							<p style="color: red;">*Nếu bạn thay đổi giá nhập thì sẽ thay đổi và cập nhật lại giá trong hệ thống</p>
+							<div class="auth-form__controls">
+								<button onclick="deactiveModal(3)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+								<button type="submit" name="btn_submit" class="btn btn--primary">XÁC NHẬN</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-
 			<!-- add staff form -->
+
+			<div class="auth-form">
+				<div class="auth-form__container">
+					<div class="auth-form__header">
+						<h3 class="auth-form__heading">Lịch sử nhập hàng</h3>
+					</div>
+					<div class="auth-form__form">
+						<div style="overflow-x: auto;">
+							<table>
+								<tr>
+									<th>Số đơn nhập hàng</th>
+									<th>Tên hàng hóa</th>
+									<th>Số lượng</th>
+									<th>Đơn giá</th>
+									<th>Thành tiền</th>
+									<th>Nơi sản xuất</th>
+									<th>Thời gian</th>
+									<th>Người nhập</th>
+								</tr>
+								<?php
+									$sql_history_productImport = mysqli_query($con, 'SELECT h.TenHH, nv.HoTenNV, n.SoDonNhapHang, n.NgayNhap, c.SoLuong, c.DonGiaNhap, c.ThanhTien, c.NoiSanXuat
+																				FROM `chitietnhaphang` c JOIN nhaphanghoa n ON c.SoDonNhapHang=n.SoDonNhapHang
+																				JOIN hanghoa h ON h.MSHH=c.MSHH JOIN nhanvien nv ON n.MSNV=nv.MSNV');
+									while($row_history_productImport = mysqli_fetch_array($sql_history_productImport)){
+								?>
+								<tr>
+									<td><?php echo $row_history_productImport['SoDonNhapHang'] ?></td>
+									<td><?php echo $row_history_productImport['TenHH'] ?></td>
+									<td><?php echo $row_history_productImport['SoLuong'] ?></td>
+									<td><?php echo $row_history_productImport['DonGiaNhap'] ?></td>
+									<td><?php echo $row_history_productImport['ThanhTien'] ?></td>
+									<td><?php echo $row_history_productImport['NoiSanXuat'] ?></td>
+									<td><?php echo $row_history_productImport['NgayNhap'] ?></td>
+									<td><?php echo $row_history_productImport['HoTenNV'] ?></td>
+								</tr>
+								<?php } ?>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -372,9 +414,29 @@
 	});
 
 	function getComboA(selectObject) {
-		var value = selectObject.value;
-		// alert(value);
-		// var x = document.getElementById("link");
-		// x.href = "./show.php?&id=" + value ;
+		var MSHH = selectObject.value;
+		// alert(MSHH);
+		
+		//call ajax
+		var ajax = new XMLHttpRequest();
+        var method = "GET";
+        var url = "./include/ProductManagement/getNameOfProduct.php?MSHH="+MSHH;
+        var asynchronous = true;
+        ajax.open(method, url, asynchronous);
+
+        //send
+        ajax.send();
+
+        //receive
+        ajax.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                response_HH = this.responseText;
+				tenHH = response_HH.slice(0,response_HH.indexOf('*'));
+				giaNhap = response_HH.slice(response_HH.indexOf('*')+1);
+                document.getElementById("check_TenHH").value = tenHH;
+				document.getElementById("check_giaNhap").value = giaNhap;
+            }
+        }
+        return false;
 	}
 </script>

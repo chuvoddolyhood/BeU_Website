@@ -1,4 +1,5 @@
 <?php
+// Them loai san pham
     include './../../../Process/db/connect.php';
     if(isset($_POST["btn_submit"])){
         $nameTypeOfProduct = $_POST["nameTypeOfProduct"];
