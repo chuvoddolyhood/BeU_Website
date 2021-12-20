@@ -479,7 +479,10 @@
 .auth-form__help{
 	display: flex;
 	justify-content: flex-end;
+}
 
+.auth-form__help a{
+	cursor: pointer;
 }
 
 .auth-form__help-link{
