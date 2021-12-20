@@ -1,5 +1,6 @@
 @import "main.css";
 @import "chart.css";
+@import "manage-statistic.css";
 
 :root {
 	--primary-color: #30B927;

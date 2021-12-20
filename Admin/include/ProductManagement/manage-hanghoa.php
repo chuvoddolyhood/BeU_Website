@@ -344,6 +344,7 @@
 				<div class="auth-form__container">
 					<div class="auth-form__header">
 						<h3 class="auth-form__heading">Lịch sử nhập hàng</h3>
+						<button onclick="deactiveModal(4)" class="btn btn--normal auth-form__controls-back">X</button>
 					</div>
 					<div class="auth-form__form">
 						<div style="overflow-x: auto;">
