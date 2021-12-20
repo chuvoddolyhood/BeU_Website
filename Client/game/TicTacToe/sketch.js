@@ -119,11 +119,11 @@ function draw(){
 		noLoop();
 		var user_score;
 		if(result == 'tie'){
-			user_score = 25;
+			user_score = 20;
 			alert("Bạn đã hòa! Bạn đạt được 20 BeUToken trong trận này");
 		}else{
 			if(result == "X"){
-				user_score = 15;
+				user_score = 10;
 				alert("Bạn đã thua! Bạn đạt được 10 BeUToken trong trận này");
 			}else{
 				user_score = 100;

@@ -4,7 +4,7 @@ function exchange(userName, voucherName){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./exchangeVoucher.php?userName="+user_name+"&voucherName="+voucher_name;
+	var url = "./Client/game/Process/php/exchangeVoucher.php?userName="+user_name+"&voucherName="+voucher_name;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);

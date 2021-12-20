@@ -5,6 +5,7 @@
 	// }
 ?>
 	<link rel="stylesheet" href="./Process/assets/css/game.css">
+	<script src="./Client/game/Process/javascript/exchangeVoucher.js"></script>
 		<!-- BEM -->
 		<div class="app">
 			<div class="app__container" style="background-image: url('./Process/assets/img/game_bg.jpg'); background-size: auto 100%;">
@@ -47,7 +48,7 @@
 										<h1>Flappy Bird</h1>
 										<h4>Inspire by Code Bullet</h4>
 										<p>Một game đơn giản, được phát triển đầu tiên bởi Nguyễn Hà Đông, mục tiêu là điều khiển một chú chim bay qua những cái ống.</p>
-										<a href="?quanly=game&id=2" class="button" target="_blank">Play Game</a>
+										<a href="?quanly=game&id=2" class="button">Play Game</a>
 									</div>
 									<div class="bg-secondary" style="background-image: url('https://raw.githubusercontent.com/BeThanhU/Flappy_Bird_JS/main/images/background-tiny.png')"></div>
 									<div class="box-img">
@@ -64,20 +65,13 @@
 												$sql_get_user_id = mysqli_query($con, "select MSKH from khachhang where TaiKhoanKH='".$_SESSION['login']."'");
 												$row_get_user_id = mysqli_fetch_array($sql_get_user_id);
 
-												$sql_get_user_score = mysqli_query($con, "select sum(Diem) from diemgame where MSKH='".$row_get_user_id['MSKH']."'");
-												$row_get_user_score = mysqli_fetch_array($sql_get_user_score);
+												$sql_get_user_info = mysqli_query($con, "select BeUToken, LuotChoi from khachhang where MSKH='".$row_get_user_id['MSKH']."'");
+												$row_get_user_info = mysqli_fetch_array($sql_get_user_info);
 											?>
-											<h2><span>BeU</span>Token của bạn: <?php echo $row_get_user_score['sum(Diem)'] ?></h2>
+											<h2><span>BeU</span>Token của bạn: <?php echo $row_get_user_info['BeUToken'] ?></h2>
 										</div>
-										<div class="exchange_label">	
-											<?php
-												$sql_get_user_id = mysqli_query($con, "select MSKH from khachhang where TaiKhoanKH='".$_SESSION['login']."'");
-												$row_get_user_id = mysqli_fetch_array($sql_get_user_id);
-
-												$sql_get_user_score = mysqli_query($con, "select sum(Diem) from diemgame where MSKH='".$row_get_user_id['MSKH']."'");
-												$row_get_user_score = mysqli_fetch_array($sql_get_user_score);
-											?>
-											<h2>Lượt chơi còn lại: <?php echo $row_get_user_score['sum(Diem)'] ?></h2>
+										<div class="exchange_label">
+											<h2>Lượt chơi còn lại: <?php echo $row_get_user_info['LuotChoi'] ?></h2>
 										</div>
 									</div>
 									
@@ -91,7 +85,7 @@
 												<div class="exchange_label">
 													<p><?php echo $row_get_list_voucher['TenVoucher'] ?>: <?php echo $row_get_list_voucher['Token'] ?> <span>BeU</span>Token</p>
 												</div>
-												<button onclick="exchange(<?php echo $_SESSION['login'] ?>, <?php echo $row_get_list_voucher['TenVoucher'] ?>)">Trao đổi</button>
+												<button onclick="exchange('<?php echo $_SESSION['login'] ?>', '<?php echo $row_get_list_voucher['TenVoucher'] ?>')">Trao đổi</button>
 											</div>
 										</div>
 										<?php
