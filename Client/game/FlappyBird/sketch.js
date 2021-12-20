@@ -61,7 +61,7 @@ function draw(){
 
 function keyPressed(){
 	switch(key){
-		case ' ':
+		case 'ArrowUp':
 			this.gravity = 0.1;
 			this.panSpeed = 3;
 			noti.innerHTML = '';

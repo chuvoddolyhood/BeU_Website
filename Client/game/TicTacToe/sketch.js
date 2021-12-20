@@ -18,10 +18,10 @@ function setup(){
 	w = width/3;
 	h = height/3;
 	canvas.position(0, 0);
-	canvas.style('position', 'fixed');
+	canvas.style('position', 'absolute');
 	canvas.style('display', 'flex');
 	canvas.style('left', 'calc(50% - 300px)');
-	canvas.style('top', 'calc(45% - 300px');
+	canvas.style('top', 'calc(45% - 200px');
 	//bestMove();
 }
 
