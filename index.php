@@ -3,6 +3,8 @@
 	include('Process/db/connect.php');
 ?>
 
+<!--chó thanh-->
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
