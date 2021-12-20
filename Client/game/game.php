@@ -1,5 +1,4 @@
 <?php
-	//include_once('../../Process/db/connect.php');
 	
 	// if(!isset($_SESSION['login'])){
 	// 	echo "<script> alert('Vui lòng đăng nhập để thực hiện chức năng này'); window.location = './index.php?status=login'; </script>";
@@ -8,9 +7,6 @@
 	<link rel="stylesheet" href="./Process/assets/css/game.css">
 		<!-- BEM -->
 		<div class="app">
-			<?php
-				//include("../../Client/include/topbar.php");
-			?>
 			<div class="app__container" style="background-image: url('./Process/assets/img/game_bg.jpg'); background-size: auto 100%;">
 				<div class="grid">
 					<div class="grid__row app_content">
@@ -25,7 +21,7 @@
 										<h1>Tic Tac Toe</h1>
 										<h4>Inspire by The Coding Train</h4>
 										<p>Một game đối kháng cơ bản đầy hấp dẫn, với mục tiêu tạo thành 3 quân giống nhau theo hàng dọc, ngang hoặc chéo</p>
-										<a href="./TicTacToe/" class="button" target="_blank">Play Game</a>
+										<a href="?quanly=game&id=1" class="button" target="_blank">Play Game</a>
 									</div>
 									<div class="bg-secondary" style="background-image: url('https://dochub.com/thanhb1805813/6mO8oy7Kp8P6okOKqg5p9J/back-school-background-doodle-tic-600w-671642395-png'); opacity: 0.3; z-index: 1"></div>
 									<div class="box-img">
@@ -51,11 +47,56 @@
 										<h1>Flappy Bird</h1>
 										<h4>Inspire by Code Bullet</h4>
 										<p>Một game đơn giản, được phát triển đầu tiên bởi Nguyễn Hà Đông, mục tiêu là điều khiển một chú chim bay qua những cái ống.</p>
-										<a href="./FlappyBird" class="button" target="_blank">Play Game</a>
+										<a href="?quanly=game&id=2" class="button" target="_blank">Play Game</a>
 									</div>
 									<div class="bg-secondary" style="background-image: url('https://raw.githubusercontent.com/BeThanhU/Flappy_Bird_JS/main/images/background-tiny.png')"></div>
 									<div class="box-img">
 										<img class="img-bound" src="https://raw.githubusercontent.com/BeThanhU/Flappy_Bird_JS/main/images/PigBird-rmbg%20-%20Fliped.png" alt="image" />
+									</div>
+								</div>
+							</div>
+							<div class="grid_game_wrapper">
+								<div class="body-light-grey">
+									<p class="exchange_header_label">Khu vực đổi thưởng</p>
+									<div class="exchange_header">
+										<div class="exchange_label">	
+											<?php
+												$sql_get_user_id = mysqli_query($con, "select MSKH from khachhang where TaiKhoanKH='".$_SESSION['login']."'");
+												$row_get_user_id = mysqli_fetch_array($sql_get_user_id);
+
+												$sql_get_user_score = mysqli_query($con, "select sum(Diem) from diemgame where MSKH='".$row_get_user_id['MSKH']."'");
+												$row_get_user_score = mysqli_fetch_array($sql_get_user_score);
+											?>
+											<h2><span>BeU</span>Token của bạn: <?php echo $row_get_user_score['sum(Diem)'] ?></h2>
+										</div>
+										<div class="exchange_label">	
+											<?php
+												$sql_get_user_id = mysqli_query($con, "select MSKH from khachhang where TaiKhoanKH='".$_SESSION['login']."'");
+												$row_get_user_id = mysqli_fetch_array($sql_get_user_id);
+
+												$sql_get_user_score = mysqli_query($con, "select sum(Diem) from diemgame where MSKH='".$row_get_user_id['MSKH']."'");
+												$row_get_user_score = mysqli_fetch_array($sql_get_user_score);
+											?>
+											<h2>Lượt chơi còn lại: <?php echo $row_get_user_score['sum(Diem)'] ?></h2>
+										</div>
+									</div>
+									
+									<div class="grid__row">
+										<?php
+											$sql_get_list_voucher = mysqli_query($con, "select * from voucher");
+											while($row_get_list_voucher = mysqli_fetch_array($sql_get_list_voucher)){
+										?>
+										<div class="grid__column-3">
+											<div class="exchange_voucher">
+												<div class="exchange_label">
+													<p><?php echo $row_get_list_voucher['TenVoucher'] ?>: <?php echo $row_get_list_voucher['Token'] ?> <span>BeU</span>Token</p>
+												</div>
+												<button onclick="exchange(<?php echo $_SESSION['login'] ?>, <?php echo $row_get_list_voucher['TenVoucher'] ?>)">Trao đổi</button>
+											</div>
+										</div>
+										<?php
+											}
+										?>
 									</div>
 								</div>
 							</div>

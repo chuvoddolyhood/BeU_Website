@@ -479,7 +479,10 @@
 .auth-form__help{
 	display: flex;
 	justify-content: flex-end;
+}
 
+.auth-form__help a{
+	cursor: pointer;
 }
 
 .auth-form__help-link{
@@ -911,7 +914,7 @@
 
 .app__container{
 	background-color: #F5F5F5;
-	min-height: 605px;
+	min-height: calc(1092px - 244px);
 }
 
 .app_content{

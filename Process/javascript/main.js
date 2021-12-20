@@ -118,7 +118,7 @@ function deactiveModal(num){
 function switchModal(num){
 	var x = document.getElementsByClassName('auth-form');
 	for(i=0; i<x.length; i++){
-		x[i].classList.toggle('auth-form--active');
+		x[i].classList.remove('auth-form--active');
 	}
 	x[num].classList.add('auth-form--active');
 }

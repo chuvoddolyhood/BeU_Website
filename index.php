@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once('Process/db/connect.php');
+	include('Process/db/connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +51,18 @@
 			}elseif($quanly == 'thongtin'){
 				include("Client/include/thongtin_home.php");
 			}elseif($quanly == 'game'){
-				include("Client/game/game.php");
+				if(isset($_GET['id'])){
+					$id = $_GET['id'];
+				}else{
+					$id = '';
+				}
+				if($id == '1'){
+					include("Client/game/TicTacToe/index.php");
+				}elseif($id == '2'){
+					include("Client/game/FlappyBird/index.php");
+				}else{
+					include("Client/game/game.php");
+				}
 			}else{
 				include("Client/include/home-danhmuc-sp.php");
 			}
@@ -147,7 +158,7 @@
 
 							<div class="auth-form__aside">
 								<div class="auth-form__help">
-									<a href="" class="auth-form__help-link auth-form__help-forgot">
+									<a onclick="switchModal(2)" class="auth-form__help-link auth-form__help-forgot">
 										Quên mật khẩu
 									</a>
 									<span class="auth-form__help-separate"></span>
@@ -158,8 +169,57 @@
 							</div>
 
 							<div class="auth-form__controls">
-								<button onclick="deactiveModal(1)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+								<button onclick="deactiveModal(2)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
 								<button type="submit" name="btn_user_login" class="btn btn--primary">ĐĂNG NHẬP</button>
+							</div>
+						</form>
+					</div>
+					<div class="auth-form__socials">
+						<a href="" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
+							<i class="auth-form__socials-icon fab fa-facebook-square"></i>
+							<span class="auth-form__social-title">
+								Kết nối với Facebook
+							</span>
+						</a>
+						<a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
+							<i class=" auth-form__socials-icon fab fa-google"></i>
+							<span class="auth-form__social-title">
+								Kết nối với Google
+							</span>
+						</a>
+					</div>
+				</div>
+				<div class="auth-form">
+					<div class="auth-form__container">
+						<div class="auth-form__header">
+							<h3 class="auth-form__heading">Quên mật khẩu</h3>
+							<span onclick="switchModal(1)" class="auth-form__switch-btn">Đăng nhập</span>
+						</div>
+						<form action="Process/php/forgot_pass.php" method="POST">
+							<div class="auth-form__form">
+								<div class="auth-form__group">
+									<input type="text" name="username_client" class="auth-form__input" placeholder="Tài khoản của bạn" required>
+								</div>
+								<div class="auth-form__group">
+									<input type="tel" name="tel_client" class="auth-form__input" placeholder="Nhập số điện thoại của bạn" required>
+								</div>
+								<div class="auth-form__group">
+									<input type="email" name="email_client" class="auth-form__input" placeholder="Nhập email của bạn" required>
+								</div>
+							</div>
+
+							<div class="auth-form__aside">
+								<div class="auth-form__help">
+									<span class="auth-form__help-separate"></span>
+									<a class="auth-form__help-link">
+										Cần trợ giúp?
+									</a>
+								</div>
+							</div>
+
+							<div class="auth-form__controls">
+								<button onclick="deactiveModal(1)" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+								<button type="submit" name="btn_forgot_password" class="btn btn--primary">LẤY LẠI MẬT KHẨU</button>
 							</div>
 						</form>
 					</div>
@@ -182,7 +242,7 @@
 		</div>
 
 		<?php 
-			if(isset($_GET['status']) && $_GET['status']=='login' && isset($_SESSION['login'])){
+			if(isset($_GET['status']) && $_GET['status']=='login'){
 				if($_SESSION['login']!=null){
 					echo "<script> 
 							alert('Hãy đăng xuất trước khi thực hiện chức năng này!') 
@@ -200,6 +260,15 @@
 						</script>";
 				}else{
 					echo '<script> activeModal(0) </script>';
+				}
+			}elseif(isset($_GET['status']) && $_GET['status']=='forgot_password'){
+				if($_SESSION['login']!=null){
+					echo "<script> 
+							alert('Hãy đăng xuất trước khi thực hiện chức năng này!') 
+							window.location='index.php';
+						</script>";
+				}else{
+					echo '<script> activeModal(2) </script>';
 				}
 			}
 
