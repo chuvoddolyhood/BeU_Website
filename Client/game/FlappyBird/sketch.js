@@ -45,6 +45,7 @@ function setup(){
 	canvas.style('display', 'flex');
 	canvas.style('left', 'calc(50% - 300px)');
 	canvas.style('top', '144px');
+    document.body.style.zoom = "80%";
 }
 
 function draw(){
