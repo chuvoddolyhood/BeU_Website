@@ -29,7 +29,7 @@ function setup(){
 	window.canvas = createCanvas(600, 800);
 	var noti = document.getElementById("noti");
 	var reward = document.getElementById("reward");
-	noti.innerHTML = "Press 'Space' to start";
+	noti.innerHTML = "Press 'ArrowUp' to start";
 	//let stringReward = `First 10points = voucher 5%\nFirst 25points = voucher 10%\nFirst 50points = voucher 15%\nFirst 100points = voucher 25%\nEvery next 50points = +2%\nThe last reward can stack!`;
 	//alert(stringReward); 
 	player = new Player(canvas.width / 3, canvas.height / 2);
