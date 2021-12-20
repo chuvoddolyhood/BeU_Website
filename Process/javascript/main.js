@@ -258,3 +258,8 @@ function activeAdminManageList(num){
 	var x = document.getElementsByClassName('side-nav-item');
 	x[num].classList.add('side-nav--active');
 }
+
+function set_default_zoom()
+{
+	document.body.style.zoom = "100%";
+}

@@ -100,6 +100,10 @@
 			</div>
 		</div>
 
+		<script>
+			window.onbeforeunload = set_default_zoom();
+		</script>
+
 		<?php 
 			if(isset($_GET['status']) && $_GET['status']=='login'){
 				if($_SESSION['login']!=null){
