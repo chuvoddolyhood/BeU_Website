@@ -58,7 +58,7 @@
 			}elseif($quanly=='danhmuc' && $id=='5'){
 				include("include/manage-taikhoan.php");
 			}elseif($quanly=='danhmuc' && $id=='6'){
-				include("include/manage-statistic.php");
+				include("include/StatisticManagement/manage-statistic.php");
 			}else{
 				include("include/manage-danhmuc.php");
 			}
