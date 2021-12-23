@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include('Process/db/connect.php');
+	include_once 'Process/google_login/login_google.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
 		<link rel="stylesheet" href="./Process/assets/css/base.css">
 		<link rel="stylesheet" href="./Process/assets/css/slideshow.css">
 		<link rel="stylesheet" href="./Process/php/register.php">
+		<link rel="stylesheet" href="./Process/google_login/login_data.php">
 		<link rel="stylesheet" href="./Process/assets/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
@@ -31,6 +33,18 @@
 
 			if(isset($_GET['status']) && $_GET['status']=='logout'){
 				unset($_SESSION['login']);
+				//Include GP config file
+				include_once 'gpConfig.php';
+
+				//Unset token and user data from session
+				unset($_SESSION['token']);
+				unset($_SESSION['userData']);
+
+				//Reset OAuth access token
+				$gClient->revokeToken();
+
+				//Destroy entire session
+				session_destroy();
 				header('location: index.php');
 			}
 
@@ -130,12 +144,13 @@
 								Kết nối với Facebook
 							</span>
 						</a>
-						<a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
+						<?php echo $link_login_google; ?>
+						<!-- <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
 							<i class=" auth-form__socials-icon fab fa-google"></i>
 							<span class="auth-form__social-title">
 								Kết nối với Google
 							</span>
-						</a>
+						</a> -->
 					</div>
 				</div>
 
@@ -181,12 +196,13 @@
 								Kết nối với Facebook
 							</span>
 						</a>
-						<a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
+						<?php echo $link_login_google; ?>
+						<!-- <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
 							<i class=" auth-form__socials-icon fab fa-google"></i>
 							<span class="auth-form__social-title">
 								Kết nối với Google
 							</span>
-						</a>
+						</a> -->
 					</div>
 				</div>
 				<div class="auth-form">
@@ -210,7 +226,6 @@
 
 							<div class="auth-form__aside">
 								<div class="auth-form__help">
-									<span class="auth-form__help-separate"></span>
 									<a class="auth-form__help-link">
 										Cần trợ giúp?
 									</a>
@@ -230,12 +245,45 @@
 								Kết nối với Facebook
 							</span>
 						</a>
-						<a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
+						<?php echo $link_login_google; ?>
+						<!-- <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
 							<i class=" auth-form__socials-icon fab fa-google"></i>
 							<span class="auth-form__social-title">
 								Kết nối với Google
 							</span>
-						</a>
+						</a> -->
+					</div>
+				</div>
+				<div class="auth-form">
+					<div class="auth-form__container">
+						<div class="auth-form__header">
+							<h3 class="auth-form__heading">Bổ sung thông tin đăng nhập</h3>
+							<span onclick="switchModal(1)" class="auth-form__switch-btn">Đăng nhập</span>
+						</div>
+						<!-- <form action="Process/google_login/login_data" method="POST"> -->
+							<div class="auth-form__form">
+								<div class="auth-form__group">
+									<input type="text" id="id_google" class="auth-form__input" placeholder="" value="<?php echo $gpUserData['oauth_uid'] ?>" required>
+								</div>
+								<div class="auth-form__group">
+									<input type="text" id="username_google" class="auth-form__input" placeholder="Tài khoản của bạn" required>
+								</div>
+								<div class="auth-form__group">
+									<input type="tel" id="usertel_google" class="auth-form__input" placeholder="Nhập số điện thoại của bạn" required>
+								</div>
+							</div>
+							<div class="auth-form__aside">
+								<div class="auth-form__help">
+									<a class="auth-form__help-link">
+										Cần trợ giúp?
+									</a>
+								</div>
+							</div>
+
+							<div class="auth-form__controls">
+								<button onclick="check_regis_google()" name="btn_forgot_password" class="btn btn--primary">HOÀN TẤT BỔ SUNG</button>
+							</div>
+						<!-- </form> -->
 					</div>
 				</div>
 			</div>
@@ -273,6 +321,10 @@
 			}
 
 			include("Client/include/footbar.php");
+
+			if($gClient->getAccessToken() && !isset($_SESSION['login'])) {
+				echo "<script> activeModal(3) </script>";
+			}
 		?>
 	</body>
 </html>

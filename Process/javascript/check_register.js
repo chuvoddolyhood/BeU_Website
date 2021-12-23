@@ -149,3 +149,33 @@ function check_regis_staff(){
 		}
 	}
 }
+
+function check_regis_google(){
+	var id_Google = document.getElementById('id_google').value;
+	var user_Name = document.getElementById('username_google').value;
+	var user_Tel = document.getElementById('usertel_google').value;
+
+	// alert("username: " + user_Name + ", tel: " + user_Tel + ", id: " + id_Google);
+
+	var ajax = new XMLHttpRequest();
+	var method = "GET";
+	var url = "./Process/google_login/login_data.php?userName="+user_Name+"&userTel="+user_Tel+"&googleID="+id_Google;
+	var asynchronous = true;
+
+	ajax.open(method, url, asynchronous);
+
+	ajax.send();
+
+	ajax.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			var response = this.responseText;
+			// alert(response);
+			if(response == "true"){
+				alert('Đăng ký thành công!');
+				window.location.reload();
+			}else{
+				alert('Không thể đăng ký do tên tài khoản đã tồn tại. Vui lòng chọn tên tài khoản khác hoặc liên hệ với nhân viên để được trợ giúp!');
+			}
+		}
+	}
+}

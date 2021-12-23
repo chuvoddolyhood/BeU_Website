@@ -104,7 +104,7 @@ function activeModal(num){
 }
 
 function deactiveModal(num){
-	console.log(num);
+	//console.log(num);
 	var x = document.getElementsByClassName('modal');
 	x[0].classList.toggle('modal--active');
 
@@ -112,7 +112,9 @@ function deactiveModal(num){
 	y[0].classList.toggle('modal__overlay--active');
 
 	var z = document.getElementsByClassName('auth-form');
-	z[num].classList.toggle('auth-form--active');
+	for(i=0; i<z.length; i++){
+		z[i].classList.remove('auth-form--active');
+	}
 }
 
 function switchModal(num){
