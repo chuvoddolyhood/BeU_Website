@@ -1,4 +1,5 @@
 <script src="Process/javascript/main.js"></script>
+<script src="Process/javascript/search_suggestions.js"></script>
 <header class="header">
 	<div class="grid">
 		<nav class="header__navbar">
@@ -149,7 +150,10 @@
 						$search = '';
 					}
 					?>
-					<input type="text" id="search-bar" class="header__search-input" placeholder="Tìm kiếm sản phẩm" value="<?php echo $search ?>">
+					<input type="text" id="search-bar" class="header__search-input" placeholder="Tìm kiếm sản phẩm" value="<?php echo $search ?>" onkeyup="ketqua(this.value)">
+
+					<!-- Search suggestions -->
+					<div class="ketquatk"></div>
 
 					<!-- Search history -->
 					<div class="header__search-history">
