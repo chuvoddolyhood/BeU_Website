@@ -18,7 +18,7 @@
                 <i class="fa fa-usd" aria-hidden="true"></i>
           </div>
             <canvas id="chartOfProductsPurchased"></canvas>
-            <canvas id="chartOfProductsImported"></canvas>
+            <!-- <canvas id="chartOfProductsImported"></canvas> -->
         </div>
 
         <div class="charts__right">
@@ -51,7 +51,7 @@
                   <!-- <p><?php echo $rows_get_TongSoDon['SoDon'] ?></p> -->
                 </div>
             </div>
-            <div id="chart_FinanceReport"></div>
+            <!-- <canvas id="chart_FinanceReport"></canvas> -->
         </div>
     </div>
     <!-- CHARTS ENDS HERE -->
@@ -61,23 +61,23 @@
         <div class="charts__left">
           <div class="charts__left__title">
               <div>
-                <h1>Loại hàng được mua</h1>
-                <p>Từ đầu năm 2021 đến hiện tại</p>
+                <h1>Những sảm phẩm được yêu thích</h1>
+                <!-- <p>Từ đầu năm 2021 đến hiện tại</p> -->
               </div>
               <i class="fa fa-usd" aria-hidden="true"></i>
           </div>
-          <div id="reportUserOrOrder"></div>
+          <canvas id="chartOfFavorite"></canvas>
         </div>
 
         <div class="charts__right">
           <div class="charts__left__title">
             <div>
-              <h1>Loại hàng được mua</h1>
-              <p>Từ đầu năm 2021 đến hiện tại</p>
+              <h1>Báo cáo nhân viên</h1>
+              <p>Những nhân viên hoạt động năng nổ trong suốt năm nay</p>
             </div>
             <i class="fa fa-usd" aria-hidden="true"></i>
           </div>
-          <div id="reportStaff"></div>
+          <canvas id="reportStaff"></canvas>
         </div>    
       </div>
     </div>
@@ -262,6 +262,25 @@
       }
     }
   }  
+
+
+
+  //San pham duoc yeu thich
+  $sql_get_favorite = "SELECT h.TenHH, COUNT(*) AS luotthich FROM sanphamyeuthich s JOIN hanghoa h ON s.MSHH=h.MSHH GROUP BY h.MSHH";
+  $query_get_favorite = mysqli_query($con, $sql_get_favorite);
+  foreach($query_get_favorite as $data) {
+    $name[] = $data['TenHH'];
+    $love[] = $data['luotthich'];
+  }
+
+  //Luot xu ly don hang cua nhan vien
+  $sql_get_billWorkStaff = "SELECT n.HoTenNV, COUNT(*) as luottuongtac FROM dathang d JOIN nhanvien n ON d.MSNV=n.MSNV GROUP BY d.MSNV ORDER BY d.MSNV ASC";
+  $query_get_billWorkStaff = mysqli_query($con, $sql_get_billWorkStaff);
+  foreach($query_get_billWorkStaff as $data) {
+    $nameStaff[] = $data['HoTenNV'];
+    $luottuongtac[] = $data['luottuongtac'];
+  }
+
 ?>
 
 
@@ -332,7 +351,7 @@
 
 
 // Bieu do loai hang hoa da duoc ban 
-const data2 = {
+  const data2 = {
     labels: [1,2,3,4,5,6,7,8,9,10,11,12],
     datasets: [{
       label: 'Chip',
@@ -391,6 +410,70 @@ const data2 = {
   };
 
   var myChart = new Chart(document.getElementById('chartOfProductsImported'),config2);
+
+
+
+  // Bieu do loai hang hoa da duoc ban 
+  const data_favorite = {
+    labels: <?php echo json_encode($name) ?>,
+    datasets: [{
+      label: 'My First Dataset',
+      data: <?php echo json_encode($love) ?>,
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(75, 192, 192)',
+        'rgb(255, 205, 86)',
+        'rgb(201, 203, 207)',
+        'rgb(54, 162, 135)',
+        'rgb(54, 52, 235)',
+        'rgb(154, 162, 235)',
+        'rgb(54, 62, 235)'
+      ]
+    }]
+  };
+
+  const config_favorite = {
+    type: 'polarArea',
+    data: data_favorite,
+    options: {
+      scales: {
+        y: {
+          // stacked: true
+          beginAtZero: true
+        }
+      }
+    },
+  };
+
+  var myChart = new Chart(document.getElementById('chartOfFavorite'),config_favorite);
   
+
+  const data_reportStaff = {
+    labels: <?php echo json_encode($nameStaff) ?>,
+    datasets: [{
+      label: 'Xử lý đơn hàng',
+      data: <?php echo json_encode($luottuongtac) ?>,
+      backgroundColor: [
+        'rgba(0, 143, 251, 0.5)'
+      ],
+      borderColor: [
+        'rgb(0, 143, 251)'
+      ],
+    }]
+  };
+
+  const config_reportStaff = {
+    type: 'bar',
+    data: data_reportStaff,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+  var myChart = new Chart(document.getElementById('reportStaff'),config_reportStaff);
   
 </script>

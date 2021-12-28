@@ -203,7 +203,7 @@
 								<input type="text" class="auth-form__input" placeholder="Chi tiết sản phẩm" name="productDetail" required>
 							</div>
 							<div class="auth-form__group">
-								<input type="number" min="1" max="any" class="auth-form__input" placeholder="Giảm nhập" name="productPriceImport" required>
+								<input type="number" min="1" max="any" class="auth-form__input" placeholder="Giá nhập" name="productPriceImport" required>
 								<input type="number" min="1" step="any" class="auth-form__input" placeholder="Giá bán" name="productPrice" required>
 								<input type="number" min="0" max="100" class="auth-form__input" placeholder="Giảm giá" name="productSaleoff" required>
 							</div>
