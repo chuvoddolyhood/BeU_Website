@@ -51,7 +51,7 @@
         $sql_add_img_product = "INSERT INTO `hinhhanghoa`(`TenHinh`, `MSHH`) VALUES ('$productImg',$id_proudct)";
         $query_add_img_product = mysqli_query($con, $sql_add_img_product);
 
-        // ===================================== THEM HANG HOA VO BANG nhaphanghoa =======================================
+        // ===================================== THEM HANG HOA VO BANG chitietnhaphanghoa =======================================
         //Lay MSNV tu username
         $sql_get_MSNV = "SELECT `MSNV` FROM `nhanvien` WHERE `TaiKhoanNV`='$username'";
         $query_get_MSNV = mysqli_query($con, $sql_get_MSNV);
@@ -64,9 +64,9 @@
         // echo $today;
 
         //Them thong tin vo bang nhaphanghoa
-        $sql_add_nhaphanghoa = "INSERT INTO `nhaphanghoa`(`NgayNhap`, `MSNV`) VALUES ('$today',$MSNV)";
+        $sql_add_nhaphanghoa = "INSERT INTO `chitietnhaphang`(`MSHH`, `SoLuong`, `DonGiaNhap`, `ThanhTien`, `NgayNhap`, `MSNV`) 
+            VALUES ($id_proudct,$productAmount,$productPriceImport,$productAmount*$productPriceImport,'$today',$MSNV)";
         $query_add_nhaphanghoa = mysqli_query($con, $sql_add_nhaphanghoa);
-
 
 
         if($sql_get_MSHH && $sql_add_img_product && $sql_add_nhaphanghoa){

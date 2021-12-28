@@ -311,6 +311,7 @@
 					<div class="auth-form__form">
 						<form action="./include/ProductManagement/availableProduct.php" method="get">
 							<div class="auth-form__group">
+								<input type="hidden" name="username" value="<?php echo $_SESSION['stafflogin']?>">
 								<select name="MSHH" class="auth-form__input" onchange="getComboA(this)">
 									<option>- Chọn MSHH -</option>
 									<?php
@@ -354,14 +355,12 @@
 									<th>Số lượng</th>
 									<th>Đơn giá</th>
 									<th>Thành tiền</th>
-									<th>Nơi sản xuất</th>
 									<th>Thời gian</th>
 									<th>Người nhập</th>
 								</tr>
 								<?php
-									$sql_history_productImport = mysqli_query($con, 'SELECT h.TenHH, nv.HoTenNV, n.SoDonNhapHang, n.NgayNhap, c.SoLuong, c.DonGiaNhap, c.ThanhTien, c.NoiSanXuat
-																				FROM `chitietnhaphang` c JOIN nhaphanghoa n ON c.SoDonNhapHang=n.SoDonNhapHang
-																				JOIN hanghoa h ON h.MSHH=c.MSHH JOIN nhanvien nv ON n.MSNV=nv.MSNV');
+									$sql_history_productImport = mysqli_query($con, 'SELECT h.TenHH, nv.HoTenNV, c.SoDonNhapHang, c.NgayNhap, c.SoLuong, c.DonGiaNhap, c.ThanhTien
+									FROM `chitietnhaphang` c JOIN hanghoa h ON h.MSHH=c.MSHH JOIN nhanvien nv ON c.MSNV=nv.MSNV');
 									while($row_history_productImport = mysqli_fetch_array($sql_history_productImport)){
 								?>
 								<tr>
@@ -370,7 +369,6 @@
 									<td><?php echo $row_history_productImport['SoLuong'] ?></td>
 									<td><?php echo $row_history_productImport['DonGiaNhap'] ?></td>
 									<td><?php echo $row_history_productImport['ThanhTien'] ?></td>
-									<td><?php echo $row_history_productImport['NoiSanXuat'] ?></td>
 									<td><?php echo $row_history_productImport['NgayNhap'] ?></td>
 									<td><?php echo $row_history_productImport['HoTenNV'] ?></td>
 								</tr>

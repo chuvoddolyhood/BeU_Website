@@ -22,6 +22,18 @@
         </div>
 
         <div class="charts__right">
+          <?php
+            //Tinh tien von
+            $sql_get_TienVon = "SELECT SUM(ThanhTien) AS tienvon FROM chitietnhaphang";
+            $query_get_TienVon = mysqli_query($con, $sql_get_TienVon);
+            $rows_get_TienVon = mysqli_fetch_array($query_get_TienVon);
+
+            //Tinh tien don
+            $sql_get_ThuNhap = "SELECT SUM(`TongCong`) AS tiendon, COUNT(*) AS sodon FROM `dathang`";
+            $query_get_ThuNhap = mysqli_query($con, $sql_get_ThuNhap);
+            $rows_get_ThuNhap = mysqli_fetch_array($query_get_ThuNhap);
+
+          ?>
             <div class="charts__right__title">
                 <div>
                     <h1>Báo cáo tài chính</h1>
@@ -33,25 +45,25 @@
             <div class="charts__right__cards">
                 <div class="card1">
                     <h1>Tổng vốn</h1>
-                    <p>$</p>
+                    <p><?php echo number_format($rows_get_TienVon['tienvon']) ?> ₫</p>
                 </div>
 
                 <div class="card2">
                     <h1>Tổng tiền đơn</h1>
-                    <!-- <p><?php echo $rows_get_TongTien['TongTien'] ?> ₫</p> -->
+                    <p><?php echo number_format($rows_get_ThuNhap['tiendon']) ?> ₫</p>
                 </div>
 
                 <div class="card3">
                   <h1>Tổng Lợi nhuận</h1>
-                  <p>$</p>
+                  <p><?php echo number_format($rows_get_ThuNhap['tiendon'] - $rows_get_TienVon['tienvon']) ?> ₫</p>
                 </div>
 
                 <div class="card4">
                   <h1>Tổng Số đơn</h1>
-                  <!-- <p><?php echo $rows_get_TongSoDon['SoDon'] ?></p> -->
+                  <p><?php echo $rows_get_ThuNhap['sodon'] ?></p>
                 </div>
             </div>
-            <!-- <canvas id="chart_FinanceReport"></canvas> -->
+            
         </div>
     </div>
     <!-- CHARTS ENDS HERE -->
@@ -70,6 +82,14 @@
         </div>
 
         <div class="charts__right">
+          <div class="charts__left__title">
+            <div>
+              <h1>Báo cáo tài chính</h1>
+              <!-- <p>Những nhân viên hoạt động năng nổ trong suốt năm nay</p> -->
+            </div>
+            <i class="fa fa-usd" aria-hidden="true"></i>
+          </div>
+          <canvas id="chart_FinanceReport"></canvas>
           <div class="charts__left__title">
             <div>
               <h1>Báo cáo nhân viên</h1>
@@ -97,17 +117,20 @@
 
 
   $chip = array(0,0,0,0,0,0,0,0,0,0,0,0);
-  $mainboard= array(0,0,0,0,0,0,0,0,0,0,0,0);;
-  $ram= array(0,0,0,0,0,0,0,0,0,0,0,0);;
-  $vga= array(0,0,0,0,0,0,0,0,0,0,0,0);;
+  $mainboard= array(0,0,0,0,0,0,0,0,0,0,0,0);
+  $ram= array(0,0,0,0,0,0,0,0,0,0,0,0);
+  $vga= array(0,0,0,0,0,0,0,0,0,0,0,0);
+
+
 
   while($rows_get_loaiHH = mysqli_fetch_array($query_get_loaiHH)){
     $month= substr($rows_get_loaiHH['NgayGH'], strpos($rows_get_loaiHH['NgayGH'], '/')+1, -5);
     $nameOfProduct = $rows_get_loaiHH['TenLoaiHang'];
 
-    // echo $month;
-    // echo $nameOfProduct;
+    // echo '#'.$month;
+    echo $nameOfProduct;
 
+    //Tinh so luong san pham duoc mua theo tung thang
     if($nameOfProduct == 'Chip'){
       switch ($month) {
         case "1":
@@ -261,8 +284,7 @@
           $ram[11]++;
       }
     }
-  }  
-
+  }
 
 
   //San pham duoc yeu thich
@@ -281,6 +303,153 @@
     $luottuongtac[] = $data['luottuongtac'];
   }
 
+
+  //Tinh tien don moi thang
+  $tiendontheotungthang = array(0,0,0,0,0,0,0,0,0,0,0,0);
+
+  $sql_get_tiendon = "SELECT `TongCong`,`NgayGH` FROM dathang WHERE `TrangThaiDH`=1";
+  $query_get_tiendon = mysqli_query($con, $sql_get_tiendon);
+
+  while($rows_get_tiendon = mysqli_fetch_array($query_get_tiendon)){
+    $month_tiendon= substr($rows_get_loaiHH['NgayGH'], strpos($rows_get_loaiHH['NgayGH'], '/')+1, -5);
+    // echo 'thangnayne'.$month;
+    switch ($month_tiendon) {
+      case "1":
+        $tiendontheotungthang[0]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "2":
+        $tiendontheotungthang[1]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "3":
+        $tiendontheotungthang[2]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "4":
+        $tiendontheotungthang[3]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "5":
+        $tiendontheotungthang[4]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "6":
+        $tiendontheotungthang[5]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "7":
+        $tiendontheotungthang[6]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "8":
+        $tiendontheotungthang[7]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "9":
+        $tiendontheotungthang[8]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "10":
+        $tiendontheotungthang[9]+=$rows_get_tiendon['TongCong'];
+        break;
+      case "11":
+        $tiendontheotungthang[10]+=$rows_get_tiendon['TongCong'];
+        break;
+      default:
+        $tiendontheotungthang[11]+=$rows_get_tiendon['TongCong'];
+    }
+  }
+
+  // foreach($tiendontheotungthang as $data ) {
+  //   echo "thang=" . $data;
+  // }
+
+  //Tinh tien von moi thang
+  $tienvontheotungthang = array(0,0,0,0,0,0,0,0,0,0,0,0);
+  //Loi nhuan theo tung thang
+  $loinhuantheotungthang = array(0,0,0,0,0,0,0,0,0,0,0,0);
+
+  $sql_get_tienvon = "SELECT `ThanhTien`,`NgayNhap` FROM `chitietnhaphang` ";
+  $query_get_tienvon = mysqli_query($con, $sql_get_tienvon);
+
+  while($rows_get_tienvon = mysqli_fetch_array($query_get_tienvon)){
+    $month_tienvon= substr($rows_get_tienvon['NgayNhap'], strpos($rows_get_tienvon['NgayNhap'], '-')+1, strpos($rows_get_tienvon['NgayNhap'], '-'));
+    // echo 'thangnayne'.$month;
+    switch ($month_tienvon) {
+      case "01":
+        $tienvontheotungthang[0]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "02":
+        $tienvontheotungthang[1]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "03":
+        $tienvontheotungthang[2]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "04":
+        $tienvontheotungthang[3]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "05":
+        $tienvontheotungthang[4]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "06":
+        $tienvontheotungthang[5]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "07":
+        $tienvontheotungthang[6]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "08":
+        $tienvontheotungthang[7]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "09":
+        $tienvontheotungthang[8]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "10":
+        $tienvontheotungthang[9]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      case "11":
+        $tienvontheotungthang[10]+=$rows_get_tienvon['ThanhTien'];
+        break;
+      default:
+        $tienvontheotungthang[11]+=$rows_get_tienvon['ThanhTien'];
+    }
+
+    switch ($month_tienvon) {
+      case "01":
+        $loinhuantheotungthang[0] = $tiendontheotungthang[0] - $tienvontheotungthang[0];
+        break;
+      case "02":
+        $loinhuantheotungthang[1] = $tiendontheotungthang[1] - $tienvontheotungthang[1];
+        break;
+      case "03":
+        $loinhuantheotungthang[2] = $tiendontheotungthang[2] - $tienvontheotungthang[2];
+        break;
+      case "04":
+        $loinhuantheotungthang[3] = $tiendontheotungthang[3] - $tienvontheotungthang[3];
+        break;
+      case "05":
+        $loinhuantheotungthang[4] = $tiendontheotungthang[4] - $tienvontheotungthang[4];
+        break;
+      case "06":
+        $loinhuantheotungthang[5] = $tiendontheotungthang[5] - $tienvontheotungthang[5];
+        break;
+      case "07":
+        $loinhuantheotungthang[6] = $tiendontheotungthang[6] - $tienvontheotungthang[6];
+        break;
+      case "08":
+        $loinhuantheotungthang[7] = $tiendontheotungthang[7] - $tienvontheotungthang[7];
+        break;
+      case "09":
+        $loinhuantheotungthang[8] = $tiendontheotungthang[8] - $tienvontheotungthang[8];
+        break;
+      case "10":
+        $loinhuantheotungthang[9] = $tiendontheotungthang[9] - $tienvontheotungthang[9];
+        break;
+      case "11":
+        $loinhuantheotungthang[10] = $tiendontheotungthang[10] - $tienvontheotungthang[10];
+        break;
+      default:
+      $loinhuantheotungthang[11] = $tiendontheotungthang[11] - $tienvontheotungthang[11];
+    }
+  }
+
+  // foreach($loinhuantheotungthang as $data ) {
+  //   echo "loinhuanthang=" . $data;
+  // }
+
+  
+  
 ?>
 
 
@@ -475,5 +644,44 @@
   };
 
   var myChart = new Chart(document.getElementById('reportStaff'),config_reportStaff);
+
+
+
+  const data_FinanceReport = {
+    labels: [1,2,3,4,5,6,7,8,9,10,11,12],
+    datasets: [{
+      type: 'bar',
+      label: 'Tiền vốn',
+      data: <?php echo json_encode($tienvontheotungthang) ?>,
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.2)'
+    }, {
+      type: 'bar',
+      label: 'Tiền đơn',
+      data: <?php echo json_encode($tiendontheotungthang) ?>,
+      fill: false,
+      borderColor: 'rgb(54, 162, 235)'
+    },{
+      type: 'line',
+      label: 'Lợi nhuận',
+      data: <?php echo json_encode($loinhuantheotungthang) ?>,
+      fill: false,
+      borderColor: 'rgb(54, 162, 235)'
+    }]
+  };
+
+  const config_FinanceReport = {
+    type: 'bar',
+    data: data_FinanceReport,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+  var myChart = new Chart(document.getElementById('chart_FinanceReport'),config_FinanceReport);
   
 </script>
