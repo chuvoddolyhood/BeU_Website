@@ -170,8 +170,7 @@
 							else
 								echo "'".$topsale_name_category['TenLoaiHang']."'";
 						}
-						echo ');';
-					?>
+					?>)
 					</script>
 				</div>
 			</div>
