@@ -46,12 +46,12 @@
 								</a>
 							</li>
 						<?php
+							}
 							if($id > 0){
 								echo '<script type="text/javascript">',
 								'active_home_category('.$id.');',
 								'</script>'
 								;
-								} 
 							}
 						?>
 					</nav>
@@ -59,39 +59,117 @@
 
 				<div class="grid__column-10">
 					<div class="home-filter">
-						<spam class="home-filter__label">Sắp xếp theo</spam>
-						<button class="home-filter__btn btn">Phổ biến</button>
-						<button class="home-filter__btn btn btn--primary">Mới nhất</button>
-						<button class="home-filter__btn btn">Bán chạy</button>
+						<span class="home-filter__label">Sắp xếp theo</span>
+						<a href=".?sort=popular">
+							<button class="home-filter__btn btn">Phổ biến</button>
+						</a>
+						<a href=".?sort=newest">
+							<button class="home-filter__btn btn">Mới nhất</button>
+						</a>
+						<a href=".?sort=onSale">
+							<button class="home-filter__btn btn">Đang giảm giá</button>
+						</a>
+
+						<?php
+							if(isset($_GET['sort'])){
+								if($_GET['sort'] == 'newest'){
+									echo "<script> activeHomeFilter(1) </script>";
+									$sql_sanpham_by_danhmuc = mysqli_query($con, "select * from hanghoa order by MSHH DESC");
+								}else if($_GET['sort'] == 'onSale'){
+									echo "<script> activeHomeFilter(2) </script>";
+									if(isset($_GET['price']) && $_GET['price'] == 'AscPrice'){
+										$sql_sanpham_by_danhmuc = mysqli_query($con, "select * from HangHoa where GiamGia > 0 order by Gia ASC");
+									}else if(isset($_GET['price']) && $_GET['price'] == 'DescPrice'){
+										$sql_sanpham_by_danhmuc = mysqli_query($con, "select * from HangHoa where GiamGia > 0 order by Gia DESC");
+									}else{
+										$sql_sanpham_by_danhmuc = mysqli_query($con, "select * from HangHoa where GiamGia > 0");
+									}
+								}else{
+									echo "<script> activeHomeFilter(0) </script>";
+									$danhsachSP = "select * from HangHoa";
+
+									if(isset($_GET['price']) && $_GET['price'] == 'AscPrice'){
+										$danhsachSP .= " order by Gia ASC";
+									}else if(isset($_GET['price']) && $_GET['price'] == 'DescPrice'){
+										$danhsachSP .= " order by Gia DESC";
+									}
+									$sql_sanpham_by_danhmuc = mysqli_query($con, $danhsachSP);
+								}
+							}else{
+								echo "<script> activeHomeFilter(0) </script>";
+								$danhsachSP = "select * from HangHoa";
+
+								if(isset($_GET['price']) && $_GET['price'] == 'AscPrice'){
+									$danhsachSP .= " order by Gia ASC";
+								}else if(isset($_GET['price']) && $_GET['price'] == 'DescPrice'){
+									$danhsachSP .= " order by Gia DESC";
+								}
+
+								$sql_sanpham_by_danhmuc = mysqli_query($con, $danhsachSP);
+							}
+						?>
 
 						<div class="select-input">
-							<span class="select-input__label">Giá</span>
+							<span class="select-input__label">
+								<?php
+									if(isset($_GET['price']) && $_GET['price'] == 'AscPrice'){
+										echo "Giá: Thấp đến cao";
+									}else if(isset($_GET['price']) && $_GET['price'] == 'DescPrice'){
+										echo "Giá: Cao đến thấp";
+									}else{
+										echo "Giá";
+									}
+								?>
+							</span>
 							<i class="select-input__icon fas fa-angle-down"></i>
 
 							<!-- List option -->
 							<ul class="select-input__list">
+								<?php
+									$url = $_SERVER['REQUEST_URI'];
+									$url = str_replace('&price=AscPrice', '', $url);
+									$url = str_replace('&price=DescPrice', '', $url);
+									$url = str_replace('?price=AscPrice', '', $url);
+									$url = str_replace('?price=DescPrice', '', $url);
+									$getURL = parse_url($url, PHP_URL_QUERY);
+									if($getURL){
+										$urlAscPrice = $url."&price=AscPrice";
+										$urlDescPrice = $url."&price=DescPrice";
+									}else{
+										$urlAscPrice = $url."?price=AscPrice";
+										$urlDescPrice = $url."?price=DescPrice";
+									}
+									if(!isset($_GET['price']) OR isset($_GET['price']) && $_GET['price'] != 'AscPrice'){
+								?>
 								<li class="select-input__item">
-									<a href="" class="select-input__link">Giá: Thấp đến cao</a>
+									<a href="<?php echo $urlAscPrice ?>" class="select-input__link">Giá: Thấp đến cao</a>
 								</li>
+								<?php
+									}
+									if(!isset($_GET['price']) OR isset($_GET['price']) && $_GET['price'] != 'DescPrice'){
+								?>
 								<li class="select-input__item">
-									<a href="" class="select-input__link">Giá: Cao đến thấp</a>
+									<a href="<?php echo $urlDescPrice ?>" class="select-input__link">Giá: Cao đến thấp</a>
 								</li>
+								<?php
+									}
+								?>
 							</ul>
 						</div>
 
 						<div class="home-filter__page">
-							<span class="home-filter__page-num">
+							<!-- <span class="home-filter__page-num">
 								<span class="home-filter__page-curent">1</span>/14
-							</span>
+							</span> -->
 
-							<div class="home-filter__page-control">
+							<!-- <div class="home-filter__page-control">
 								<a href="" class="home-filter__page-btn home-filter__page-btn--disable">
 									<i class="home-filter__page-icon fas fa-angle-left"></i>
 								</a>
 								<a href="" class="home-filter__page-btn">
 									<i class="home-filter__page-icon fas fa-angle-right"></i>
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 
@@ -101,14 +179,28 @@
 							<!-- Product-item -->
 							<?php 
 								if($id>0){
-									$sql_sanpham_by_danhmuc = mysqli_query($con, "select * from LoaiHangHoa, HangHoa where LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang and HangHoa.MaLoaiHang='$id'");
+									$danhmucSP = "select * from LoaiHangHoa, HangHoa where LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang and HangHoa.MaLoaiHang='$id'";
+
+									if(isset($_GET['price']) && $_GET['price'] == 'AscPrice'){
+										$danhmucSP .= " order by Gia ASC";
+									}else if(isset($_GET['price']) && $_GET['price'] == 'DescPrice'){
+										$danhmucSP .= " order by Gia DESC";
+									}
+
+									$sql_sanpham_by_danhmuc = mysqli_query($con, $danhmucSP);
 								}elseif(isset($_GET['search'])){
 									$search = $_GET['search'];
-									$sql_sanpham_by_danhmuc = mysqli_query($con, "select * from HangHoa where TenHH like '%".$search."%' or LoaiSanPham like '%".$search."%' or DacBiet like '%".$search."%'");
-								}else{
-									$sql_sanpham_by_danhmuc = mysqli_query($con, "select * from HangHoa");
-								}
 
+									$searchSP = "select * from HangHoa where TenHH like '%".$search."%' or LoaiSanPham like '%".$search."%' or DacBiet like '%".$search."%'";
+
+									if(isset($_GET['price']) && $_GET['price'] == 'AscPrice'){
+										$searchSP .= " order by Gia ASC";
+									}else if(isset($_GET['price']) && $_GET['price'] == 'DescPrice'){
+										$searchSP .= " order by Gia DESC";
+									}
+
+									$sql_sanpham_by_danhmuc = mysqli_query($con, $searchSP);
+								}
 								$var_ID = 1;
 
 								while($row_sanpham = mysqli_fetch_array($sql_sanpham_by_danhmuc)){

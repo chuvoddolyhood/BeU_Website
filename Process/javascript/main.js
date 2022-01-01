@@ -91,6 +91,12 @@ function ratingStar(stt, numStar){
 	}
 }
 
+//
+function activebanking(){
+	var x = document.getElementsByClassName('cart__bill-banking');
+	x[0].classList.toggle('cart__bill-banking--active');	
+}
+
 // Modal:
 function activeModal(num){
 	var x = document.getElementsByClassName('modal');
@@ -264,4 +270,13 @@ function activeAdminManageList(num){
 function set_default_zoom()
 {
 	document.body.style.zoom = "100%";
+}
+
+/* active home filter */
+function activeHomeFilter(num){
+	var x = document.getElementsByClassName('btn--primary');
+	x[0].classList.remove('btn--primary');
+
+	var y = document.getElementsByClassName('home-filter__btn');
+	y[num].classList.add('btn--primary');
 }

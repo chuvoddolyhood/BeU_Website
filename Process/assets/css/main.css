@@ -1616,14 +1616,24 @@ i.home-product-item__liked-icon{
 }
 
 .cart__user-info-header{
-	font-size: 1.4rem;
-	color: var(--grey-color);
+	font-size: 2rem;
+	font-weight: 400;
 }
 
 .cart__user-info{
 	margin-top: 12px;
 	display: flex;
 	width: 100%;
+}
+
+#user_payment_method{
+	display: block;
+	position: relative;
+	bottom: 4px;
+	font-size: 1.4rem;
+	width: 100%;
+	padding: 2px;
+	align-items: center;
 }
 
 #user_location{
@@ -1641,7 +1651,7 @@ i.home-product-item__liked-icon{
 	font-size: 1.6rem;
 	padding-right: 10px;
 	position: relative;
-	top: -2px;
+	top: 1px;
 }
 
 .cart__user-info-label{
@@ -1669,6 +1679,24 @@ i.home-product-item__liked-icon{
 
 .cart__bill-price-label{
 	color: var(--grey-color);
+}
+
+.cart__bill-banking-label{
+	display: block;
+	font-size: 1.5rem;
+	font-weight: 500;
+	margin-top: 15px;
+	color: var(--primary-color);
+}
+
+.cart__bill-banking-input{
+	margin-top: 16px;
+	width: 100%;
+	height: 4rem;
+	font-size: 1.4rem;
+	font-weight: 400;
+	outline-color: #f53;
+	padding-left: 5px;
 }
 
 .cart__bill-coupon-input{
@@ -1710,6 +1738,14 @@ i.home-product-item__liked-icon{
 	color: #fff;
 	background-color: var(--primary-color);
 	cursor: pointer;
+}
+
+.cart__bill-banking{
+	display: none;
+}
+
+.cart__bill-banking--active{
+	display: block;
 }
 
 .click{
@@ -1817,6 +1853,21 @@ i.home-product-item__liked-icon{
 .cart-item-counter{
 	display: flex;
 	font-size: 1.5rem;
+}
+
+/* cart suggest */
+.cart_suggest--wrapper{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.suggest_header{
+	margin-top: 15px;
+}
+
+.suggest_header_label{
+	font-size: 2rem;
+	font-weight: 500;
 }
 
 /* Danh mục quản lý thông tin cá nhân */
@@ -2048,3 +2099,5 @@ i.home-product-item__liked-icon{
 .table-cell-item-description{
 	color: #757575;
 }
+
+/* active home filter */ 
