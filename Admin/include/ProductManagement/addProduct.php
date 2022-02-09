@@ -64,8 +64,8 @@
         // echo $today;
 
         //Them thong tin vo bang nhaphanghoa
-        $sql_add_nhaphanghoa = "INSERT INTO `chitietnhaphang`(`MSHH`, `SoLuong`, `DonGiaNhap`, `ThanhTien`, `NgayNhap`, `MSNV`) 
-            VALUES ($id_proudct,$productAmount,$productPriceImport,$productAmount*$productPriceImport,'$today',$MSNV)";
+        $sql_add_nhaphanghoa = "INSERT INTO `chitietnhaphang`(`MSHH`, `SoLuong`, `DonGiaNhap`, `ThanhTien`, `NoiSanXuat`, `NgayNhap`, `MSNV`) 
+            VALUES ($id_proudct,$productAmount,$productPriceImport,$productAmount*$productPriceImport,'$productManufacturer','$today',$MSNV)";
         $query_add_nhaphanghoa = mysqli_query($con, $sql_add_nhaphanghoa);
 
 

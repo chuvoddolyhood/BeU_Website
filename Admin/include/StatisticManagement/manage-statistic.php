@@ -1,24 +1,60 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script src='https://cdn.plot.ly/plotly-2.8.3.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+
 <div id="manage-main-body">
 	<?php
 		include("include/content-header.php");
     include("include/list-category.php");
 	?>
 	
+  <button type="button" class="btn_add">Xuất file Excel</button>
+  <!-- ############################# Modal Thêm nhân viên ######################################## -->
+  <div class="modal-bg-add">
+    <div class="modal-add">
+      <h2>Xuất báo cáo tạo file Excel</h2>
+      <a href="./include/StatisticManagement/exportExcel/staffReport.php" class="btn btn-primary">Danh sách thông tin nhân viên</a>
+      <a href="./include/StatisticManagement/exportExcel/importProductReport.php" class="btn btn-primary">Danh sách chi tiết nhập hàng</a>
+      <a href="./include/StatisticManagement/exportExcel/productReport.php" class="btn btn-primary">Danh sách thông tin hàng hóa</a>
+      <span class="modal-close-add">X</spsan>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var modalBtn_add = document.querySelector('.btn_add'); //sua ten
+    var modalBg_add = document.querySelector('.modal-bg-add');
+    var modalClose_add = document.querySelector('.modal-close-add');
+    var btn_Close_add = document.querySelector('.modal-close-add-btn');
+
+    modalBtn_add.addEventListener('click', function(){
+      modalBg_add.classList.add('bg-active-add');
+    });
+    
+    modalClose_add.addEventListener('click', function(){
+      modalBg_add.classList.remove('bg-active-add');
+    });
+
+    btn_Close_add.addEventListener('click', function(){
+      modalBg_add.classList.remove('bg-active-add');
+    });
+  </script>
+
 	<!-- CHARTS STARTS HERE -->
   <div class="charts">
     <div class="charts__left">
       <div class="charts__left__title">
-                <div>
-                    <h1>Loại hàng được mua</h1>
-                    <p>Từ đầu năm 2021 đến hiện tại</p>
-                </div>
-                <i class="fa fa-usd" aria-hidden="true"></i>
-          </div>
-            <canvas id="chartOfProductsPurchased"></canvas>
-            <!-- <canvas id="chartOfProductsImported"></canvas> -->
+        <div>
+          <h1>Loại hàng được mua</h1>
+          <p>Từ đầu năm 2021 đến hiện tại</p>
+        </div>
+        <i class="fa fa-usd" aria-hidden="true"></i>
+        </div>
+          <canvas id="chartOfProductsPurchased"></canvas>
+
+          <!-- Plotly chart will be drawn inside this DIV -->
+          <!-- <div id='myDiv'></div> -->
         </div>
 
         <div class="charts__right">
@@ -63,7 +99,7 @@
                   <p><?php echo $rows_get_ThuNhap['sodon'] ?></p>
                 </div>
             </div>
-            
+            <canvas id="chart_FinanceReport"></canvas>
         </div>
     </div>
     <!-- CHARTS ENDS HERE -->
@@ -89,7 +125,7 @@
             </div>
             <i class="fa fa-usd" aria-hidden="true"></i>
           </div>
-          <canvas id="chart_FinanceReport"></canvas>
+          <!-- <canvas id="chart_FinanceReport"></canvas> -->
           <div class="charts__left__title">
             <div>
               <h1>Báo cáo nhân viên</h1>
@@ -128,7 +164,7 @@
     $nameOfProduct = $rows_get_loaiHH['TenLoaiHang'];
 
     // echo '#'.$month;
-    echo $nameOfProduct;
+    // echo $nameOfProduct;
 
     //Tinh so luong san pham duoc mua theo tung thang
     if($nameOfProduct == 'Chip'){
@@ -683,5 +719,79 @@
   };
 
   var myChart = new Chart(document.getElementById('chart_FinanceReport'),config_FinanceReport);
+
+
+
+
+
+
+  d3.json('https://raw.githubusercontent.com/plotly/datasets/master/3d-ribbon.json', function(figure){
+
+  var trace1 = {
+  x:figure.data[0].x, y:figure.data[0].y, z:figure.data[0].z,
+  name: '',
+  colorscale: figure.data[0].colorscale,
+  type: 'surface',
+  showscale: false
+  }
+  var trace2 = {
+  x:figure.data[1].x, y:figure.data[1].y, z:figure.data[1].z,
+  name: '',
+  colorscale: figure.data[1].colorscale,
+  type: 'surface',
+  showscale: false
+  }
+  var trace3 = {
+  x:figure.data[2].x, y:figure.data[2].y, z:figure.data[2].z,
+  colorscale: figure.data[2].colorscale,
+  type: 'surface',
+  showscale: false
+  }
+  var trace4 = {
+  x:figure.data[3].x, y:figure.data[3].y, z:figure.data[3].z,
+  colorscale: figure.data[3].colorscale,
+  type: 'surface',
+  showscale: false
+  }
+  var trace5 = {
+  x:figure.data[4].x, y:figure.data[4].y, z:figure.data[4].z,
+  colorscale: figure.data[4].colorscale,
+  type: 'surface',
+  showscale: false
+  }
+  var trace6 = {
+  x:figure.data[5].x, y:figure.data[5].y, z:figure.data[5].z,
+  colorscale: figure.data[5].colorscale,
+  type: 'surface',
+  showscale: false
+  }
+  var trace7 = {
+  x:figure.data[6].x, y:figure.data[6].y, z:figure.data[6].z,
+  name: '',
+  colorscale: figure.data[6].colorscale,
+  type: 'surface',
+  showscale: false
+  }
+
+  var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7];
+
+  var layout = {
+  title: 'Số lượng sản phẩm nhập vào trong năm 2021',
+  showlegend: false,
+  autosize: true,
+  width: 500,
+  height: 500,
+  scene: {
+      xaxis: {title: 'Loại hàng'},
+      yaxis: {title: 'Tháng'},
+      zaxis: {title: 'Số lượng'}
+  }
+  };
+
+  //Plotly chart will be drawn inside this DIV
+  // Plotly.newPlot('myDiv', data, layout);
+  });
+
+
   
 </script>
