@@ -22,7 +22,7 @@ function setup(){
 	canvas.style('display', 'flex');
 	canvas.style('left', 'calc(50% - 300px)');
 	canvas.style('top', 'calc(45% - 200px');
-	document.body.style.zoom = "80%";
+	// document.body.style.zoom = "80%";
 	//bestMove();
 }
 
@@ -150,11 +150,13 @@ function draw(){
 				// alert(response);
 				if(response == "true"){
 					alert(`Đã thêm ${user_score} BeUToken vào ví, hãy dùng nó để đổi nhiều voucher độc đáo tại phần đổi thưởng nhé!`);
-					document.body.style.zoom = "100%";
-					window.location = "./index.php?quanly=game";
-				}else{
+				}else if(response = "lackofTurn"){
+					alert('Bạn đã hết lượt chơi, vui lòng mua hàng để nhận thêm lượt nhé!');
+				}else {
 					alert('Xảy ra lỗi trong quá trình cập nhật điểm. Vui lòng liên hệ với nhân viên để được trợ giúp!');
 				}
+				document.body.style.zoom = "100%";
+				window.location = "./index.php?quanly=game";
 			}
 		}
 	}

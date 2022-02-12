@@ -3,6 +3,8 @@
 	// if(!isset($_SESSION['login'])){
 	// 	echo "<script> alert('Vui lòng đăng nhập để thực hiện chức năng này'); window.location = './index.php?status=login'; </script>";
 	// }
+
+	
 ?>
 	<link rel="stylesheet" href="./Process/assets/css/game.css">
 	<script src="./Client/game/Process/javascript/exchangeVoucher.js"></script>
@@ -22,7 +24,7 @@
 										<h1>Tic Tac Toe</h1>
 										<h4>Inspire by The Coding Train</h4>
 										<p>Một game đối kháng cơ bản đầy hấp dẫn, với mục tiêu tạo thành 3 quân giống nhau theo hàng dọc, ngang hoặc chéo</p>
-										<a href="?quanly=game&id=1" class="button" target="_blank">Play Game</a>
+										<a href="?quanly=game&id=1" class="button">Play Game</a>
 									</div>
 									<div class="bg-secondary" style="background-image: url('https://dochub.com/thanhb1805813/6mO8oy7Kp8P6okOKqg5p9J/back-school-background-doodle-tic-600w-671642395-png'); opacity: 0.3; z-index: 1"></div>
 									<div class="box-img">
