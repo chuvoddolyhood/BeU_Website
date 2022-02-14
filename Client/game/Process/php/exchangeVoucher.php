@@ -20,37 +20,42 @@
     
     // set new user token
     $user_Token = $user_Token - $voucher_Token;
+    if($user_Token >= 0){
+        $sql_update_user_token = "UPDATE khachhang set BeUToken='$user_Token' where MSKH='$user_ID'";
 
-    $sql_update_user_token = "UPDATE khachhang set BeUToken='$user_Token' where MSKH='$user_ID'";
+        // check voucher's quantity
+        if($voucher_ID == 12){
+            $SoLuong = 3;
+            $voucher_ID = 11;
+        }else{
+            $SoLuong = 1;
+        }
 
-    // check if voucher's quantity
-    if($voucher_ID == 12){
-        $SoLuong = 3;
-        $voucher_ID = 11;
+        // check if voucher already in user pocket
+        $sql_get_voucher_quantity = "select SoLuong from voucherkh where MSKH='$user_ID' and MSVoucher='$voucher_ID'";
+        $sql_select = mysqli_query($con, $sql_get_voucher_quantity);
+
+        if($row_get_voucher_quantity = mysqli_fetch_array($sql_select)){ 
+            $StackSoLuong = $row_get_voucher_quantity['SoLuong'] + $SoLuong;
+            // echo "SoLuong: ".$row_get_voucher_quantity['SoLuong'];
+            // echo "SoLuong: ".$SoLuong;
+            // echo "Stack: ".$StackSoLuong;
+            $sql = "UPDATE voucherkh set SoLuong='$StackSoLuong' where MSKH='$user_ID' and MSVoucher='$voucher_ID'";
+        }else{
+            $sql = "INSERT INTO voucherkh(MSKH, MSVoucher, SoLuong) VALUES('$user_ID', '$voucher_ID', '$SoLuong')";
+        }
+
+        $sql_insert = mysqli_query($con, $sql);
+        $sql_update = mysqli_query($con, $sql_update_user_token);
+
+        if($sql_insert && $sql_update){
+            echo 'true';
+        }else{
+            echo 'false';
+        }
     }else{
-        $SoLuong = 1;
+        echo 'lackofToken';
     }
 
-    // check if voucher already in user pocket
-    $sql_get_voucher_quantity = "select SoLuong from voucherkh where MSKH='$user_ID' and MSVoucher='$voucher_ID'";
-    $sql_select = mysqli_query($con, $sql_get_voucher_quantity);
-
-    if($row_get_voucher_quantity = mysqli_fetch_array($sql_select)){ 
-        $StackSoLuong = $row_get_voucher_quantity['SoLuong'] + $SoLuong;
-        // echo "SoLuong: ".$row_get_voucher_quantity['SoLuong'];
-        // echo "SoLuong: ".$SoLuong;
-        // echo "Stack: ".$StackSoLuong;
-        $sql = "UPDATE voucherkh set SoLuong='$StackSoLuong' where MSKH='$user_ID' and MSVoucher='$voucher_ID'";
-    }else{
-        $sql = "INSERT INTO voucherkh(MSKH, MSVoucher, SoLuong) VALUES('$user_ID', '$voucher_ID', '$SoLuong')";
-    }
-
-    $sql_insert = mysqli_query($con, $sql);
-    $sql_update = mysqli_query($con, $sql_update_user_token);
-
-    if($sql_insert && $sql_update){
-        echo 'true';
-    }else{
-        echo 'false';
-    }
+    
 ?>

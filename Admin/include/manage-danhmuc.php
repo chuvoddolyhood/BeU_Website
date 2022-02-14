@@ -143,8 +143,7 @@
 							echo "'".$topsale_product_2['TenHH']."', ";
 							echo "'".$topsale_product_3['TenHH']."', ";
 							echo "'".'Sản phẩm khác'."'";
-							echo ");";
-						?>
+						?>)
 					</script>
 				</div>
 			</div>

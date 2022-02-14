@@ -27,7 +27,6 @@
 		<script src="Process/javascript/change_info.js"></script>
 		<script src="Process/javascript/check_register.js"></script>
 		
-
 		<!-- BEM -->
 		<div class="app">
 		<?php 

@@ -75,11 +75,13 @@ class Player{
 						// alert(response);
 						if(response == "true"){
 							alert(`Đã thêm ${user_score} BeUToken vào ví, hãy dùng nó để đổi nhiều voucher độc đáo tại phần đổi thưởng nhé!`);
-							document.body.style.zoom = "100%";
-							window.location = "./index.php?quanly=game";
+						}else if(response = "lackofTurn"){
+							alert('Bạn đã hết lượt chơi, vui lòng mua hàng để nhận thêm lượt nhé!');
 						}else{
 							alert('Xảy ra lỗi trong quá trình cập nhật điểm. Vui lòng liên hệ với nhân viên để được trợ giúp!');
 						}
+						document.body.style.zoom = "100%";
+						window.location = "./index.php?quanly=game";
 					}
 				}
 			}

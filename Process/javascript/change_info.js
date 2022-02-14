@@ -154,7 +154,7 @@ function remove_item_cart(num){
 
 	var ajax = new XMLHttpRequest();
 	var method = "GET";
-	var url = "./../Process/php/change_info.php?change=userRemoveCartItem&userName="+user_name+"&productID="+product_ID;
+	var url = "./Process/php/change_info.php?change=userRemoveCartItem&userName="+user_name+"&productID="+product_ID;
 	var asynchronous = true;
 
 	ajax.open(method, url, asynchronous);

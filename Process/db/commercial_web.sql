@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2021 at 10:18 AM
+-- Generation Time: Feb 14, 2022 at 03:32 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -59,10 +59,11 @@ INSERT INTO `chitietdathang` (`MaChiTiet`, `SoDonDH`, `MSHH`, `SoLuong`, `GiaTie
 (15, 16, 7, 2, 6290000, 0, 12580000),
 (16, 17, 6, 3, 1352000, 20, 4056000),
 (17, 18, 1, 1, 3290000, 0, 3290000),
-(18, 19, 1, 6, 3290000, 0, 19740000),
-(19, 20, 2, 5, 4490000, 0, 22450000),
-(20, 21, 4, 2, 9690000, 0, 19380000),
-(21, 22, 2, 1, 4490000, 0, 4490000);
+(18, 31, 3, 4, 5310500, 5, 21242000),
+(19, 31, 8, 1, 8490000, 0, 8490000),
+(20, 32, 2, 1, 4490000, 0, 4490000),
+(21, 33, 2, 1, 4490000, 0, 4490000),
+(22, 34, 5, 3, 983400, 34, 2950200);
 
 -- --------------------------------------------------------
 
@@ -76,8 +77,17 @@ CREATE TABLE `chitietnhaphang` (
   `SoLuong` int(11) NOT NULL,
   `DonGiaNhap` int(11) NOT NULL,
   `ThanhTien` int(11) NOT NULL,
-  `NoiSanXuat` varchar(50) NOT NULL
+  `NoiSanXuat` varchar(50) NOT NULL,
+  `NgayNhap` varchar(20) NOT NULL,
+  `MSNV` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chitietnhaphang`
+--
+
+INSERT INTO `chitietnhaphang` (`SoDonNhapHang`, `MSHH`, `SoLuong`, `DonGiaNhap`, `ThanhTien`, `NoiSanXuat`, `NgayNhap`, `MSNV`) VALUES
+(4, 3, 2, 12000, 24000, '', '09-02-2022 09:26:38', 5);
 
 -- --------------------------------------------------------
 
@@ -94,28 +104,28 @@ CREATE TABLE `dathang` (
   `NgayGH` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `TrangThaiDH` int(11) NOT NULL,
   `DiaChi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `SoDienThoai` int(11) NOT NULL
+  `PTThanhToan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `dathang`
 --
 
-INSERT INTO `dathang` (`SoDonDH`, `TaiKhoanKH`, `MSNV`, `TongCong`, `NgayDH`, `NgayGH`, `TrangThaiDH`, `DiaChi`, `SoDienThoai`) VALUES
-(1, 'Quoc', 2, 6580000, '22/11/2021', '27/12/2021', 1, 'Hồ Chí Minh', 123),
-(2, 'Bun', 2, 5032000, '31/1/2021', '1/4/2021', 2, 'Cần Thơ', 321),
-(3, 'Quoc', 0, 24970000, '11/11/2021', '12/12/2021', 3, 'Hồ Chí Minh', 123),
-(12, 'Quoc', 2, 20090000, '20/11/2021', '1/12/2021', 3, 'Hồ Chí Minh', 123),
-(13, 'Quoc', 0, 20090000, '20/11/2021', '1/12/2021', 4, 'Hồ Chí Minh', 123),
-(14, 'Quoc', 2, 1635500, '21/11/2021', '2/12/2021', 2, 'Hồ Chí Minh', 123),
-(15, 'Bun', 0, 1720000, '22/11/2021', '3/12/2021', 4, 'Cần Thơ', 321),
-(16, 'Bun', 0, 6320000, '23/11/2021', '4/12/2021', 3, 'Cần Thơ', 321),
-(17, 'ChucThay', 4, 1382000, '26/11/2021', '7/12/2021', 3, 'Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ', 918058139),
-(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 4, 'Cần Thơ', 918058139),
-(19, 'Quoc', 0, 19770000, '13/12/2021', '24/12/2021', 4, 'Hồ Chí Minh', 123),
-(20, 'Quoc', 0, 22480000, '14/12/2021', '25/12/2021', 4, 'Nam Định', 123),
-(21, 'Quoc', 0, 19410000, '14/12/2021', '25/12/2021', 4, 'Hồ Chí Minh', 123),
-(22, 'Quoc', 0, 4520000, '14/12/2021', '25/12/2021', 4, 'Hồ Chí Minh', 123);
+INSERT INTO `dathang` (`SoDonDH`, `TaiKhoanKH`, `MSNV`, `TongCong`, `NgayDH`, `NgayGH`, `TrangThaiDH`, `DiaChi`, `PTThanhToan`) VALUES
+(1, 'Quoc', 2, 6580000, '22/11/2021', '27/12/2021', 1, 'Hồ Chí Minh', 1),
+(2, 'Bun', 2, 5032000, '31/1/2021', '1/4/2021', 1, 'Cần Thơ', 1),
+(3, 'Quoc', 0, 24970000, '11/11/2021', '12/12/2021', 1, 'Hồ Chí Minh', 1),
+(12, 'Quoc', 2, 20090000, '20/11/2021', '1/12/2021', 1, 'Hồ Chí Minh', 1),
+(13, 'Quoc', 0, 20090000, '20/11/2021', '1/12/2021', 1, 'Hồ Chí Minh', 1),
+(14, 'Quoc', 2, 1635500, '21/11/2021', '2/12/2021', 1, 'Hồ Chí Minh', 1),
+(15, 'Bun', 0, 1720000, '22/11/2021', '3/12/2021', 1, 'Cần Thơ', 1),
+(16, 'Bun', 0, 6320000, '23/11/2021', '4/12/2021', 1, 'Cần Thơ', 1),
+(17, 'ChucThay', 4, 1382000, '26/11/2021', '7/12/2021', 1, 'Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ', 1),
+(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 1, 'Cần Thơ', 1),
+(31, 'Quoc', 0, 28275400, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
+(32, 'Quoc', 0, 4295500, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
+(33, 'Quoc', 0, 4490000, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
+(34, 'Quoc', 0, 2685180, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1);
 
 -- --------------------------------------------------------
 
@@ -135,12 +145,7 @@ CREATE TABLE `diachikh` (
 
 INSERT INTO `diachikh` (`MaDC`, `DiaChi`, `MSKH`) VALUES
 (1, 'Hồ Chí Minh', 1),
-(6, 'Hà Nội', 1),
-(7, 'Nam Định', 1),
-(8, 'Hồ Chí Minh', 1),
-(9, 'Nam Định', 2),
-(10, 'Cần Thơ', 0),
-(12, 'Cần Thơ', 26);
+(13, 'Cần Thơ', 1);
 
 -- --------------------------------------------------------
 
@@ -152,24 +157,8 @@ CREATE TABLE `diemgame` (
   `MaGame` int(11) NOT NULL,
   `MSKH` int(11) NOT NULL,
   `Diem` int(11) NOT NULL,
-  `NgayChoi` varchar(50) NOT NULL
+  `NgayChoi` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `diemgame`
---
-
-INSERT INTO `diemgame` (`MaGame`, `MSKH`, `Diem`, `NgayChoi`) VALUES
-(2, 1, 0, '18-12-2021 05:44:23'),
-(2, 1, 1, '18-12-2021 05:44:48'),
-(1, 1, 20, '18-12-2021 06:04:55'),
-(1, 1, 10, '18-12-2021 06:16:02'),
-(2, 1, 0, '20-12-2021 09:43:05'),
-(2, 1, 0, '20-12-2021 09:43:17'),
-(2, 1, 0, '20-12-2021 09:43:32'),
-(2, 1, 0, '20-12-2021 09:43:39'),
-(2, 1, 0, '20-12-2021 09:48:02'),
-(2, 1, 1, '20-12-2021 09:50:15');
 
 -- --------------------------------------------------------
 
@@ -181,14 +170,6 @@ CREATE TABLE `game` (
   `MaGame` int(11) NOT NULL,
   `TenGame` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `game`
---
-
-INSERT INTO `game` (`MaGame`, `TenGame`) VALUES
-(1, 'TicTacToe'),
-(2, 'FlappyBird');
 
 -- --------------------------------------------------------
 
@@ -211,8 +192,7 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`MaGio`, `TaiKhoanKH`, `MSHH`, `TenHangHoa`, `Gia`, `SoLuong`, `PhanLoai`) VALUES
-(27, 'Quoc', 3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 5310500, 1, 'Chip AMD'),
-(28, 'Quoc', 8, 'MSI GeForce GTX 1650 SUPER GAMING X 4GB', 8490000, 1, 'GTX 1650 super');
+(32, 'Quoc', 3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 5310500, 1, 'Chip AMD');
 
 -- --------------------------------------------------------
 
@@ -224,10 +204,10 @@ CREATE TABLE `hanghoa` (
   `MSHH` int(11) NOT NULL,
   `TenHH` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `QuyCach` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `GiaNhap` int(11) NOT NULL,
   `Gia` int(11) NOT NULL,
   `SoLuongHang` int(11) NOT NULL,
   `MaLoaiHang` int(11) NOT NULL,
-  `DaBan` int(5) NOT NULL DEFAULT 0,
   `GiamGia` int(4) NOT NULL DEFAULT 0,
   `LoaiSanPham` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `HangHangHoa` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -241,15 +221,15 @@ CREATE TABLE `hanghoa` (
 -- Dumping data for table `hanghoa`
 --
 
-INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `QuyCach`, `Gia`, `SoLuongHang`, `MaLoaiHang`, `DaBan`, `GiamGia`, `LoaiSanPham`, `HangHangHoa`, `NoiSXHangHoa`, `TinhTrang`, `BaoHanh`, `DacBiet`) VALUES
-(1, 'ASUS TUF GAMING B460M-PRO', 'món', 3290000, 101, 2, 27, 0, 'Mainboard B460', 'ASUS', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Không'),
-(2, 'MSI MAG B560M MORTAR WIFI', 'món', 4490000, 100, 2, 12, 0, 'Mainboard B560M', 'MSI', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Hỗ trợ kết nối wifi'),
-(3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 'món', 5590000, 100, 1, 20, 5, 'Chip AMD', 'AMD', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
-(4, 'Intel Core i7 10700 / 4.8GHz / 8 Nhân 16 Luồng', 'món', 9690000, 100, 1, 22, 0, 'Chip Intel', 'INTEL', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
-(5, '(8GB DDR4 1x8G 2666) RAM Kingston HyperX Fury Black', 'món', 1490000, 100, 3, 11, 34, 'RAM 8GB DDR4', 'Kingston', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
-(6, '(8GB DDR4 1x8G 3000) RAM G.SKILL Trident Z RGB CL16-18-18-38', 'món', 1690000, 100, 3, 20, 20, 'RAM 8GB DDR4', 'GSKILL', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Led RGB'),
-(7, 'GIGABYTE GeForce GTX 1050 Ti D5 4GB', 'món', 6790000, 100, 4, 31, 12, 'GTX 1050ti', 'GIGABYTE', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Phiên bản nâng cấp từ 1050'),
-(8, 'MSI GeForce GTX 1650 SUPER GAMING X 4GB', 'món', 8490000, 100, 4, 1, 0, 'GTX 1650 super', 'MSI', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Card chuyên dụng cho gaming');
+INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `QuyCach`, `GiaNhap`, `Gia`, `SoLuongHang`, `MaLoaiHang`, `GiamGia`, `LoaiSanPham`, `HangHangHoa`, `NoiSXHangHoa`, `TinhTrang`, `BaoHanh`, `DacBiet`) VALUES
+(1, 'ASUS TUF GAMING B460M-PRO', 'món', 0, 3290000, 102, 2, 0, 'Mainboard B460', 'ASUS', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Không'),
+(2, 'MSI MAG B560M MORTAR WIFI', 'món', 0, 4490000, 100, 2, 0, 'Mainboard B560M', 'MSI', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Hỗ trợ kết nối wifi'),
+(3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 'món', 12000, 5590000, 102, 1, 5, 'Chip AMD', 'AMD', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
+(4, 'Intel Core i7 10700 / 4.8GHz / 8 Nhân 16 Luồng', 'món', 0, 9690000, 100, 1, 0, 'Chip Intel', 'INTEL', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
+(5, '(8GB DDR4 1x8G 2666) RAM Kingston HyperX Fury Black', 'món', 0, 1490000, 100, 3, 34, 'RAM 8GB DDR4', 'Kingston', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
+(6, '(8GB DDR4 1x8G 3000) RAM G.SKILL Trident Z RGB CL16-18-18-38', 'món', 0, 1690000, 100, 3, 20, 'RAM 8GB DDR4', 'GSKILL', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Led RGB'),
+(7, 'GIGABYTE GeForce GTX 1050 Ti D5 4GB', 'món', 0, 6790000, 100, 4, 12, 'GTX 1050ti', 'GIGABYTE', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Phiên bản nâng cấp từ 1050'),
+(8, 'MSI GeForce GTX 1650 SUPER GAMING X 4GB', 'món', 0, 8490000, 100, 4, 0, 'GTX 1650 super', 'MSI', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Card chuyên dụng cho gaming');
 
 -- --------------------------------------------------------
 
@@ -293,21 +273,18 @@ CREATE TABLE `khachhang` (
   `SoFax` int(11) DEFAULT NULL,
   `Email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `DOB` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
-  `GioiTinh` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
-  `BeUToken` int(11) NOT NULL,
-  `LuotChoi` int(11) NOT NULL
+  `GioiTinh` varchar(3) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `khachhang`
 --
 
-INSERT INTO `khachhang` (`MSKH`, `TaiKhoanKH`, `MatKhauKH`, `HoTenKH`, `TenCongTy`, `SoDienThoai`, `SoFax`, `Email`, `DOB`, `GioiTinh`, `BeUToken`, `LuotChoi`) VALUES
-(1, 'Quoc', 'Quoc123', 'Quốc Nguyễn', 'Thanh Company', 123, 0, 'quoc@gmail.com', '22/11/2000', 'Nam', 32, 10),
-(2, 'Bun', 'Bun321', 'Bún Măng', NULL, 321, NULL, 'Bunsx@gmail.com', '27/12/2000', 'Nữ', 0, 0),
-(3, 'Thanh', 'Thanh964594', 'Nguyễn Đình Thanh', NULL, 767732712, NULL, 'qsczsemko@gmail.com', '27/12/2000', 'Nam', 0, 0),
-(26, 'ChucThay', 'ThayTrungnumber1', 'Ngày mới tốt lành', NULL, 918058139, NULL, 'thanhb1805813@student.ctu.edu.vn', '2021-11-27', 'Nam', 0, 0),
-(27, 'NgDiThanh', 'NgDiThanh', 'NgDiThanh', NULL, 2345, NULL, 'qsczsemko@gmail.com', '2021-12-17', 'Nam', 0, 0);
+INSERT INTO `khachhang` (`MSKH`, `TaiKhoanKH`, `MatKhauKH`, `HoTenKH`, `TenCongTy`, `SoDienThoai`, `SoFax`, `Email`, `DOB`, `GioiTinh`) VALUES
+(1, 'Quoc', 'Quoc123', 'Quốc Nguyễn', 'Thanh Company', 123, 0, 'quoc@gmail.com', '22/11/2000', 'Nam'),
+(2, 'Bun', 'Bun321', 'Bún Măng', NULL, 321, NULL, 'Bunsx@gmail.com', '27/12/2000', 'Nữ'),
+(3, 'Thanh', 'Thanh964594', 'Nguyễn Đình Thanh', NULL, 767732712, NULL, 'qsczsemko@gmail.com', '27/12/2000', 'Nam'),
+(26, 'ChucThay', 'ThayTrungnumber1', 'Ngày mới tốt lành', NULL, 918058139, NULL, 'thanhb1805813@student.ctu.edu.vn', '2021-11-27', 'Nam');
 
 -- --------------------------------------------------------
 
@@ -348,8 +325,11 @@ INSERT INTO `lichsutimkiem` (`MaLichSu`, `MSKH`, `LichSu`) VALUES
 (23, 26, 'led rgb'),
 (24, 26, 'ram 8gb'),
 (25, 26, 'led rgb'),
-(26, 1, 'ram 8gb'),
-(30, 1, 'wifi');
+(26, 1, 'Led RGB'),
+(27, 1, 'ram'),
+(28, 1, 'core'),
+(29, 1, 'ry'),
+(30, 1, 'amd');
 
 -- --------------------------------------------------------
 
@@ -370,7 +350,9 @@ INSERT INTO `loaihanghoa` (`MaLoaiHang`, `TenLoaiHang`) VALUES
 (1, 'Chip'),
 (2, 'MainBoard'),
 (3, 'Ram'),
-(4, 'VGA');
+(4, 'VGA'),
+(8, 'CPU'),
+(9, 'Monitor');
 
 -- --------------------------------------------------------
 
@@ -417,19 +399,7 @@ INSERT INTO `nhanvien` (`MSNV`, `TaiKhoanNV`, `MatKhauNV`, `HoTenNV`, `ChucVu`, 
 (1, 'Admin', 'Admin', 'Admin', 1, 'Admin', 113),
 (2, 'Thanh', 'Thanh123', 'Nguyễn Đình Thanh', 2, 'Cần Thơ', 964594),
 (4, 'ThayTrungAdmin', 'ThayTrungAdmin', 'Thầy Trung', 1, 'Cần Thơ', 118058130),
-(5, 'nghia', 'nghia', 'Trần Nhân Nghĩa', 2, 'Cần Thơ', 234632);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nhaphanghoa`
---
-
-CREATE TABLE `nhaphanghoa` (
-  `SoDonNhapHang` int(11) NOT NULL,
-  `NgayNhap` varchar(20) NOT NULL,
-  `MSNV` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(5, 'nghia', 'nghia', 'Trần Nhân Nghĩa', 1, 'Cần Thơ', 939635755);
 
 -- --------------------------------------------------------
 
@@ -447,8 +417,6 @@ CREATE TABLE `phuongthucthanhtoan` (
 --
 
 INSERT INTO `phuongthucthanhtoan` (`MaPT`, `TenPT`) VALUES
-(1, 'Thanh toán khi nhận '),
-(2, 'Chuyển khoản ngân hà'),
 (1, 'Thanh toán khi nhận '),
 (2, 'Chuyển khoản ngân hà');
 
@@ -468,19 +436,6 @@ CREATE TABLE `sanphamyeuthich` (
 --
 
 INSERT INTO `sanphamyeuthich` (`MSKH`, `MSHH`) VALUES
-(1, 8),
-(2, 2),
-(2, 5),
-(2, 7),
-(1, 6),
-(1, 7),
-(1, 2),
-(1, 4),
-(1, 2),
-(1, 8),
-(2, 2),
-(2, 5),
-(2, 7),
 (1, 2),
 (1, 8),
 (2, 2),
@@ -498,7 +453,7 @@ CREATE TABLE `voucher` (
   `LoaiVoucher` int(11) NOT NULL,
   `TenVoucher` varchar(20) NOT NULL,
   `Token` int(11) NOT NULL,
-  `GiaTri` varchar(20) NOT NULL
+  `GiaTri` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -506,22 +461,22 @@ CREATE TABLE `voucher` (
 --
 
 INSERT INTO `voucher` (`MSVoucher`, `LoaiVoucher`, `TenVoucher`, `Token`, `GiaTri`) VALUES
-(1, 1, 'Voucher 5%', 10, '5'),
-(2, 1, 'Voucher 10%', 25, '10'),
-(3, 1, 'Voucher 15%', 45, '15'),
-(4, 1, 'Voucher 20%', 70, '20'),
-(5, 1, 'Voucher 25%', 100, '25'),
-(6, 1, 'Voucher 30%', 135, '30'),
-(7, 1, 'Voucher 35%', 175, '35'),
-(8, 1, 'Voucher 40%', 220, '40'),
-(9, 1, 'Voucher 45%', 270, '45'),
-(10, 1, 'Voucher 50%', 325, '50'),
-(11, 3, 'Freeship', 5, 'FS'),
-(12, 3, 'Freeship * 3', 20, '3FS'),
-(13, 2, 'Voucher 50k', 10, '50'),
-(14, 2, 'Voucher 100k', 20, '100'),
-(15, 2, 'Voucher 200k', 40, '200'),
-(16, 2, 'Voucher 500k', 100, '500');
+(1, 1, 'Voucher 5%', 10, 5),
+(2, 1, 'Voucher 10%', 25, 10),
+(3, 1, 'Voucher 15%', 45, 15),
+(4, 1, 'Voucher 20%', 70, 20),
+(5, 1, 'Voucher 25%', 100, 25),
+(6, 1, 'Voucher 30%', 135, 30),
+(7, 1, 'Voucher 35%', 175, 35),
+(8, 1, 'Voucher 40%', 220, 40),
+(9, 1, 'Voucher 45%', 270, 45),
+(10, 1, 'Voucher 50%', 325, 50),
+(11, 3, 'Freeship', 5, 30),
+(12, 3, 'Freeship * 3', 20, 30),
+(13, 2, 'Voucher 50k', 10, 50),
+(14, 2, 'Voucher 100k', 20, 100),
+(15, 2, 'Voucher 200k', 40, 200),
+(16, 2, 'Voucher 500k', 100, 500);
 
 -- --------------------------------------------------------
 
@@ -534,6 +489,14 @@ CREATE TABLE `voucherkh` (
   `MSVoucher` int(11) NOT NULL,
   `SoLuong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `voucherkh`
+--
+
+INSERT INTO `voucherkh` (`MSKH`, `MSVoucher`, `SoLuong`) VALUES
+(1, 2, 1),
+(1, 11, 6);
 
 --
 -- Indexes for dumped tables
@@ -551,8 +514,9 @@ ALTER TABLE `chitietdathang`
 -- Indexes for table `chitietnhaphang`
 --
 ALTER TABLE `chitietnhaphang`
+  ADD PRIMARY KEY (`SoDonNhapHang`),
   ADD KEY `MSHH` (`MSHH`),
-  ADD KEY `SoDonNhapHang` (`SoDonNhapHang`);
+  ADD KEY `MSNV` (`MSNV`);
 
 --
 -- Indexes for table `dathang`
@@ -560,7 +524,8 @@ ALTER TABLE `chitietnhaphang`
 ALTER TABLE `dathang`
   ADD PRIMARY KEY (`SoDonDH`),
   ADD KEY `TaiKhoanKH` (`TaiKhoanKH`),
-  ADD KEY `MSNV` (`MSNV`);
+  ADD KEY `MSNV` (`MSNV`),
+  ADD KEY `PTThanhToan` (`PTThanhToan`);
 
 --
 -- Indexes for table `diachikh`
@@ -637,11 +602,10 @@ ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MSNV`);
 
 --
--- Indexes for table `nhaphanghoa`
+-- Indexes for table `phuongthucthanhtoan`
 --
-ALTER TABLE `nhaphanghoa`
-  ADD PRIMARY KEY (`SoDonNhapHang`),
-  ADD KEY `MSNV` (`MSNV`);
+ALTER TABLE `phuongthucthanhtoan`
+  ADD PRIMARY KEY (`MaPT`);
 
 --
 -- Indexes for table `sanphamyeuthich`
@@ -654,7 +618,15 @@ ALTER TABLE `sanphamyeuthich`
 -- Indexes for table `voucher`
 --
 ALTER TABLE `voucher`
-  ADD PRIMARY KEY (`MSVoucher`);
+  ADD PRIMARY KEY (`MSVoucher`),
+  ADD KEY `LoaiVoucher` (`LoaiVoucher`);
+
+--
+-- Indexes for table `voucherkh`
+--
+ALTER TABLE `voucherkh`
+  ADD KEY `MSKH` (`MSKH`),
+  ADD KEY `vouckh_ibfk_2` (`MSVoucher`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -664,43 +636,55 @@ ALTER TABLE `voucher`
 -- AUTO_INCREMENT for table `chitietdathang`
 --
 ALTER TABLE `chitietdathang`
-  MODIFY `MaChiTiet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `MaChiTiet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `chitietnhaphang`
+--
+ALTER TABLE `chitietnhaphang`
+  MODIFY `SoDonNhapHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `SoDonDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `SoDonDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `diachikh`
 --
 ALTER TABLE `diachikh`
-  MODIFY `MaDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `MaDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `game`
+--
+ALTER TABLE `game`
+  MODIFY `MaGame` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `hanghoa`
 --
 ALTER TABLE `hanghoa`
-  MODIFY `MSHH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MSHH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `hinhhanghoa`
 --
 ALTER TABLE `hinhhanghoa`
-  MODIFY `MaHinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MaHinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `MSKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `MSKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `lichsutimkiem`
@@ -712,19 +696,19 @@ ALTER TABLE `lichsutimkiem`
 -- AUTO_INCREMENT for table `loaihanghoa`
 --
 ALTER TABLE `loaihanghoa`
-  MODIFY `MaLoaiHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `loaivoucher`
---
-ALTER TABLE `loaivoucher`
-  MODIFY `MaLoai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaLoaiHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
   MODIFY `MSNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `phuongthucthanhtoan`
+--
+ALTER TABLE `phuongthucthanhtoan`
+  MODIFY `MaPT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `voucher`
@@ -744,11 +728,32 @@ ALTER TABLE `chitietdathang`
   ADD CONSTRAINT `chitietdathang_ibfk_2` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`);
 
 --
+-- Constraints for table `chitietnhaphang`
+--
+ALTER TABLE `chitietnhaphang`
+  ADD CONSTRAINT `chitietnhaphang_ibfk_1` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`),
+  ADD CONSTRAINT `chitietnhaphang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`);
+
+--
 -- Constraints for table `dathang`
 --
 ALTER TABLE `dathang`
-  ADD CONSTRAINT `dathang_ibfk_1` FOREIGN KEY (`TaiKhoanKH`) REFERENCES `khachhang` (`TaiKhoanKH`),
-  ADD CONSTRAINT `dathang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`);
+  ADD CONSTRAINT `dathang_ibfk_1` FOREIGN KEY (`TaiKhoanKH`) REFERENCES `khachhang` (`TaiKhoanKH`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `dathang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `dathang_ibfk_3` FOREIGN KEY (`PTThanhToan`) REFERENCES `phuongthucthanhtoan` (`MaPT`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `diachikh`
+--
+ALTER TABLE `diachikh`
+  ADD CONSTRAINT `diachikh_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`);
+
+--
+-- Constraints for table `diemgame`
+--
+ALTER TABLE `diemgame`
+  ADD CONSTRAINT `diemgame_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
+  ADD CONSTRAINT `diemgame_ibfk_2` FOREIGN KEY (`MaGame`) REFERENCES `game` (`MaGame`);
 
 --
 -- Constraints for table `giohang`
@@ -780,6 +785,19 @@ ALTER TABLE `lichsutimkiem`
 ALTER TABLE `sanphamyeuthich`
   ADD CONSTRAINT `sanphamyeuthich_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
   ADD CONSTRAINT `sanphamyeuthich_ibfk_2` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`);
+
+--
+-- Constraints for table `voucher`
+--
+ALTER TABLE `voucher`
+  ADD CONSTRAINT `voucher_ibfk_1` FOREIGN KEY (`LoaiVoucher`) REFERENCES `loaivoucher` (`MaLoai`);
+
+--
+-- Constraints for table `voucherkh`
+--
+ALTER TABLE `voucherkh`
+  ADD CONSTRAINT `voucherkh_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `voucherkh_ibfk_2` FOREIGN KEY (`MSVoucher`) REFERENCES `voucher` (`MSVoucher`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

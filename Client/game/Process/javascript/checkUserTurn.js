@@ -21,7 +21,7 @@ function exchange(userName, voucherName){
 			}else if(response == "lackofToken"){
 				alert('Bạn không đủ BeUToken để đổi voucher này, xin hãy chơi thêm để nhận BeUToken nhé!');
 			}else{
-				alert('. Vui lòng liên hệ với nhân viên để được trợ giúp!');
+				alert('Đã xảy ra lỗi. Vui lòng liên hệ với nhân viên để được trợ giúp!');
 			}
 		}
 	}
