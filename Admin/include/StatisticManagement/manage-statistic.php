@@ -46,13 +46,12 @@
     <div class="charts__left">
       <div class="charts__left__title">
         <div>
-          <h1>Loại hàng được mua</h1>
-          <p>Từ đầu năm 2021 đến hiện tại</p>
+          <h1>Doanh số bán hàng</h1>
+          <p>Từ đầu năm 2022 đến hiện tại</p>
         </div>
         <i class="fa fa-usd" aria-hidden="true"></i>
         </div>
-          <canvas id="chartOfProductsPurchased"></canvas>
-
+          <canvas id="chart_FinanceReport"></canvas>
           <!-- Plotly chart will be drawn inside this DIV -->
           <!-- <div id='myDiv'></div> -->
         </div>
@@ -73,7 +72,7 @@
             <div class="charts__right__title">
                 <div>
                     <h1>Báo cáo tài chính</h1>
-                    <p>Từ đầu năm 2021 đến hiện tại</p>
+                    <p>Từ đầu năm 2022 đến hiện tại</p>
                 </div>
                 <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
@@ -99,7 +98,6 @@
                   <p><?php echo $rows_get_ThuNhap['sodon'] ?></p>
                 </div>
             </div>
-            <canvas id="chart_FinanceReport"></canvas>
         </div>
     </div>
     <!-- CHARTS ENDS HERE -->
@@ -120,16 +118,16 @@
         <div class="charts__right">
           <div class="charts__left__title">
             <div>
-              <h1>Báo cáo tài chính</h1>
-              <!-- <p>Những nhân viên hoạt động năng nổ trong suốt năm nay</p> -->
+              <h1>Lượng hàng được mua trong năm</h1>
+              <p>Từ đầu năm 2022 đến hiện tại</p>
             </div>
             <i class="fa fa-usd" aria-hidden="true"></i>
           </div>
-          <!-- <canvas id="chart_FinanceReport"></canvas> -->
+          <canvas id="chartOfProductsPurchased"></canvas>
           <div class="charts__left__title">
             <div>
-              <h1>Báo cáo nhân viên</h1>
-              <p>Những nhân viên hoạt động năng nổ trong suốt năm nay</p>
+              <h1>Nhân viên hoạt động năng nổ</h1>
+              <p>Từ đầu năm 2022 đến hiện tại</p>
             </div>
             <i class="fa fa-usd" aria-hidden="true"></i>
           </div>
@@ -776,7 +774,7 @@
   var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7];
 
   var layout = {
-  title: 'Số lượng sản phẩm nhập vào trong năm 2021',
+  title: 'Số lượng sản phẩm nhập vào trong năm 2022',
   showlegend: false,
   autosize: true,
   width: 500,

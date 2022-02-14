@@ -979,8 +979,8 @@ html {
   .modal-add{
 	position: relative;
 	background-color: white;
-	width: 40%;
-	height: 50%;
+	width: 20%;
+	height: 30%;
 	display: flex;
 	/* justify-content: space-around; */
 	align-items: center;
