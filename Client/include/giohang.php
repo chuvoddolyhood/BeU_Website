@@ -56,8 +56,6 @@
 							</div>
 						</li>
 					<?php
-
-							
 						}
 					?>
 				</ul>
@@ -98,28 +96,59 @@
 					</div>
 				</div>
 				<div class="cart__info">
-					<div class="cart__bill">
+					<div class="cart__bill" id="cart__bill">
 						<span class="cart__bill-header">Thông tin đơn hàng:</span>
+
 						<div class="cart__bill-price">
 							<span class="cart__bill-price-label">Tạm tính</span>
 							<div>
-								<span><?php echo number_format($total_price) ?></span>
+								<span id="cart_total_price"><?php echo number_format($total_price) ?></span>
 								<span>đ</span>
 							</div>
 						</div>
+
 						<div class="cart__bill-price">
 							<span class="cart__bill-price-label">Phí giao hàng</span>
 							<span>30.000 đ</span>
 						</div>
+
 						<div class="cart__bill-banking">
 							<span class="cart__bill-banking-label">Cú pháp chuyển khoản: 'Tên' _ 'Mã số đơn'</span>
 							<input id="banking_username" class="cart__bill-banking-input" type="text" placeholder="Tên chủ tài khoản">
 							<input id="banking_num" class="cart__bill-banking-input" type="text" placeholder="Số tài khoản">
 							<input id="banking_bankname" class="cart__bill-banking-input" type="text" placeholder="Tên ngân hàng">
 						</div>
-						<div>
-							<input class="cart__bill-coupon-input"type="text" placeholder="Mã giảm giá">
+
+						<div class="cart__user-discount">
+							<span class="cart__bill-discount-label">
+								Chọn voucher khuyến mãi:
+							</span>
+							<div class="cart__user-discount-input">
+								<i class="cart__user-discount-icon fas fa-tags"></i>
+								<select name="" id="user_discount" onchange=" changeVoucher(this, <?php echo $total_price ?>)">
+									<option class="cart__user-discount-label" value="0"></option>
+									<?php
+										$sql_get_user_id = mysqli_query($con, "select MSKH from khachhang where TaiKhoanKH = '".$_SESSION['login']."'");
+										$row_get_user_id = mysqli_fetch_array($sql_get_user_id);
+										$sql_get_user_discount = mysqli_query($con, "select vc.MSVoucher, vc.TenVoucher from voucher vc, voucherkh vk where vc.MSVoucher=vk.MSVoucher and vk.MSKH='".$row_get_user_id['MSKH']."'");
+										while($row_get_user_discount = mysqli_fetch_array($sql_get_user_discount)){
+									?>
+										<option class="cart__user-discount-label" value="<?php echo $row_get_user_discount['MSVoucher'] ?>"><?php echo $row_get_user_discount['TenVoucher'] ?></option>
+									<?php
+										}
+									?>
+								</select>
+							</div>
 						</div>
+
+						<div class="cart__bill-price">
+							<span class="cart__bill-price-label">Voucher</span>
+							<div>
+								- <span id="cart__bill-discount-value">0</span>
+								<span>đ</span>
+							</div>
+						</div>
+
 						<div class="cart__bill-price">
 							<span class="cart__bill-total-label">Tổng cộng</span>
 							<div>
@@ -128,7 +157,7 @@
 							</div>
 						</div>
 						<span class="cart__bill-noti">Đã bao gồm VAT(nếu có)</span>
-						<button onclick="order_bill()" class="cart__bill-btn-accept">Xác nhận giỏ hàng</button>
+						<button onclick="order_bill()" class="cart__bill-btn-accept" id="cart__bill-btn-accept">Xác nhận giỏ hàng</button>
 					</div>
 				</div>
 			</div>

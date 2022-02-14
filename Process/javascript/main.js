@@ -97,6 +97,65 @@ function activebanking(){
 	x[0].classList.toggle('cart__bill-banking--active');	
 }
 
+//Change Voucher:
+function changeVoucher(obj, totalPrice){
+	var discount = document.getElementById('cart__bill-discount-value');
+	var total = document.getElementById('cart__bill-total');
+	var voucherID = obj.value;
+	var userName = document.getElementById('user_name').innerHTML;
+	// var totalPrice = parseInt(document.getElementById('cart_total_price').innerHTML.replace(/,/g, ''));
+	// alert(totalPrice);
+
+	// alert(voucherID + " / " + userName + " / " + totalPrice);
+
+	var ajax = new XMLHttpRequest();
+	var method = "GET";
+	var url = "./Process/php/change_voucher.php?userName="+userName+"&voucherID="+voucherID+"&totalPrice="+totalPrice;
+	var asynchronous = true;
+
+	ajax.open(method, url, asynchronous);
+
+	ajax.send();
+
+	var response;
+	var position;
+	var discountVoucher;
+	var totalBill;
+	ajax.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			response = this.responseText;
+			// alert(response);
+			if(response.length > 0){
+				position = response.indexOf("/");
+				discountVoucher = response.slice(0, position);
+				totalBill = response.slice(position + 1, response.length);
+				// alert(totalBill);
+				discount.innerHTML = discountVoucher;
+				total.innerHTML = totalBill;
+
+				var parent = document.getElementById('cart__bill');
+				var button = document.getElementById('cart__bill-btn-accept');
+				parent.removeChild(button);
+				var html = '<button onclick="order_bill('+totalBill.replace(/,/g, '')+')" class="cart__bill-btn-accept" id="cart__bill-btn-accept">Xác nhận giỏ hàng</button>';
+				parent.insertAdjacentHTML('beforeend', html);
+			}else{
+				discount.innerHTML = 0;
+			}
+		}
+	}
+}
+
+window.onload = function(){
+	
+	var option = document.getElementsByClassName('cart__user-discount-label');
+	for(var i=1; i<option.length; i++){
+		option[i].addEventListener("click", function(){
+
+		})
+	}
+}
+
+
 // Modal:
 function activeModal(num){
 	var x = document.getElementsByClassName('modal');

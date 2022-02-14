@@ -9,14 +9,18 @@
     $bill_Order_Date = $_GET['orderDate'];
     $bill_Delivery_Date = $_GET['deliveryDate'];
     $bill_Status = $_GET['billStatus'];
+    $banking_Num = $_GET['bankingNum'];
 
     // echo $user_Name_client;
+    // echo $user_Location_client;
+    // echo $user_Phone_client;
+    // echo $bill_Staff;
     // echo $bill_Total;
     // echo $bill_Order_Date;
     // echo $bill_Delivery_Date;
     // echo $bill_Status;
 
-    $sql = "INSERT INTO dathang(TaiKhoanKH, DiaChi, SoDienThoai, MSNV, TongCong, NgayDH, NgayGH, TrangThaiDH) VALUES ('$user_Name_client', '$user_Location_client', '$user_Phone_client', '$bill_Staff', '$bill_Total', '$bill_Order_Date', '$bill_Delivery_Date', '$bill_Status');";
+    $sql = "INSERT INTO dathang(TaiKhoanKH, DiaChi, MSNV, TongCong, NgayDH, NgayGH, TrangThaiDH, PTThanhToan) VALUES ('$user_Name_client', '$user_Location_client', '$bill_Staff', '$bill_Total', '$bill_Order_Date', '$bill_Delivery_Date', '$bill_Status', '$banking_Num');";
 
     $sql_insert = mysqli_query($con, $sql);
 

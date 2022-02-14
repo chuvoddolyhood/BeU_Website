@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2022 at 04:45 AM
+-- Generation Time: Feb 14, 2022 at 03:32 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -58,7 +58,12 @@ INSERT INTO `chitietdathang` (`MaChiTiet`, `SoDonDH`, `MSHH`, `SoLuong`, `GiaTie
 (14, 15, 6, 2, 1690000, 5, 3380000),
 (15, 16, 7, 2, 6290000, 0, 12580000),
 (16, 17, 6, 3, 1352000, 20, 4056000),
-(17, 18, 1, 1, 3290000, 0, 3290000);
+(17, 18, 1, 1, 3290000, 0, 3290000),
+(18, 31, 3, 4, 5310500, 5, 21242000),
+(19, 31, 8, 1, 8490000, 0, 8490000),
+(20, 32, 2, 1, 4490000, 0, 4490000),
+(21, 33, 2, 1, 4490000, 0, 4490000),
+(22, 34, 5, 3, 983400, 34, 2950200);
 
 -- --------------------------------------------------------
 
@@ -82,8 +87,6 @@ CREATE TABLE `chitietnhaphang` (
 --
 
 INSERT INTO `chitietnhaphang` (`SoDonNhapHang`, `MSHH`, `SoLuong`, `DonGiaNhap`, `ThanhTien`, `NoiSanXuat`, `NgayNhap`, `MSNV`) VALUES
-(2, 10, 1, 2, 3, 'abc', '232323', 5),
-(3, 11, 11, 12, 132, 'CTU', '09-02-2022 09:23:24', 5),
 (4, 3, 2, 12000, 24000, '', '09-02-2022 09:26:38', 5);
 
 -- --------------------------------------------------------
@@ -118,7 +121,11 @@ INSERT INTO `dathang` (`SoDonDH`, `TaiKhoanKH`, `MSNV`, `TongCong`, `NgayDH`, `N
 (15, 'Bun', 0, 1720000, '22/11/2021', '3/12/2021', 1, 'Cần Thơ', 1),
 (16, 'Bun', 0, 6320000, '23/11/2021', '4/12/2021', 1, 'Cần Thơ', 1),
 (17, 'ChucThay', 4, 1382000, '26/11/2021', '7/12/2021', 1, 'Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ', 1),
-(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 1, 'Cần Thơ', 1);
+(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 1, 'Cần Thơ', 1),
+(31, 'Quoc', 0, 28275400, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
+(32, 'Quoc', 0, 4295500, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
+(33, 'Quoc', 0, 4490000, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
+(34, 'Quoc', 0, 2685180, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1);
 
 -- --------------------------------------------------------
 
@@ -185,8 +192,7 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`MaGio`, `TaiKhoanKH`, `MSHH`, `TenHangHoa`, `Gia`, `SoLuong`, `PhanLoai`) VALUES
-(27, 'Quoc', 3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 5310500, 1, 'Chip AMD'),
-(28, 'Quoc', 8, 'MSI GeForce GTX 1650 SUPER GAMING X 4GB', 8490000, 1, 'GTX 1650 super');
+(32, 'Quoc', 3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 5310500, 1, 'Chip AMD');
 
 -- --------------------------------------------------------
 
@@ -223,10 +229,7 @@ INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `QuyCach`, `GiaNhap`, `Gia`, `SoLuongHan
 (5, '(8GB DDR4 1x8G 2666) RAM Kingston HyperX Fury Black', 'món', 0, 1490000, 100, 3, 34, 'RAM 8GB DDR4', 'Kingston', 'Mỹ', 'Mới', 'Đang cập nhật', 'Không'),
 (6, '(8GB DDR4 1x8G 3000) RAM G.SKILL Trident Z RGB CL16-18-18-38', 'món', 0, 1690000, 100, 3, 20, 'RAM 8GB DDR4', 'GSKILL', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Led RGB'),
 (7, 'GIGABYTE GeForce GTX 1050 Ti D5 4GB', 'món', 0, 6790000, 100, 4, 12, 'GTX 1050ti', 'GIGABYTE', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Phiên bản nâng cấp từ 1050'),
-(8, 'MSI GeForce GTX 1650 SUPER GAMING X 4GB', 'món', 0, 8490000, 100, 4, 0, 'GTX 1650 super', 'MSI', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Card chuyên dụng cho gaming'),
-(9, 'Durex', 'hop', 10000, 20000, 12, 2, 0, '1hour', 'Durex', 'VN', 'new', 'x', 'ok'),
-(10, '10 diểm Niên Luận', 'món', 121212, 131313, 12, 2, 10, 'niên luận ngành', 'Durex', 'VN', 'new', 'x', 'ok'),
-(11, 'HXH', 'hop', 12, 13, 11, 1, 1, 'niên luận ngành', 'CTU', 'VN', 'new', 'x', 'ok');
+(8, 'MSI GeForce GTX 1650 SUPER GAMING X 4GB', 'món', 0, 8490000, 100, 4, 0, 'GTX 1650 super', 'MSI', 'Đài Loan', 'Mới', 'Đang cập nhật', 'Card chuyên dụng cho gaming');
 
 -- --------------------------------------------------------
 
@@ -252,10 +255,7 @@ INSERT INTO `hinhhanghoa` (`MaHinh`, `TenHinh`, `MSHH`) VALUES
 (5, 'ram-kingston-hyperx-fury-black.png', 5),
 (6, 'ram-g-kill-trident-z-rgb.png', 6),
 (7, 'gigabyte-geforce-gtx-1050-ti-d5-4gb.png', 7),
-(8, 'msi-gtx-1650-super-gaming-x-4gb.png', 8),
-(9, 'Untitled.png', 9),
-(10, 'Untitled.png', 10),
-(11, '272983901_942744719685993_9030170836883031970_n.png', 11);
+(8, 'msi-gtx-1650-super-gaming-x-4gb.png', 8);
 
 -- --------------------------------------------------------
 
@@ -495,9 +495,8 @@ CREATE TABLE `voucherkh` (
 --
 
 INSERT INTO `voucherkh` (`MSKH`, `MSVoucher`, `SoLuong`) VALUES
-(1, 1, 1),
-(1, 2, 2),
-(1, 11, 7);
+(1, 2, 1),
+(1, 11, 6);
 
 --
 -- Indexes for dumped tables
@@ -591,6 +590,12 @@ ALTER TABLE `loaihanghoa`
   ADD PRIMARY KEY (`MaLoaiHang`);
 
 --
+-- Indexes for table `loaivoucher`
+--
+ALTER TABLE `loaivoucher`
+  ADD PRIMARY KEY (`MaLoai`);
+
+--
 -- Indexes for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
@@ -613,7 +618,8 @@ ALTER TABLE `sanphamyeuthich`
 -- Indexes for table `voucher`
 --
 ALTER TABLE `voucher`
-  ADD PRIMARY KEY (`MSVoucher`);
+  ADD PRIMARY KEY (`MSVoucher`),
+  ADD KEY `LoaiVoucher` (`LoaiVoucher`);
 
 --
 -- Indexes for table `voucherkh`
@@ -630,7 +636,7 @@ ALTER TABLE `voucherkh`
 -- AUTO_INCREMENT for table `chitietdathang`
 --
 ALTER TABLE `chitietdathang`
-  MODIFY `MaChiTiet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `MaChiTiet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `chitietnhaphang`
@@ -642,7 +648,7 @@ ALTER TABLE `chitietnhaphang`
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `SoDonDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `SoDonDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `diachikh`
@@ -660,7 +666,7 @@ ALTER TABLE `game`
 -- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `hanghoa`
@@ -779,6 +785,12 @@ ALTER TABLE `lichsutimkiem`
 ALTER TABLE `sanphamyeuthich`
   ADD CONSTRAINT `sanphamyeuthich_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
   ADD CONSTRAINT `sanphamyeuthich_ibfk_2` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`);
+
+--
+-- Constraints for table `voucher`
+--
+ALTER TABLE `voucher`
+  ADD CONSTRAINT `voucher_ibfk_1` FOREIGN KEY (`LoaiVoucher`) REFERENCES `loaivoucher` (`MaLoai`);
 
 --
 -- Constraints for table `voucherkh`

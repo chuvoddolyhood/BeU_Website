@@ -255,7 +255,7 @@
 							?>
 						</ul>
 
-						<a href="?quanly=giohang" class="header__cart-view-cart btn btn--primary">
+						<a href="?quanly=giohang" class="btn btn--primary header__cart-view-cart">
 							Xem giỏ hàng
 						</a>
 					</div>
