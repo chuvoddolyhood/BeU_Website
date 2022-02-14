@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 09, 2022 lúc 03:27 AM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 7.3.31
+-- Host: 127.0.0.1
+-- Generation Time: Feb 14, 2022 at 04:45 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `commercial_web`
+-- Database: `commercial_web`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietdathang`
+-- Table structure for table `chitietdathang`
 --
 
 CREATE TABLE `chitietdathang` (
@@ -38,7 +38,7 @@ CREATE TABLE `chitietdathang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `chitietdathang`
+-- Dumping data for table `chitietdathang`
 --
 
 INSERT INTO `chitietdathang` (`MaChiTiet`, `SoDonDH`, `MSHH`, `SoLuong`, `GiaTien`, `GiamGia`, `ThanhTien`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `chitietdathang` (`MaChiTiet`, `SoDonDH`, `MSHH`, `SoLuong`, `GiaTie
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietnhaphang`
+-- Table structure for table `chitietnhaphang`
 --
 
 CREATE TABLE `chitietnhaphang` (
@@ -78,7 +78,7 @@ CREATE TABLE `chitietnhaphang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `chitietnhaphang`
+-- Dumping data for table `chitietnhaphang`
 --
 
 INSERT INTO `chitietnhaphang` (`SoDonNhapHang`, `MSHH`, `SoLuong`, `DonGiaNhap`, `ThanhTien`, `NoiSanXuat`, `NgayNhap`, `MSNV`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `chitietnhaphang` (`SoDonNhapHang`, `MSHH`, `SoLuong`, `DonGiaNhap`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `dathang`
+-- Table structure for table `dathang`
 --
 
 CREATE TABLE `dathang` (
@@ -105,7 +105,7 @@ CREATE TABLE `dathang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `dathang`
+-- Dumping data for table `dathang`
 --
 
 INSERT INTO `dathang` (`SoDonDH`, `TaiKhoanKH`, `MSNV`, `TongCong`, `NgayDH`, `NgayGH`, `TrangThaiDH`, `DiaChi`, `PTThanhToan`) VALUES
@@ -123,7 +123,7 @@ INSERT INTO `dathang` (`SoDonDH`, `TaiKhoanKH`, `MSNV`, `TongCong`, `NgayDH`, `N
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `diachikh`
+-- Table structure for table `diachikh`
 --
 
 CREATE TABLE `diachikh` (
@@ -133,7 +133,7 @@ CREATE TABLE `diachikh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `diachikh`
+-- Dumping data for table `diachikh`
 --
 
 INSERT INTO `diachikh` (`MaDC`, `DiaChi`, `MSKH`) VALUES
@@ -143,7 +143,7 @@ INSERT INTO `diachikh` (`MaDC`, `DiaChi`, `MSKH`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `diemgame`
+-- Table structure for table `diemgame`
 --
 
 CREATE TABLE `diemgame` (
@@ -156,7 +156,7 @@ CREATE TABLE `diemgame` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `game`
+-- Table structure for table `game`
 --
 
 CREATE TABLE `game` (
@@ -167,7 +167,7 @@ CREATE TABLE `game` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giohang`
+-- Table structure for table `giohang`
 --
 
 CREATE TABLE `giohang` (
@@ -181,7 +181,7 @@ CREATE TABLE `giohang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `giohang`
+-- Dumping data for table `giohang`
 --
 
 INSERT INTO `giohang` (`MaGio`, `TaiKhoanKH`, `MSHH`, `TenHangHoa`, `Gia`, `SoLuong`, `PhanLoai`) VALUES
@@ -191,7 +191,7 @@ INSERT INTO `giohang` (`MaGio`, `TaiKhoanKH`, `MSHH`, `TenHangHoa`, `Gia`, `SoLu
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hanghoa`
+-- Table structure for table `hanghoa`
 --
 
 CREATE TABLE `hanghoa` (
@@ -212,7 +212,7 @@ CREATE TABLE `hanghoa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hanghoa`
+-- Dumping data for table `hanghoa`
 --
 
 INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `QuyCach`, `GiaNhap`, `Gia`, `SoLuongHang`, `MaLoaiHang`, `GiamGia`, `LoaiSanPham`, `HangHangHoa`, `NoiSXHangHoa`, `TinhTrang`, `BaoHanh`, `DacBiet`) VALUES
@@ -231,7 +231,7 @@ INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `QuyCach`, `GiaNhap`, `Gia`, `SoLuongHan
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinhhanghoa`
+-- Table structure for table `hinhhanghoa`
 --
 
 CREATE TABLE `hinhhanghoa` (
@@ -241,7 +241,7 @@ CREATE TABLE `hinhhanghoa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hinhhanghoa`
+-- Dumping data for table `hinhhanghoa`
 --
 
 INSERT INTO `hinhhanghoa` (`MaHinh`, `TenHinh`, `MSHH`) VALUES
@@ -260,7 +260,7 @@ INSERT INTO `hinhhanghoa` (`MaHinh`, `TenHinh`, `MSHH`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khachhang`
+-- Table structure for table `khachhang`
 --
 
 CREATE TABLE `khachhang` (
@@ -277,7 +277,7 @@ CREATE TABLE `khachhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `khachhang`
+-- Dumping data for table `khachhang`
 --
 
 INSERT INTO `khachhang` (`MSKH`, `TaiKhoanKH`, `MatKhauKH`, `HoTenKH`, `TenCongTy`, `SoDienThoai`, `SoFax`, `Email`, `DOB`, `GioiTinh`) VALUES
@@ -289,7 +289,7 @@ INSERT INTO `khachhang` (`MSKH`, `TaiKhoanKH`, `MatKhauKH`, `HoTenKH`, `TenCongT
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `lichsutimkiem`
+-- Table structure for table `lichsutimkiem`
 --
 
 CREATE TABLE `lichsutimkiem` (
@@ -299,7 +299,7 @@ CREATE TABLE `lichsutimkiem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `lichsutimkiem`
+-- Dumping data for table `lichsutimkiem`
 --
 
 INSERT INTO `lichsutimkiem` (`MaLichSu`, `MSKH`, `LichSu`) VALUES
@@ -334,7 +334,7 @@ INSERT INTO `lichsutimkiem` (`MaLichSu`, `MSKH`, `LichSu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loaihanghoa`
+-- Table structure for table `loaihanghoa`
 --
 
 CREATE TABLE `loaihanghoa` (
@@ -343,7 +343,7 @@ CREATE TABLE `loaihanghoa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `loaihanghoa`
+-- Dumping data for table `loaihanghoa`
 --
 
 INSERT INTO `loaihanghoa` (`MaLoaiHang`, `TenLoaiHang`) VALUES
@@ -357,7 +357,27 @@ INSERT INTO `loaihanghoa` (`MaLoaiHang`, `TenLoaiHang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhanvien`
+-- Table structure for table `loaivoucher`
+--
+
+CREATE TABLE `loaivoucher` (
+  `MaLoai` int(11) NOT NULL,
+  `TenLoaiVoucher` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `loaivoucher`
+--
+
+INSERT INTO `loaivoucher` (`MaLoai`, `TenLoaiVoucher`) VALUES
+(1, 'Voucher trừ %'),
+(2, 'Voucher trừ thẳng'),
+(3, 'Voucher FreeShip 30k');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nhanvien`
 --
 
 CREATE TABLE `nhanvien` (
@@ -371,7 +391,7 @@ CREATE TABLE `nhanvien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `nhanvien`
+-- Dumping data for table `nhanvien`
 --
 
 INSERT INTO `nhanvien` (`MSNV`, `TaiKhoanNV`, `MatKhauNV`, `HoTenNV`, `ChucVu`, `DiaChi`, `SoDienThoai`) VALUES
@@ -384,7 +404,7 @@ INSERT INTO `nhanvien` (`MSNV`, `TaiKhoanNV`, `MatKhauNV`, `HoTenNV`, `ChucVu`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phuongthucthanhtoan`
+-- Table structure for table `phuongthucthanhtoan`
 --
 
 CREATE TABLE `phuongthucthanhtoan` (
@@ -393,7 +413,7 @@ CREATE TABLE `phuongthucthanhtoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `phuongthucthanhtoan`
+-- Dumping data for table `phuongthucthanhtoan`
 --
 
 INSERT INTO `phuongthucthanhtoan` (`MaPT`, `TenPT`) VALUES
@@ -403,7 +423,7 @@ INSERT INTO `phuongthucthanhtoan` (`MaPT`, `TenPT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanphamyeuthich`
+-- Table structure for table `sanphamyeuthich`
 --
 
 CREATE TABLE `sanphamyeuthich` (
@@ -412,7 +432,7 @@ CREATE TABLE `sanphamyeuthich` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanphamyeuthich`
+-- Dumping data for table `sanphamyeuthich`
 --
 
 INSERT INTO `sanphamyeuthich` (`MSKH`, `MSHH`) VALUES
@@ -425,19 +445,43 @@ INSERT INTO `sanphamyeuthich` (`MSKH`, `MSHH`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `voucher`
+-- Table structure for table `voucher`
 --
 
 CREATE TABLE `voucher` (
   `MSVoucher` int(11) NOT NULL,
+  `LoaiVoucher` int(11) NOT NULL,
   `TenVoucher` varchar(20) NOT NULL,
+  `Token` int(11) NOT NULL,
   `GiaTri` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `voucher`
+--
+
+INSERT INTO `voucher` (`MSVoucher`, `LoaiVoucher`, `TenVoucher`, `Token`, `GiaTri`) VALUES
+(1, 1, 'Voucher 5%', 10, 5),
+(2, 1, 'Voucher 10%', 25, 10),
+(3, 1, 'Voucher 15%', 45, 15),
+(4, 1, 'Voucher 20%', 70, 20),
+(5, 1, 'Voucher 25%', 100, 25),
+(6, 1, 'Voucher 30%', 135, 30),
+(7, 1, 'Voucher 35%', 175, 35),
+(8, 1, 'Voucher 40%', 220, 40),
+(9, 1, 'Voucher 45%', 270, 45),
+(10, 1, 'Voucher 50%', 325, 50),
+(11, 3, 'Freeship', 5, 30),
+(12, 3, 'Freeship * 3', 20, 30),
+(13, 2, 'Voucher 50k', 10, 50),
+(14, 2, 'Voucher 100k', 20, 100),
+(15, 2, 'Voucher 200k', 40, 200),
+(16, 2, 'Voucher 500k', 100, 500);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `voucherkh`
+-- Table structure for table `voucherkh`
 --
 
 CREATE TABLE `voucherkh` (
@@ -447,11 +491,20 @@ CREATE TABLE `voucherkh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Dumping data for table `voucherkh`
+--
+
+INSERT INTO `voucherkh` (`MSKH`, `MSVoucher`, `SoLuong`) VALUES
+(1, 1, 1),
+(1, 2, 2),
+(1, 11, 7);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `chitietdathang`
+-- Indexes for table `chitietdathang`
 --
 ALTER TABLE `chitietdathang`
   ADD PRIMARY KEY (`MaChiTiet`),
@@ -459,7 +512,7 @@ ALTER TABLE `chitietdathang`
   ADD KEY `MSHH` (`MSHH`);
 
 --
--- Chỉ mục cho bảng `chitietnhaphang`
+-- Indexes for table `chitietnhaphang`
 --
 ALTER TABLE `chitietnhaphang`
   ADD PRIMARY KEY (`SoDonNhapHang`),
@@ -467,7 +520,7 @@ ALTER TABLE `chitietnhaphang`
   ADD KEY `MSNV` (`MSNV`);
 
 --
--- Chỉ mục cho bảng `dathang`
+-- Indexes for table `dathang`
 --
 ALTER TABLE `dathang`
   ADD PRIMARY KEY (`SoDonDH`),
@@ -476,27 +529,27 @@ ALTER TABLE `dathang`
   ADD KEY `PTThanhToan` (`PTThanhToan`);
 
 --
--- Chỉ mục cho bảng `diachikh`
+-- Indexes for table `diachikh`
 --
 ALTER TABLE `diachikh`
   ADD PRIMARY KEY (`MaDC`),
   ADD KEY `MSKH` (`MSKH`);
 
 --
--- Chỉ mục cho bảng `diemgame`
+-- Indexes for table `diemgame`
 --
 ALTER TABLE `diemgame`
   ADD KEY `MSKH` (`MSKH`),
   ADD KEY `MaGame` (`MaGame`);
 
 --
--- Chỉ mục cho bảng `game`
+-- Indexes for table `game`
 --
 ALTER TABLE `game`
   ADD PRIMARY KEY (`MaGame`);
 
 --
--- Chỉ mục cho bảng `giohang`
+-- Indexes for table `giohang`
 --
 ALTER TABLE `giohang`
   ADD PRIMARY KEY (`MaGio`),
@@ -504,179 +557,179 @@ ALTER TABLE `giohang`
   ADD KEY `MSHH` (`MSHH`);
 
 --
--- Chỉ mục cho bảng `hanghoa`
+-- Indexes for table `hanghoa`
 --
 ALTER TABLE `hanghoa`
   ADD PRIMARY KEY (`MSHH`),
   ADD KEY `MaLoaiHang` (`MaLoaiHang`);
 
 --
--- Chỉ mục cho bảng `hinhhanghoa`
+-- Indexes for table `hinhhanghoa`
 --
 ALTER TABLE `hinhhanghoa`
   ADD PRIMARY KEY (`MaHinh`),
   ADD KEY `MSHH` (`MSHH`);
 
 --
--- Chỉ mục cho bảng `khachhang`
+-- Indexes for table `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`MSKH`),
   ADD UNIQUE KEY `TaiKhoanKH` (`TaiKhoanKH`);
 
 --
--- Chỉ mục cho bảng `lichsutimkiem`
+-- Indexes for table `lichsutimkiem`
 --
 ALTER TABLE `lichsutimkiem`
   ADD PRIMARY KEY (`MaLichSu`),
   ADD KEY `MSKH` (`MSKH`);
 
 --
--- Chỉ mục cho bảng `loaihanghoa`
+-- Indexes for table `loaihanghoa`
 --
 ALTER TABLE `loaihanghoa`
   ADD PRIMARY KEY (`MaLoaiHang`);
 
 --
--- Chỉ mục cho bảng `nhanvien`
+-- Indexes for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MSNV`);
 
 --
--- Chỉ mục cho bảng `phuongthucthanhtoan`
+-- Indexes for table `phuongthucthanhtoan`
 --
 ALTER TABLE `phuongthucthanhtoan`
   ADD PRIMARY KEY (`MaPT`);
 
 --
--- Chỉ mục cho bảng `sanphamyeuthich`
+-- Indexes for table `sanphamyeuthich`
 --
 ALTER TABLE `sanphamyeuthich`
   ADD KEY `MSKH` (`MSKH`),
   ADD KEY `MSHH` (`MSHH`);
 
 --
--- Chỉ mục cho bảng `voucher`
+-- Indexes for table `voucher`
 --
 ALTER TABLE `voucher`
   ADD PRIMARY KEY (`MSVoucher`);
 
 --
--- Chỉ mục cho bảng `voucherkh`
+-- Indexes for table `voucherkh`
 --
 ALTER TABLE `voucherkh`
   ADD KEY `MSKH` (`MSKH`),
   ADD KEY `vouckh_ibfk_2` (`MSVoucher`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `chitietdathang`
+-- AUTO_INCREMENT for table `chitietdathang`
 --
 ALTER TABLE `chitietdathang`
   MODIFY `MaChiTiet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT cho bảng `chitietnhaphang`
+-- AUTO_INCREMENT for table `chitietnhaphang`
 --
 ALTER TABLE `chitietnhaphang`
   MODIFY `SoDonNhapHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `dathang`
+-- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
   MODIFY `SoDonDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT cho bảng `diachikh`
+-- AUTO_INCREMENT for table `diachikh`
 --
 ALTER TABLE `diachikh`
   MODIFY `MaDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `game`
+-- AUTO_INCREMENT for table `game`
 --
 ALTER TABLE `game`
   MODIFY `MaGame` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `giohang`
+-- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
   MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT cho bảng `hanghoa`
+-- AUTO_INCREMENT for table `hanghoa`
 --
 ALTER TABLE `hanghoa`
   MODIFY `MSHH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `hinhhanghoa`
+-- AUTO_INCREMENT for table `hinhhanghoa`
 --
 ALTER TABLE `hinhhanghoa`
   MODIFY `MaHinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `khachhang`
+-- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
   MODIFY `MSKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT cho bảng `lichsutimkiem`
+-- AUTO_INCREMENT for table `lichsutimkiem`
 --
 ALTER TABLE `lichsutimkiem`
   MODIFY `MaLichSu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT cho bảng `loaihanghoa`
+-- AUTO_INCREMENT for table `loaihanghoa`
 --
 ALTER TABLE `loaihanghoa`
   MODIFY `MaLoaiHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT cho bảng `nhanvien`
+-- AUTO_INCREMENT for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
   MODIFY `MSNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `phuongthucthanhtoan`
+-- AUTO_INCREMENT for table `phuongthucthanhtoan`
 --
 ALTER TABLE `phuongthucthanhtoan`
   MODIFY `MaPT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `voucher`
+-- AUTO_INCREMENT for table `voucher`
 --
 ALTER TABLE `voucher`
-  MODIFY `MSVoucher` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MSVoucher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `chitietdathang`
+-- Constraints for table `chitietdathang`
 --
 ALTER TABLE `chitietdathang`
   ADD CONSTRAINT `chitietdathang_ibfk_1` FOREIGN KEY (`SoDonDH`) REFERENCES `dathang` (`SoDonDH`),
   ADD CONSTRAINT `chitietdathang_ibfk_2` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`);
 
 --
--- Các ràng buộc cho bảng `chitietnhaphang`
+-- Constraints for table `chitietnhaphang`
 --
 ALTER TABLE `chitietnhaphang`
   ADD CONSTRAINT `chitietnhaphang_ibfk_1` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`),
   ADD CONSTRAINT `chitietnhaphang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`);
 
 --
--- Các ràng buộc cho bảng `dathang`
+-- Constraints for table `dathang`
 --
 ALTER TABLE `dathang`
   ADD CONSTRAINT `dathang_ibfk_1` FOREIGN KEY (`TaiKhoanKH`) REFERENCES `khachhang` (`TaiKhoanKH`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -684,51 +737,51 @@ ALTER TABLE `dathang`
   ADD CONSTRAINT `dathang_ibfk_3` FOREIGN KEY (`PTThanhToan`) REFERENCES `phuongthucthanhtoan` (`MaPT`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Các ràng buộc cho bảng `diachikh`
+-- Constraints for table `diachikh`
 --
 ALTER TABLE `diachikh`
   ADD CONSTRAINT `diachikh_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`);
 
 --
--- Các ràng buộc cho bảng `diemgame`
+-- Constraints for table `diemgame`
 --
 ALTER TABLE `diemgame`
   ADD CONSTRAINT `diemgame_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
   ADD CONSTRAINT `diemgame_ibfk_2` FOREIGN KEY (`MaGame`) REFERENCES `game` (`MaGame`);
 
 --
--- Các ràng buộc cho bảng `giohang`
+-- Constraints for table `giohang`
 --
 ALTER TABLE `giohang`
   ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`);
 
 --
--- Các ràng buộc cho bảng `hanghoa`
+-- Constraints for table `hanghoa`
 --
 ALTER TABLE `hanghoa`
   ADD CONSTRAINT `hanghoa_ibfk_1` FOREIGN KEY (`MaLoaiHang`) REFERENCES `loaihanghoa` (`MaLoaiHang`);
 
 --
--- Các ràng buộc cho bảng `hinhhanghoa`
+-- Constraints for table `hinhhanghoa`
 --
 ALTER TABLE `hinhhanghoa`
   ADD CONSTRAINT `hinhhanghoa_ibfk_1` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`);
 
 --
--- Các ràng buộc cho bảng `lichsutimkiem`
+-- Constraints for table `lichsutimkiem`
 --
 ALTER TABLE `lichsutimkiem`
   ADD CONSTRAINT `lichsutimkiem_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`);
 
 --
--- Các ràng buộc cho bảng `sanphamyeuthich`
+-- Constraints for table `sanphamyeuthich`
 --
 ALTER TABLE `sanphamyeuthich`
   ADD CONSTRAINT `sanphamyeuthich_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
   ADD CONSTRAINT `sanphamyeuthich_ibfk_2` FOREIGN KEY (`MSHH`) REFERENCES `hanghoa` (`MSHH`);
 
 --
--- Các ràng buộc cho bảng `voucherkh`
+-- Constraints for table `voucherkh`
 --
 ALTER TABLE `voucherkh`
   ADD CONSTRAINT `voucherkh_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`) ON DELETE NO ACTION ON UPDATE NO ACTION,
