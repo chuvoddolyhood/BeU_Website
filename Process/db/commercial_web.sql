@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2022 at 03:32 PM
+-- Generation Time: Feb 15, 2022 at 11:00 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -192,7 +192,8 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`MaGio`, `TaiKhoanKH`, `MSHH`, `TenHangHoa`, `Gia`, `SoLuong`, `PhanLoai`) VALUES
-(32, 'Quoc', 3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 5310500, 1, 'Chip AMD');
+(32, 'Quoc', 3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 5310500, 1, 'Chip AMD'),
+(33, 'NguyenDinhThanh', 1, 'ASUS TUF GAMING B460M-PRO', 3290000, 1, 'Mainboard B460');
 
 -- --------------------------------------------------------
 
@@ -273,18 +274,22 @@ CREATE TABLE `khachhang` (
   `SoFax` int(11) DEFAULT NULL,
   `Email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `DOB` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
-  `GioiTinh` varchar(3) COLLATE utf8_unicode_ci NOT NULL
+  `GioiTinh` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `BeUToken` int(11) NOT NULL,
+  `LuotChoi` int(11) NOT NULL,
+  `googleID` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `khachhang`
 --
 
-INSERT INTO `khachhang` (`MSKH`, `TaiKhoanKH`, `MatKhauKH`, `HoTenKH`, `TenCongTy`, `SoDienThoai`, `SoFax`, `Email`, `DOB`, `GioiTinh`) VALUES
-(1, 'Quoc', 'Quoc123', 'Quốc Nguyễn', 'Thanh Company', 123, 0, 'quoc@gmail.com', '22/11/2000', 'Nam'),
-(2, 'Bun', 'Bun321', 'Bún Măng', NULL, 321, NULL, 'Bunsx@gmail.com', '27/12/2000', 'Nữ'),
-(3, 'Thanh', 'Thanh964594', 'Nguyễn Đình Thanh', NULL, 767732712, NULL, 'qsczsemko@gmail.com', '27/12/2000', 'Nam'),
-(26, 'ChucThay', 'ThayTrungnumber1', 'Ngày mới tốt lành', NULL, 918058139, NULL, 'thanhb1805813@student.ctu.edu.vn', '2021-11-27', 'Nam');
+INSERT INTO `khachhang` (`MSKH`, `TaiKhoanKH`, `MatKhauKH`, `HoTenKH`, `TenCongTy`, `SoDienThoai`, `SoFax`, `Email`, `DOB`, `GioiTinh`, `BeUToken`, `LuotChoi`, `googleID`) VALUES
+(1, 'Quoc', 'Quoc123', 'Quốc Nguyễn', 'Thanh Company', 123, 0, 'quoc@gmail.com', '22/11/2000', 'Nam', 0, 0, ''),
+(2, 'Bun', 'Bun321', 'Bún Măng', NULL, 321, NULL, 'Bunsx@gmail.com', '27/12/2000', 'Nữ', 0, 0, ''),
+(3, 'Thanh', 'Thanh964594', 'Nguyễn Đình Thanh', NULL, 767732712, NULL, 'qsczsemko@gmail.com', '27/12/2000', 'Nam', 0, 0, ''),
+(26, 'ChucThay', 'ThayTrungnumber1', 'Ngày mới tốt lành', NULL, 918058139, NULL, 'thanhb1805813@student.ctu.edu.vn', '2021-11-27', 'Nam', 0, 0, ''),
+(27, 'NguyenDinhThanh', '', 'Nguyen Thanh', NULL, 2712, NULL, 'qsczsemko@gmail.com', '', '', 0, 0, '105790192457968582917');
 
 -- --------------------------------------------------------
 
@@ -666,7 +671,7 @@ ALTER TABLE `game`
 -- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `hanghoa`
@@ -684,7 +689,7 @@ ALTER TABLE `hinhhanghoa`
 -- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `MSKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `MSKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `lichsutimkiem`
