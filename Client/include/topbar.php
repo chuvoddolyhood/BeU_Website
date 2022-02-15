@@ -39,7 +39,7 @@
 			</ul>
 
 			<ul class="header__navbar-list">
-				<li class="header__navbar-item header__navbar-item--has-notify">
+				<!-- <li class="header__navbar-item header__navbar-item--has-notify">
 					<a href="" class="header__navbar-item-link">
 						<i class="header__navbar-icon far fa-bell"></i>
 						Thông báo
@@ -91,7 +91,7 @@
 							<a href="" class="header__notify-footer-btn">Xem tất cả</a>
 						</footer>
 					</div>
-				</li>
+				</li> -->
 				<li class="header__navbar-item">
 					<a href="" class="header__navbar-item-link">
 						<i class="header__navbar-icon far fa-question-circle"></i>
@@ -255,7 +255,7 @@
 							?>
 						</ul>
 
-						<a href="?quanly=giohang" class="btn btn--primary header__cart-view-cart">
+						<a href="?quanly=giohang" class="header__cart-view-cart btn btn--primary">
 							Xem giỏ hàng
 						</a>
 					</div>
