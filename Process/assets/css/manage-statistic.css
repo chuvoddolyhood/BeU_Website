@@ -63,7 +63,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .charts__left {
@@ -157,6 +157,10 @@ main {
   border-radius: 5px;
 }
 
+.charts__right__cards p{
+  font-size: 2rem;
+}
+
 .card2 {
   background: #d2f9ee;
   color: #38e1b0;
@@ -180,6 +184,51 @@ main {
   padding: 25px;
   border-radius: 5px;
 }
+
+.btn-left{
+  float: left !important;
+}
+
+/* ================= MODAL ADD By chuvod.dolyhood ================= */
+.modal-bg-add{
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s;
+  }
+  
+  .bg-active-add{
+	visibility: visible;
+	opacity: 1;
+  }
+  
+  .modal-add{
+	position: relative;
+	background-color: white;
+	width: 20%;
+	height: 30%;
+	display: flex;
+	/* justify-content: space-around; */
+	align-items: center;
+	flex-direction: column;
+  }
+  
+  .modal-close-add{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-weight: bold;
+	cursor: pointer;
+	color: #000000;
+  }
 
 @media (max-width: 855px) {
   .main__cards {

@@ -1,5 +1,4 @@
 <script src="Process/javascript/main.js"></script>
-<script src="Process/javascript/search_suggestions.js"></script>
 <header class="header">
 	<div class="grid">
 		<nav class="header__navbar">
@@ -150,10 +149,34 @@
 						$search = '';
 					}
 					?>
-					<input type="text" id="search-bar" class="header__search-input" placeholder="Tìm kiếm sản phẩm" value="<?php echo $search ?>" onkeyup="ketqua(this.value)">
+					<input type="text" id="search-bar" class="header__search-input" placeholder="Tìm kiếm sản phẩm" value="<?php echo $search ?>" onkeyup="ketqua(this.value)" onchange="ketqua(this.value)">
 
 					<!-- Search suggestions -->
-					<div class="ketquatk"></div>
+					<div id="rs_search_suggestions"></div>
+						<div class="header__search-suggestions">
+							<h3 class="header__search-suggestions-heading">Gợi ý tìm kiếm</h3>
+							
+							<?php
+							include_once 'Client/goiytimkiem/search_suggestions.php';
+							?>
+							
+						</div>
+					<script>
+					function ketqua(str) {
+    					if (str.length == 0) {
+      						document.getElementById("rs_search_suggestions").innerHTML = "";
+      						return;
+    					}
+    					var xmlhttp = new XMLHttpRequest();
+    					xmlhttp.onreadystatechange = function() {
+        					if (this.readyState == 4 && this.status == 200) {
+            					document.getElementById("rs_search_suggestions").innerHTML = this.responseText;      
+        					}
+    					}
+    					xmlhttp.open("GET","search_suggestions.php?search=" + str, true);
+    					xmlhttp.send();
+					}
+					</script>
 
 					<!-- Search history -->
 					<div class="header__search-history">
@@ -163,7 +186,7 @@
 							if(isset($_SESSION['login'])){
 								$sql_get_history = mysqli_query($con, "select LichSu from lichsutimkiem ls, khachhang kh where ls.MSKH=kh.MSKH and kh.TaiKhoanKH='".trim($_SESSION['login'])."' order by MaLichSu desc limit 3");
 								while($row_get_history = mysqli_fetch_array($sql_get_history)){
-									?>
+							?>
 									<li class="header__search-history-item">
 										<a href="index.php?search=<?php echo $row_get_history['LichSu']; ?>">
 											<?php echo $row_get_history['LichSu']; ?>

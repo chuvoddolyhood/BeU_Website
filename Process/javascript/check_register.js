@@ -127,7 +127,7 @@ function check_regis_staff(){
 	if(check){
 		var ajax = new XMLHttpRequest();
 		var method = "GET";
-		var url = "./Process/php/register.php?regis=staff&staffName="+staff_Name+"&staffRealName="+staff_RealName+"&staffPass="+staff_Pass+"&staffTel="+staff_Tel+"&staffAddress="+staff_Address+"&staffPos="+staff_Pos;
+		var url = "./../Process/php/register.php?regis=staff&staffName="+staff_Name+"&staffRealName="+staff_RealName+"&staffPass="+staff_Pass+"&staffTel="+staff_Tel+"&staffAddress="+staff_Address+"&staffPos="+staff_Pos;
 		var asynchronous = true;
 
 		ajax.open(method, url, asynchronous);
@@ -137,7 +137,7 @@ function check_regis_staff(){
 		ajax.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
 				var response = this.responseText;
-				alert(response);
+				// alert(response);
 
 				if(response == "true"){
 					alert('Đăng ký thành công!');
