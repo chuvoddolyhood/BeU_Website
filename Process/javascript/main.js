@@ -162,17 +162,6 @@ function changeVoucher(obj, totalPrice){
 	}
 }
 
-window.onload = function(){
-	
-	var option = document.getElementsByClassName('cart__user-discount-label');
-	for(var i=1; i<option.length; i++){
-		option[i].addEventListener("click", function(){
-
-		})
-	}
-}
-
-
 // Modal:
 function activeModal(num){
 	var x = document.getElementsByClassName('modal');
@@ -350,9 +339,6 @@ function set_default_zoom()
 
 /* active home filter */
 function activeHomeFilter(num){
-	var x = document.getElementsByClassName('btn--primary');
-	x[0].classList.remove('btn--primary');
-
 	var y = document.getElementsByClassName('home-filter__btn');
 	y[num].classList.add('btn--primary');
 }

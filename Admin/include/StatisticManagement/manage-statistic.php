@@ -10,7 +10,7 @@
     include("include/list-category.php");
 	?>
 	
-  <button type="button" class="btn_add">Xuất file Excel</button>
+  <button type="button" class="manage-btn btn-left">Xuất file Excel</button>
   <!-- ############################# Modal Thêm nhân viên ######################################## -->
   <div class="modal-bg-add">
     <div class="modal-add">
@@ -23,7 +23,7 @@
   </div>
 
   <script type="text/javascript">
-    var modalBtn_add = document.querySelector('.btn_add'); //sua ten
+    var modalBtn_add = document.querySelector('.manage-btn'); //sua ten
     var modalBg_add = document.querySelector('.modal-bg-add');
     var modalClose_add = document.querySelector('.modal-close-add');
     var btn_Close_add = document.querySelector('.modal-close-add-btn');
