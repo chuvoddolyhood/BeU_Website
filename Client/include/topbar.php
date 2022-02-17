@@ -157,26 +157,11 @@
 							<h3 class="header__search-suggestions-heading">Gợi ý tìm kiếm</h3>
 							
 							<?php
-							include_once 'Client/goiytimkiem/search_suggestions.php';
+							// include_once 'Client/goiytimkiem/search_suggestions.php';
 							?>
 							
 						</div>
-					<script>
-					function ketqua(str) {
-    					if (str.length == 0) {
-      						document.getElementById("rs_search_suggestions").innerHTML = "";
-      						return;
-    					}
-    					var xmlhttp = new XMLHttpRequest();
-    					xmlhttp.onreadystatechange = function() {
-        					if (this.readyState == 4 && this.status == 200) {
-            					document.getElementById("rs_search_suggestions").innerHTML = this.responseText;      
-        					}
-    					}
-    					xmlhttp.open("GET","search_suggestions.php?search=" + str, true);
-    					xmlhttp.send();
-					}
-					</script>
+					
 
 					<!-- Search history -->
 					<div class="header__search-history">
@@ -286,4 +271,5 @@
 			</div>
 		</div>
 	</div>
+	<!-- <script type="text/javascript" src="./Process/javascript/search_suggestions.js"></script> -->
 </header>
