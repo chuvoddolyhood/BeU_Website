@@ -152,17 +152,6 @@
 					<input type="text" name="searchbar" id="search-bar" class="header__search-input" placeholder="Tìm kiếm sản phẩm" value="<?php echo $search ?>" onkeyup="ketqua(this.value)"/>
 
 					<!-- Search suggestions -->
-
-					<div id="rs_search_suggestions"></div>
-						<div class="header__search-suggestions">
-							<h3 class="header__search-suggestions-heading">Gợi ý tìm kiếm</h3>
-							
-							<?php
-							// include_once 'Client/goiytimkiem/search_suggestions.php';
-							?>
-							
-						</div>
-					
 					<div id="rs_search_suggestions" class="header__search-history"></div>
 						<div id="header__search-suggestions" class="header__search-suggestions">
 							
@@ -292,5 +281,4 @@
 			</div>
 		</div>
 	</div>
-	<!-- <script type="text/javascript" src="./Process/javascript/search_suggestions.js"></script> -->
 </header>

@@ -908,6 +908,13 @@
 	padding: 0 12px;
 }
 
+.header__search-suggestions-label{
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+
 .header__search-suggestions-item:hover{
 	background-color: #fafafa;
 }

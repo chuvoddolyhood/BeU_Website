@@ -8,10 +8,10 @@ function inputChangeValue(){
 	var inputValue = document.getElementById("search-bar").value;
 	if(inputValue.length < 1){
 		listHistory.style.opacity = "1";
-  	listSuggest.style.opacity = "0";
+  		listSuggest.style.opacity = "0";
 	}else{
 		listHistory.style.opacity = "0";
-  	listSuggest.style.opacity = "1";
+  		listSuggest.style.opacity = "1";
 	}
 }
 

@@ -12,7 +12,7 @@
 		$productId = $row_get_suggestions['MSHH'];
 		echo '<li id="header__search-suggestions-item" class="header__search-suggestions-item">';
 		echo '	<a href="?quanly=chitietsp&id='.$productId.'">';
-		echo 		$row_get_suggestions['TenHH'];
+		echo '		<span class="header__search-suggestions-label">'.$row_get_suggestions['TenHH'].' </span>';
 		echo '	</a>';
 		echo '</li>';
 	}
