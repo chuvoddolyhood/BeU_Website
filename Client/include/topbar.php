@@ -152,7 +152,7 @@
 					<input type="text" name="searchbar" id="search-bar" class="header__search-input" placeholder="Tìm kiếm sản phẩm" value="<?php echo $search ?>" onkeyup="ketqua(this.value)"/>
 
 					<!-- Search suggestions -->
-<<<<<<< HEAD
+
 					<div id="rs_search_suggestions"></div>
 						<div class="header__search-suggestions">
 							<h3 class="header__search-suggestions-heading">Gợi ý tìm kiếm</h3>
@@ -163,7 +163,6 @@
 							
 						</div>
 					
-=======
 					<div id="rs_search_suggestions" class="header__search-history"></div>
 						<div id="header__search-suggestions" class="header__search-suggestions">
 							
@@ -184,7 +183,6 @@
     					xmlhttp.send();
 					}
 					</script>
->>>>>>> 584776f138999c20c098dfa476bac68f4549bf1d
 
 					<!-- Search history -->
 					<div id="header__search-history" class="header__search-history">
