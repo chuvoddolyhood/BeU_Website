@@ -9,7 +9,7 @@ include_once 'src/contrib/Google_Oauth2Service.php';
  */
 $clientId = '221658420649-ce3k1potta13tlc2blt79mf8ondfoa6f.apps.googleusercontent.com'; //Google client ID
 $clientSecret = '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'; //Google client secret
-$redirectURL = 'http://localhost:8080/NMT_EcommerceWeb/'; //Callback URL
+$redirectURL = 'http://localhost:8080/BeU_Website/'; //Callback URL
 
 //Call Google API
 $gClient = new Google_Client();

@@ -157,7 +157,7 @@
 							</div>
 						</div>
 						<span class="cart__bill-noti">Đã bao gồm VAT(nếu có)</span>
-						<button onclick="order_bill(0)" class="cart__bill-btn-accept" id="cart__bill-btn-accept">Xác nhận giỏ hàng</button>
+						<button onclick="order_bill(<?php echo $total_price + 30000 ?>)" class="cart__bill-btn-accept" id="cart__bill-btn-accept">Xác nhận giỏ hàng</button>
 					</div>
 				</div>
 			</div>

@@ -196,7 +196,7 @@ function add_user_address(id){
 	if(user_Address){
 		var ajax = new XMLHttpRequest();
 		var method = "GET";
-		var url = "./../Process/php/change_info.php?change=userAddAddress&userID="+user_ID+"&userAddress="+user_Address;
+		var url = "./Process/php/change_info.php?change=userAddAddress&userID="+user_ID+"&userAddress="+user_Address;
 		var asynchronous = true;
 
 		ajax.open(method, url, asynchronous);
