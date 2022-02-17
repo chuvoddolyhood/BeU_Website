@@ -23,9 +23,6 @@
 	</head>
 
 	<body>
-		<script src="Process/javascript/main.js"></script>
-		<script src="Process/javascript/change_info.js"></script>
-		<script src="Process/javascript/check_register.js"></script>
 		
 		<!-- BEM -->
 		<div class="app">
@@ -327,4 +324,7 @@
 			}
 		?>
 	</body>
+		<script src="Process/javascript/main.js"></script>
+		<script src="Process/javascript/change_info.js"></script>
+		<script src="Process/javascript/check_register.js"></script>
 </html>

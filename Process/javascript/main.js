@@ -1,3 +1,20 @@
+
+var inputSearch = document.querySelector('#search-bar');
+inputSearch.addEventListener('keyup', inputChangeValue);
+var listSuggest = document.getElementById("header__search-suggestions");
+var listHistory = document.getElementById("header__search-history");
+
+function inputChangeValue(){
+	var inputValue = document.getElementById("search-bar").value;
+	if(inputValue.length < 1){
+		listHistory.style.opacity = "1";
+  	listSuggest.style.opacity = "0";
+	}else{
+		listHistory.style.opacity = "0";
+  	listSuggest.style.opacity = "1";
+	}
+}
+
 var star = document.getElementsByClassName("home-product-item__star--gold");
 
 function print(){
@@ -325,3 +342,7 @@ function activeHomeFilter(num){
 	var y = document.getElementsByClassName('home-filter__btn');
 	y[num].classList.add('btn--primary');
 }
+
+
+
+

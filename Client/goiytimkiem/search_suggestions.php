@@ -1,17 +1,21 @@
-<ul class="header__search-suggestions-list">
 <?php
-if(isset($_SESSION['login'])){
+	include("../../Process/db/connect.php");
+
 	$sql_search_suggestions = "select * from hanghoa where TenHH like '%".$search."%'";
-	$result = $con -> query($sql_search_suggestions);				
-	while($row_get_suggestions = $result->fetch_assoc()){
+	// echo $sql_search_suggestions;
+	$result = $con -> query($sql_search_suggestions);
 ?>
-		<li class="header__search-suggestions-item">
-			<a href="">
-				<?php echo $row_get_suggestions['TenHH']; ?>
-			</a>
-		</li>
-		<?php
+<?php	
+	echo '<h3 class="header__search-suggestions-heading">Gợi ý tìm kiếm</h3>';
+	echo '<ul id="header__search-suggestions-list" class="header__search-suggestions-list">';
+	while($row_get_suggestions = $result->fetch_assoc()){
+		$productId = $row_get_suggestions['MSHH'];
+		echo '<li id="header__search-suggestions-item" class="header__search-suggestions-item">';
+		echo '	<a href="?quanly=chitietsp&id='.$productId.'">';
+		echo 		$row_get_suggestions['TenHH'];
+		echo '	</a>';
+		echo '</li>';
 	}
-}
+	echo '</ul>';
 ?>
 </ul>
