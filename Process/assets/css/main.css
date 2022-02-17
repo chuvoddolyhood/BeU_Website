@@ -860,9 +860,9 @@
 	display: inline-block;
 }
 
-/*.header__search-input:focus ~ .header__search-suggestions{
+.header__search-input:focus ~ .header__search-suggestions{
 	display: block;
-}*/
+}
 
 .header__search-suggestions:hover{
 	display: block;
@@ -885,6 +885,7 @@
 	background-color: var(--white-color);
 	border-radius: 2px;
 	box-shadow: 0 1px 5px #9999;
+	display: none;
 	overflow: hidden;
 	z-index: 10;
 }
@@ -929,8 +930,8 @@
 	border-radius: 2px;
 	box-shadow: 0 1px 5px #9999;
 	display: none;
-	overflow: hidden;
-	z-index: 1;
+	overflow:hidden;
+	z-index: 1; 
 }
 
 .header__search-history-heading{
