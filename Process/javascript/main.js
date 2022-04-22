@@ -1,6 +1,4 @@
 
-var inputSearch = document.querySelector('#search-bar');
-inputSearch.addEventListener('keyup', inputChangeValue);
 var listSuggest = document.getElementById("header__search-suggestions");
 var listHistory = document.getElementById("header__search-history");
 
@@ -13,6 +11,12 @@ function inputChangeValue(){
 		listHistory.style.opacity = "0";
   		listSuggest.style.opacity = "1";
 	}
+}
+
+var inputSearch = document.querySelector('#search-bar');
+if(inputSearch){
+
+	inputSearch.addEventListener('keyup', inputChangeValue);
 }
 
 var star = document.getElementsByClassName("home-product-item__star--gold");
