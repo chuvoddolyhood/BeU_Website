@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2022 at 11:00 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- Generation Time: Apr 19, 2022 at 06:06 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -117,15 +117,27 @@ INSERT INTO `dathang` (`SoDonDH`, `TaiKhoanKH`, `MSNV`, `TongCong`, `NgayDH`, `N
 (3, 'Quoc', 0, 24970000, '11/11/2021', '12/12/2021', 1, 'Hồ Chí Minh', 1),
 (12, 'Quoc', 2, 20090000, '20/11/2021', '1/12/2021', 1, 'Hồ Chí Minh', 1),
 (13, 'Quoc', 0, 20090000, '20/11/2021', '1/12/2021', 1, 'Hồ Chí Minh', 1),
-(14, 'Quoc', 2, 1635500, '21/11/2021', '2/12/2021', 1, 'Hồ Chí Minh', 1),
-(15, 'Bun', 0, 1720000, '22/11/2021', '3/12/2021', 1, 'Cần Thơ', 1),
-(16, 'Bun', 0, 6320000, '23/11/2021', '4/12/2021', 1, 'Cần Thơ', 1),
-(17, 'ChucThay', 4, 1382000, '26/11/2021', '7/12/2021', 1, 'Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ', 1),
-(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 1, 'Cần Thơ', 1),
+(14, 'Quoc', 2, 1635500, '21/11/2021', '2/12/2021', 4, 'Hồ Chí Minh', 1),
+(15, 'Bun', 0, 1720000, '22/11/2021', '3/12/2021', 4, 'Cần Thơ', 1),
+(16, 'Bun', 0, 6320000, '23/11/2021', '4/12/2021', 4, 'Cần Thơ', 1),
+(17, 'ChucThay', 4, 1382000, '26/11/2021', '7/12/2021', 4, 'Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ', 1),
+(18, 'ChucThay', 0, 3320000, '28/11/2021', '9/12/2021', 4, 'Cần Thơ', 1),
 (31, 'Quoc', 0, 28275400, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
 (32, 'Quoc', 0, 4295500, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
 (33, 'Quoc', 0, 4490000, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1),
 (34, 'Quoc', 0, 2685180, '14/2/2022', '25/2/2022', 4, 'Hồ Chí Minh', 1);
+
+--
+-- Triggers `dathang`
+--
+DELIMITER $$
+CREATE TRIGGER `createGame` AFTER UPDATE ON `dathang` FOR EACH ROW IF(NEW.TrangThaiDH = 4) THEN
+	UPDATE `khachhang` 
+    SET `LuotChoi`=LuotChoi+FLOOR(NEW.TongCong/500000)
+    WHERE TaiKhoanKH=NEW.TaiKhoanKH;
+END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -193,7 +205,8 @@ CREATE TABLE `giohang` (
 
 INSERT INTO `giohang` (`MaGio`, `TaiKhoanKH`, `MSHH`, `TenHangHoa`, `Gia`, `SoLuong`, `PhanLoai`) VALUES
 (32, 'Quoc', 3, 'AMD Ryzen 5 3600 / 32MB / 4.2GHz / 6 nhân 12 luồng / AM4', 5310500, 1, 'Chip AMD'),
-(33, 'NguyenDinhThanh', 1, 'ASUS TUF GAMING B460M-PRO', 3290000, 1, 'Mainboard B460');
+(33, 'NguyenDinhThanh', 1, 'ASUS TUF GAMING B460M-PRO', 3290000, 1, 'Mainboard B460'),
+(34, 'Quoc', 2, 'MSI MAG B560M MORTAR WIFI', 4490000, 2, 'Mainboard B560M');
 
 -- --------------------------------------------------------
 
@@ -285,10 +298,10 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`MSKH`, `TaiKhoanKH`, `MatKhauKH`, `HoTenKH`, `TenCongTy`, `SoDienThoai`, `SoFax`, `Email`, `DOB`, `GioiTinh`, `BeUToken`, `LuotChoi`, `googleID`) VALUES
-(1, 'Quoc', 'Quoc123', 'Quốc Nguyễn', 'Thanh Company', 123, 0, 'quoc@gmail.com', '22/11/2000', 'Nam', 0, 0, ''),
-(2, 'Bun', 'Bun321', 'Bún Măng', NULL, 321, NULL, 'Bunsx@gmail.com', '27/12/2000', 'Nữ', 0, 0, ''),
+(1, 'Quoc', 'Quoc123', 'Quốc Nguyễn', 'Thanh Company', 123, 0, 'quoc@gmail.com', '22/11/2000', 'Nam', 0, 4, ''),
+(2, 'Bun', 'Bun321', 'Bún Măng', NULL, 321, NULL, 'Bunsx@gmail.com', '27/12/2000', 'Nữ', 0, 3, ''),
 (3, 'Thanh', 'Thanh964594', 'Nguyễn Đình Thanh', NULL, 767732712, NULL, 'qsczsemko@gmail.com', '27/12/2000', 'Nam', 0, 0, ''),
-(26, 'ChucThay', 'ThayTrungnumber1', 'Ngày mới tốt lành', NULL, 918058139, NULL, 'thanhb1805813@student.ctu.edu.vn', '2021-11-27', 'Nam', 0, 0, ''),
+(26, 'ChucThay', 'ThayTrungnumber1', 'Ngày mới tốt lành', NULL, 918058139, NULL, 'thanhb1805813@student.ctu.edu.vn', '2021-11-27', 'Nam', 0, 3, ''),
 (27, 'NguyenDinhThanh', '', 'Nguyen Thanh', NULL, 2712, NULL, 'qsczsemko@gmail.com', '', '', 0, 0, '105790192457968582917');
 
 -- --------------------------------------------------------
@@ -671,7 +684,7 @@ ALTER TABLE `game`
 -- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `hanghoa`
