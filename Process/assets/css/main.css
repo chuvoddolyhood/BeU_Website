@@ -1057,10 +1057,15 @@
 /* Sort, Filter */
 .home-filter{
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	padding: 12px 22px;
 	border-radius: 2px;
 	background-color: rgba(0, 0, 0, .06);
+}
+
+.home-filter a{
+	margin: 1rem 0;
 }
 
 .home-filter__label{
